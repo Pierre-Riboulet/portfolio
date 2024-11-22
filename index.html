@@ -1,38 +1,59 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pierre Riboulet</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pierre Riboulet</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #000;
+    }
+    header {
+      text-align: center;
+      padding: 100px 20px;
+    }
+    header h1 {
+      font-size: 50px;
+      margin: 0;
+    }
+    section {
+      padding: 50px 20px;
+      text-align: center;
+    }
+    section:nth-child(even) {
+      background: #f5f5f5;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #333;
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Pierre Riboulet</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">À propos</a></li>
-                <li><a href="#works">Travaux</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="about">
-            <h2>À propos</h2>
-            <p>Description de Pierre Riboulet.</p>
-        </section>
-        <section id="works">
-            <h2>Travaux</h2>
-            <p>Liste ou galerie de projets.</p>
-        </section>
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Informations ou formulaire de contact.</p>
-        </section>
-    </main>
-    <footer>
-        <p>© 2024 Pierre Riboulet</p>
-    </footer>
+  <header>
+    <h1>Pierre Riboulet</h1>
+    <p>Architecte. Créateur. Visionnaire.</p>
+  </header>
+  <section>
+    <h2>Introduction</h2>
+    <p>Découvrez mon travail et ma vision.</p>
+  </section>
+  <section>
+    <h2>Projets</h2>
+    <p>Une sélection de mes réalisations architecturales.</p>
+  </section>
+  <section>
+    <h2>Contact</h2>
+    <p>Pour toute demande, contactez-moi à <a href="mailto:pierre.riboulet@example.com">pierre.riboulet@example.com</a>.</p>
+  </section>
+  <footer>
+    <p>&copy; 2024 Pierre Riboulet</p>
+  </footer>
 </body>
 </html>
