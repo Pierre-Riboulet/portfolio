@@ -34,6 +34,7 @@
       }
 
       document.title = project.title + " — Pierre Riboulet";
+      var displayTitle = project.pageTitle || project.title;
 
       // Image avec repli propre en placeholder tant que le fichier n'est pas en ligne.
       function photoOrPlaceholder(src, label, className) {
@@ -139,7 +140,7 @@
         '<div class="project-page">' +
         '<a class="back-link" href="index.html">&larr; Retour à la roche</a>' +
         '<p class="project-category">' + project.category + '</p>' +
-        '<h1 class="project-title">' + project.title + '</h1>' +
+        '<h1 class="project-title">' + displayTitle + '</h1>' +
         '<p class="project-description">' + project.description + '</p>' +
         mediaHtml +
         '</div>';

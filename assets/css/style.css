@@ -221,6 +221,7 @@ body.has-custom-cursor #pickaxe-cursor {
   color: #333;
   max-width: 60ch;
   margin: 0 0 3.5rem;
+  white-space: pre-line;
 }
 
 .project-media {
