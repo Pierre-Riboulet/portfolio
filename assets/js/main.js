@@ -60,34 +60,49 @@
   /* ---------------- Son de roche qui se brise ---------------- */
 
   // Dépose tes 3 fichiers dans assets/audio/ avec ces noms exacts (mp3 ou wav,
-  // idéalement courts). Ils alternent à chaque survol. Tant qu'un fichier
-  // n'est pas en ligne, le son synthétisé ci-dessous prend le relais pour lui.
-  var CRACK_SOUND_SRCS = [
+  // idéalement courts). crack-1/crack-2 alternent sur tous les symboles ;
+  // crack-3 ne se déclenche que sur le symbole "about" (l'œil). Tant qu'un
+  // fichier n'est pas en ligne, le son synthétisé ci-dessous prend le relais.
+  var GENERAL_CRACK_SRCS = [
     "assets/audio/crack-1.mp3",
-    "assets/audio/crack-2.mp3",
-    "assets/audio/crack-3.mp3"
+    "assets/audio/crack-2.mp3"
   ];
+  var ABOUT_CRACK_SRC = "assets/audio/crack-3.mp3";
 
-  var readyCrackSrcs = [];
-  CRACK_SOUND_SRCS.forEach(function (src) {
+  function preloadAudio(src, onReady) {
     var probe = new Audio();
-    probe.addEventListener("canplaythrough", function () {
-      if (readyCrackSrcs.indexOf(src) === -1) readyCrackSrcs.push(src);
-    }, { once: true });
+    probe.addEventListener("canplaythrough", onReady, { once: true });
     probe.preload = "auto";
     probe.src = src;
+  }
+
+  var readyGeneralCrackSrcs = [];
+  GENERAL_CRACK_SRCS.forEach(function (src) {
+    preloadAudio(src, function () {
+      if (readyGeneralCrackSrcs.indexOf(src) === -1) readyGeneralCrackSrcs.push(src);
+    });
   });
 
+  var aboutCrackReady = false;
+  preloadAudio(ABOUT_CRACK_SRC, function () { aboutCrackReady = true; });
+
   var crackIndex = 0;
-  function playCrackSound() {
-    if (readyCrackSrcs.length === 0) {
+  function playCrackSound(project) {
+    if (project && project.slug === "about") {
+      if (aboutCrackReady) {
+        new Audio(ABOUT_CRACK_SRC).play().catch(function () {});
+      } else {
+        playRockCrackSynth();
+      }
+      return;
+    }
+    if (readyGeneralCrackSrcs.length === 0) {
       playRockCrackSynth();
       return;
     }
-    var src = readyCrackSrcs[crackIndex % readyCrackSrcs.length];
+    var src = readyGeneralCrackSrcs[crackIndex % readyGeneralCrackSrcs.length];
     crackIndex++;
-    var el = new Audio(src);
-    el.play().catch(function () {});
+    new Audio(src).play().catch(function () {});
   }
 
   var audioCtx = null;
@@ -180,7 +195,7 @@
       a.appendChild(label);
 
       a.addEventListener("mouseenter", function () {
-        playCrackSound();
+        playCrackSound(project);
         if (cursor) {
           cursor.classList.remove("swing");
           void cursor.offsetWidth; // relance l'animation
@@ -197,7 +212,7 @@
             el.classList.remove("touch-active");
           });
           a.classList.add("touch-active");
-          playCrackSound();
+          playCrackSound(project);
         }
       });
 
