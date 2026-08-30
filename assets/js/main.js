@@ -3,6 +3,18 @@
 
   var isFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
+  // Dépose ton image dans assets/cursor/ avec ce nom exact (PNG avec fond
+  // transparent recommandé). Tant qu'elle n'y est pas, la pioche dessinée en
+  // SVG ci-dessous reste utilisée automatiquement.
+  var CURSOR_IMG_SRC = "assets/cursor/pickaxe.png";
+  var FALLBACK_CURSOR_SVG =
+    '<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+    '<path d="M15 30 L27 8" stroke="#3b2a1a" stroke-width="3.4" stroke-linecap="round"/>' +
+    '<path d="M6 9 C11 3, 21 1, 29 6 C24 8, 20 11, 17 15 C13 11, 9 9, 6 9 Z" fill="#8a8a86" stroke="#3f3f3d" stroke-width="1.2"/>' +
+    '<path d="M6 9 C4 10.5, 3.2 12, 3 13.6" stroke="#3f3f3d" stroke-width="1.4" stroke-linecap="round" fill="none"/>' +
+    '<path d="M29 6 C30.6 7.4, 31.4 8.8, 31.6 10.2" stroke="#3f3f3d" stroke-width="1.4" stroke-linecap="round" fill="none"/>' +
+    "</svg>";
+
   /* ---------------- Curseur pioche ---------------- */
 
   function initCursor() {
@@ -12,13 +24,16 @@
 
     var cursor = document.createElement("div");
     cursor.id = "pickaxe-cursor";
-    cursor.innerHTML =
-      '<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-      '<path d="M15 30 L27 8" stroke="#3b2a1a" stroke-width="3.4" stroke-linecap="round"/>' +
-      '<path d="M6 9 C11 3, 21 1, 29 6 C24 8, 20 11, 17 15 C13 11, 9 9, 6 9 Z" fill="#8a8a86" stroke="#3f3f3d" stroke-width="1.2"/>' +
-      '<path d="M6 9 C4 10.5, 3.2 12, 3 13.6" stroke="#3f3f3d" stroke-width="1.4" stroke-linecap="round" fill="none"/>' +
-      '<path d="M29 6 C30.6 7.4, 31.4 8.8, 31.6 10.2" stroke="#3f3f3d" stroke-width="1.4" stroke-linecap="round" fill="none"/>' +
-      "</svg>";
+
+    var img = document.createElement("img");
+    img.src = CURSOR_IMG_SRC;
+    img.alt = "";
+    img.draggable = false;
+    img.onerror = function () {
+      cursor.innerHTML = FALLBACK_CURSOR_SVG;
+    };
+    cursor.appendChild(img);
+
     document.body.appendChild(cursor);
 
     var raf = null;
@@ -45,7 +60,38 @@
     return cursor;
   }
 
-  /* ---------------- Son de roche qui se brise (synthétisé) ---------------- */
+  /* ---------------- Son de roche qui se brise ---------------- */
+
+  // Dépose tes 3 fichiers dans assets/audio/ avec ces noms exacts (mp3 ou wav,
+  // idéalement courts). Ils alternent à chaque survol. Tant qu'un fichier
+  // n'est pas en ligne, le son synthétisé ci-dessous prend le relais pour lui.
+  var CRACK_SOUND_SRCS = [
+    "assets/audio/crack-1.mp3",
+    "assets/audio/crack-2.mp3",
+    "assets/audio/crack-3.mp3"
+  ];
+
+  var readyCrackSrcs = [];
+  CRACK_SOUND_SRCS.forEach(function (src) {
+    var probe = new Audio();
+    probe.addEventListener("canplaythrough", function () {
+      if (readyCrackSrcs.indexOf(src) === -1) readyCrackSrcs.push(src);
+    }, { once: true });
+    probe.preload = "auto";
+    probe.src = src;
+  });
+
+  var crackIndex = 0;
+  function playCrackSound() {
+    if (readyCrackSrcs.length === 0) {
+      playRockCrackSynth();
+      return;
+    }
+    var src = readyCrackSrcs[crackIndex % readyCrackSrcs.length];
+    crackIndex++;
+    var el = new Audio(src);
+    el.play().catch(function () {});
+  }
 
   var audioCtx = null;
   function getAudioContext() {
@@ -58,7 +104,7 @@
     return audioCtx;
   }
 
-  function playRockCrack() {
+  function playRockCrackSynth() {
     var ctx = getAudioContext();
     if (!ctx) return;
 
@@ -137,7 +183,7 @@
       a.appendChild(label);
 
       a.addEventListener("mouseenter", function () {
-        playRockCrack();
+        playCrackSound();
         if (cursor) {
           cursor.classList.remove("swing");
           void cursor.offsetWidth; // relance l'animation
@@ -154,7 +200,7 @@
             el.classList.remove("touch-active");
           });
           a.classList.add("touch-active");
-          playRockCrack();
+          playCrackSound();
         }
       });
 
