@@ -232,7 +232,7 @@ body.has-custom-cursor #pickaxe-cursor {
   gap: 1.25rem;
 }
 
-.project-media .media-placeholder {
+.media-placeholder {
   aspect-ratio: 16 / 9;
   background: #eceae6;
   border: 1px dashed #c9c7c2;
@@ -248,4 +248,155 @@ body.has-custom-cursor #pickaxe-cursor {
 .not-found {
   padding: 20vh 6vw;
   text-align: center;
+}
+
+/* ---------- Page About ---------- */
+
+.about-page .project-title {
+  margin-bottom: 2.5rem;
+}
+
+.about-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+
+.about-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.about-photo.media-placeholder {
+  aspect-ratio: auto;
+  border-radius: 50%;
+  font-size: 0.75rem;
+}
+
+.about-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.about-contact a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--muted);
+}
+.about-contact a:hover {
+  border-bottom-color: var(--ink);
+}
+
+.about-contact span {
+  color: #333;
+}
+
+.about-section {
+  margin-bottom: 3.5rem;
+}
+
+.about-section-title {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e2e0da;
+}
+
+.exp-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #ece9e3;
+}
+.exp-item:last-child { border-bottom: 0; }
+
+.exp-period {
+  margin: 0;
+  width: 13rem;
+  flex-shrink: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.exp-role {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.exp-company {
+  color: var(--muted);
+}
+
+.client-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.client-tag {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #d8d5cd;
+  border-radius: 999px;
+  color: #333;
+}
+
+.education-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.education-list li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #ece9e3;
+  font-size: 1rem;
+}
+.education-list li:last-child { border-bottom: 0; }
+
+.awards-photo {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.award-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.award-org {
+  font-size: 0.95rem;
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+
+.award-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.award-list li {
+  font-size: 0.9rem;
+  color: #333;
 }

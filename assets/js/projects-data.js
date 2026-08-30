@@ -100,8 +100,56 @@ const PROJECTS = [
     slug: "about",
     title: "About Pierre",
     category: "À propos",
-    description: "Description à venir.",
     x: 45.25, y: 36.4, r: 3,
-    media: []
+    // Page "About" : contenu structuré au lieu de description/media.
+    // photo = portrait (à côté du contact), awardsPhoto = photo des prix.
+    // Dépose les deux fichiers dans assets/img/ et mets à jour les chemins ici.
+    about: {
+      photo: "assets/img/pierre-portrait.jpg",
+      awardsPhoto: "assets/img/pierre-awards.jpg",
+      contact: {
+        email: "PierreRiboulet0410@gmail.com",
+        phone: "(+33) 7 81 49 49 00"
+      },
+      experience: [
+        { period: "Août 2022 — Présent", role: "Copywriter", company: "Havas Play Paris" },
+        { period: "Juin 2020 — Août 2022", role: "Junior Copywriter", company: "Havas Sports & Entertainment" }
+      ],
+      clients: [
+        "Acer", "Action contre la faim", "Alpine F1 Team", "Berluti", "Canal +",
+        "GMF", "La SPA", "Paris 2024", "PSG", "Renault"
+      ],
+      education: [
+        "Master Art and Creative Direction — Sup de Pub Paris",
+        "Master Copywriting — Sup de Pub Paris",
+        "Bachelor Information & Communication — Clermont University"
+      ],
+      awards: [
+        { org: "D&AD", items: ["Graphite — Creator Content", "Wood — Media / Direct", "Merit — User Participation"] },
+        { org: "Cannes Lions", items: [
+          "Silver — Media / Use of Influencers",
+          "Bronze — Media / Audience Insight",
+          "Bronze — Brand Experience",
+          "Shortlist — Social & Creators",
+          "Shortlist — Charity / Government",
+          "Shortlist — Challenges & Breakthroughs",
+          "Shortlist — Gaming Entertainment",
+          "Shortlist — Brand Experience",
+          "Shortlist — Social & Creators"
+        ] },
+        { org: "One Show", items: ["Gold — Livestream", "Bronze — Community Activation", "Bronze — Social Channel", "Bronze — Innovation"] },
+        { org: "Stratégies", items: ["Grand Prix — Media", "Grand Prix — Digital", "9x Gold"] },
+        { org: "LIA", items: ["Young Creative 2023"] },
+        { org: "Eurobest", items: [
+          "Bronze — Media Not-for-profit",
+          "Bronze — Activation Gaming",
+          "Bronze — Media Entertainment",
+          "Bronze — PR Cause Related"
+        ] },
+        { org: "Effie Awards", items: ["Silver — Film"] },
+        { org: "French Art Director Club", items: ["Bronze — Film"] },
+        { org: "Gerety", items: ["Silver — Media"] }
+      ]
+    }
   }
 ];

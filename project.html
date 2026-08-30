@@ -35,6 +35,77 @@
 
       document.title = project.title + " — Pierre Riboulet";
 
+      // Image avec repli propre en placeholder tant que le fichier n'est pas en ligne.
+      function photoOrPlaceholder(src, label, className) {
+        return '<img class="' + className + '" src="' + src + '" alt="' + label + '" ' +
+          'onerror="this.outerHTML=\'<div class=&quot;' + className + ' media-placeholder&quot;>' + label + '</div>\'">';
+      }
+
+      if (project.about) {
+        var a = project.about;
+
+        var experienceHtml = a.experience.map(function (e) {
+          return '<div class="exp-item">' +
+            '<p class="exp-period">' + e.period + '</p>' +
+            '<p class="exp-role">' + e.role + ' <span class="exp-company">— ' + e.company + '</span></p>' +
+            '</div>';
+        }).join("");
+
+        var clientsHtml = a.clients.map(function (c) {
+          return '<span class="client-tag">' + c + '</span>';
+        }).join("");
+
+        var educationHtml = a.education.map(function (e) {
+          return '<li>' + e + '</li>';
+        }).join("");
+
+        var awardsHtml = a.awards.map(function (group) {
+          return '<div class="award-group">' +
+            '<h3 class="award-org">' + group.org + '</h3>' +
+            '<ul class="award-list">' +
+            group.items.map(function (i) { return '<li>' + i + '</li>'; }).join("") +
+            '</ul></div>';
+        }).join("");
+
+        app.innerHTML =
+          '<a class="brand" href="index.html">Pierre Riboulet</a>' +
+          '<div class="project-page about-page">' +
+          '<a class="back-link" href="index.html">&larr; Retour à la roche</a>' +
+          '<p class="project-category">' + project.category + '</p>' +
+          '<h1 class="project-title">' + project.title + '</h1>' +
+
+          '<div class="about-header">' +
+          photoOrPlaceholder(a.photo, "Photo à venir", "about-photo") +
+          '<div class="about-contact">' +
+          '<a href="mailto:' + a.contact.email + '">' + a.contact.email + '</a>' +
+          '<span>' + a.contact.phone + '</span>' +
+          '</div>' +
+          '</div>' +
+
+          '<section class="about-section">' +
+          '<h2 class="about-section-title">Expérience</h2>' +
+          experienceHtml +
+          '</section>' +
+
+          '<section class="about-section">' +
+          '<h2 class="about-section-title">Clients</h2>' +
+          '<div class="client-tags">' + clientsHtml + '</div>' +
+          '</section>' +
+
+          '<section class="about-section">' +
+          '<h2 class="about-section-title">Formation</h2>' +
+          '<ul class="education-list">' + educationHtml + '</ul>' +
+          '</section>' +
+
+          '<section class="about-section">' +
+          '<h2 class="about-section-title">Récompenses</h2>' +
+          photoOrPlaceholder(a.awardsPhoto, "Photo à venir", "awards-photo") +
+          '<div class="award-groups">' + awardsHtml + '</div>' +
+          '</section>' +
+          '</div>';
+        return;
+      }
+
       var mediaHtml;
       if (project.subprojects) {
         // Page collection (ex: Prints) : une carte par projet qu'elle contiendra.
