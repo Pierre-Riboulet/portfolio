@@ -16,6 +16,14 @@
  */
 const PROJECTS = [
   {
+    slug: "accor",
+    title: "Accor",
+    category: "Campagne",
+    description: "Description à venir.",
+    x: 45.25, y: 21.2, r: 3,
+    media: []
+  },
+  {
     slug: "acer",
     title: "Acer",
     category: "Campagne",

@@ -2,9 +2,9 @@
 
 Portfolio publicitaire minimaliste : une seule image (une roche sur laquelle
 sont fixés les logos/symboles des projets), chaque symbole ouvre la page du
-projet correspondant. 11 pages au total : la roche + 10 projets.
+projet correspondant. 12 pages au total : la roche + 11 projets.
 
-- Acer, Canal+, La SPA, Louis Vuitton
+- Accor, Acer, Canal+, La SPA, Louis Vuitton
 - Prints (page collection : rassemblera plusieurs projets)
 - Créateur d'immortels, UNITED 24, Firecatchers, Plan International
 - About Pierre
