@@ -55,20 +55,27 @@ body.home {
   overflow: hidden;
 }
 
+/* Roche = 2600x1535px. .rock-frame est toujours mis à l'échelle pour
+   couvrir tout l'écran EN CONSERVANT ce ratio (comme background-size:cover,
+   mais en pur CSS, sans JS) : width/height de base = plein écran, et le
+   min-width/min-height calculé à partir du ratio prend le relais dès que
+   la base ne suffit plus à couvrir l'autre dimension. Le débordement est
+   centré puis rogné par .stage (overflow: hidden). */
 .rock-frame {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  min-width: calc(100vh * 2600 / 1535);
+  min-height: calc(100vw * 1535 / 2600);
 }
 
 .rock-frame img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
   user-select: none;
   -webkit-user-drag: none;
 }
