@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projet — Pierre Riboulet</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div id="app"></div>
+
+  <script src="assets/js/projects-data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var slug = params.get("slug");
+      var project = (typeof PROJECTS !== "undefined") ? PROJECTS.filter(function (p) {
+        return p.slug === slug;
+      })[0] : null;
+
+      var app = document.getElementById("app");
+
+      if (!project) {
+        app.innerHTML =
+          '<a class="brand" href="index.html">Pierre Riboulet</a>' +
+          '<div class="not-found">' +
+          '<p class="project-category">404</p>' +
+          '<h1 class="project-title">Projet introuvable</h1>' +
+          '<a class="back-link" href="index.html">&larr; Retour à la roche</a>' +
+          '</div>';
+        document.title = "Projet introuvable — Pierre Riboulet";
+        return;
+      }
+
+      document.title = project.title + " — Pierre Riboulet";
+
+      var mediaHtml = '<div class="project-media">';
+      if (project.media && project.media.length) {
+        project.media.forEach(function (m) {
+          if (m.type === "video") {
+            mediaHtml += '<video class="media-placeholder" controls src="' + m.src + '"></video>';
+          } else {
+            mediaHtml += '<img class="media-placeholder" src="' + m.src + '" alt="' + project.title + '">';
+          }
+        });
+      } else {
+        mediaHtml += '<div class="media-placeholder">Photos / vidéo à venir</div>';
+      }
+      mediaHtml += "</div>";
+
+      app.innerHTML =
+        '<a class="brand" href="index.html">Pierre Riboulet</a>' +
+        '<div class="project-page">' +
+        '<a class="back-link" href="index.html">&larr; Retour à la roche</a>' +
+        '<p class="project-category">' + project.category + '</p>' +
+        '<h1 class="project-title">' + project.title + '</h1>' +
+        '<p class="project-description">' + project.description + '</p>' +
+        mediaHtml +
+        '</div>';
+    })();
+  </script>
+</body>
+</html>

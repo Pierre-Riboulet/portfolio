@@ -1,0 +1,251 @@
+:root {
+  --bg: #f7f6f4;
+  --ink: #17171a;
+  --muted: #6b6b68;
+  --accent: #17171a;
+  --hotspot-ring: rgba(23, 23, 26, 0.35);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Curseur natif masqué uniquement sur pointeur fin (souris) ;
+   sur mobile/tactile on garde le comportement par défaut. */
+@media (hover: hover) and (pointer: fine) {
+  body.has-custom-cursor,
+  body.has-custom-cursor * {
+    cursor: none;
+  }
+}
+
+/* ---------- Page d'accueil : la roche ---------- */
+
+.stage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6vh 5vw;
+}
+
+.rock-frame {
+  position: relative;
+  display: inline-block;
+  max-width: 900px;
+  width: 100%;
+}
+
+.rock-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.brand {
+  position: fixed;
+  top: 28px;
+  left: 32px;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  z-index: 20;
+}
+
+.hint {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  z-index: 20;
+  text-align: center;
+}
+
+/* ---------- Points chauds ---------- */
+
+.hotspot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 6%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  display: block;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hotspot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--hotspot-ring);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.hotspot:hover::before,
+.hotspot:focus-visible::before,
+.hotspot.touch-active::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hotspot-label {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(4px);
+  white-space: nowrap;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.hotspot:hover .hotspot-label,
+.hotspot:focus-visible .hotspot-label,
+.hotspot.touch-active .hotspot-label {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* mode calibration (?calibrate) */
+.calibrate .hotspot::before {
+  opacity: 1;
+  border-color: rgba(200, 40, 40, 0.6);
+}
+.calibrate-marker {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: red;
+  pointer-events: none;
+}
+
+/* ---------- Curseur pioche personnalisé ---------- */
+
+#pickaxe-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-4px, -30px) rotate(-18deg);
+  transform-origin: 30px 30px;
+  will-change: transform;
+  transition: transform 0.08s ease-out;
+  display: none;
+}
+
+body.has-custom-cursor #pickaxe-cursor {
+  display: block;
+}
+
+#pickaxe-cursor.swing {
+  animation: pickaxe-swing 0.32s ease-in-out;
+}
+
+@keyframes pickaxe-swing {
+  0%   { transform: translate(-4px, -30px) rotate(-18deg); }
+  40%  { transform: translate(-4px, -30px) rotate(28deg); }
+  100% { transform: translate(-4px, -30px) rotate(-18deg); }
+}
+
+/* ---------- Page projet ---------- */
+
+.project-page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 12vh 6vw 10vh;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 3rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.back-link:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.project-category {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+}
+
+.project-title {
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  margin: 0 0 2rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.project-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #333;
+  max-width: 60ch;
+  margin: 0 0 3.5rem;
+}
+
+.project-media {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.project-media .media-placeholder {
+  aspect-ratio: 16 / 9;
+  background: #eceae6;
+  border: 1px dashed #c9c7c2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.not-found {
+  padding: 20vh 6vw;
+  text-align: center;
+}
