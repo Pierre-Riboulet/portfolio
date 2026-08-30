@@ -42,13 +42,19 @@ html, body {
 
 /* ---------- Page d'accueil : la roche, en pleine page ---------- */
 
+/* Dégradé calé sur le fond réel de la photo (mesuré directement sur le
+   fichier) : si un espace apparaît malgré tout (barre d'adresse mobile,
+   marge sur petit écran…), il se fond dedans au lieu de trancher en blanc. */
 body.home {
+  height: 100dvh;
   height: 100vh;
   overflow: hidden;
+  background: linear-gradient(to bottom, #b2abb4 0%, #d5d2db 50%, #f5f4fa 100%);
 }
 
 .stage {
   position: relative;
+  height: 100dvh;
   height: 100vh;
   width: 100vw;
   margin: 0;
@@ -60,7 +66,12 @@ body.home {
    mais en pur CSS, sans JS) : width/height de base = plein écran, et le
    min-width/min-height calculé à partir du ratio prend le relais dès que
    la base ne suffit plus à couvrir l'autre dimension. Le débordement est
-   centré puis rogné par .stage (overflow: hidden). */
+   centré puis rogné par .stage (overflow: hidden).
+   100dvh (dynamic viewport height) au lieu de 100vh : sur mobile, vh se
+   base sur la hauteur "barre d'adresse rétractée", donc quand elle est
+   visible ça laissait un vrai espace en haut. dvh suit la hauteur réellement
+   visible. Les deux valeurs sont déclarées : les navigateurs qui ne
+   connaissent pas dvh gardent simplement la valeur vh juste au-dessus. */
 .rock-frame {
   position: absolute;
   top: 50%;
@@ -68,7 +79,9 @@ body.home {
   transform: translate(-50%, -50%);
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   min-width: calc(100vh * 2600 / 1535);
+  min-width: calc(100dvh * 2600 / 1535);
   min-height: calc(100vw * 1535 / 2600);
 }
 
