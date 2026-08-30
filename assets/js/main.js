@@ -178,6 +178,23 @@
     var frame = document.querySelector(".rock-frame");
     if (!frame || typeof PROJECTS === "undefined") return;
 
+    var captionLeft = document.getElementById("hover-caption-left");
+    var captionRight = document.getElementById("hover-caption-right");
+
+    function showCaption(project) {
+      if (!captionLeft || !captionRight) return;
+      captionLeft.textContent = project.hoverLeft || "";
+      captionRight.textContent = project.hoverRight || "";
+      captionLeft.classList.add("visible");
+      captionRight.classList.add("visible");
+    }
+
+    function hideCaption() {
+      if (!captionLeft || !captionRight) return;
+      captionLeft.classList.remove("visible");
+      captionRight.classList.remove("visible");
+    }
+
     PROJECTS.forEach(function (project) {
       var a = document.createElement("a");
       a.href = "project.html?slug=" + encodeURIComponent(project.slug);
@@ -191,12 +208,15 @@
 
       a.addEventListener("mouseenter", function () {
         playCrackSound(project);
+        showCaption(project);
         if (cursor) {
           cursor.classList.remove("swing");
           void cursor.offsetWidth; // relance l'animation
           cursor.classList.add("swing");
         }
       });
+
+      a.addEventListener("mouseleave", hideCaption);
 
       // Tactile : joue le son avant que la navigation ne parte.
       a.addEventListener("click", function () {

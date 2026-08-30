@@ -5,6 +5,21 @@
   --accent: #17171a;
 }
 
+/* Dépose le fichier de la police dans assets/fonts/ (woff2 de préférence,
+   otf/ttf marchent aussi) sous le nom minion-pro-italic.* — tant qu'il n'y
+   est pas, le repli Georgia italique prend le relais tout seul. */
+@font-face {
+  font-family: "Minion Pro";
+  src:
+    url("../fonts/minion-pro-italic.woff2") format("woff2"),
+    url("../fonts/minion-pro-italic.woff") format("woff"),
+    url("../fonts/minion-pro-italic.otf") format("opentype"),
+    url("../fonts/minion-pro-italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
 * { box-sizing: border-box; }
 
 html, body {
@@ -56,6 +71,49 @@ body.home {
   height: auto;
   user-select: none;
   -webkit-user-drag: none;
+}
+
+.hover-caption {
+  position: fixed;
+  top: 50%;
+  margin: 0;
+  max-width: 22vw;
+  font-family: "Minion Pro", Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.6vw, 2.1rem);
+  line-height: 1.25;
+  color: #8c8c88;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  z-index: 15;
+}
+
+.hover-caption-left {
+  left: 4vw;
+  text-align: right;
+  transform: translateY(-50%) translateX(-10px);
+}
+
+.hover-caption-right {
+  right: 4vw;
+  text-align: left;
+  transform: translateY(-50%) translateX(10px);
+}
+
+.hover-caption-left.visible,
+.hover-caption-right.visible {
+  transform: translateY(-50%) translateX(0);
+}
+
+.hover-caption.visible {
+  opacity: 1;
+}
+
+@media (max-width: 700px) {
+  .hover-caption {
+    display: none;
+  }
 }
 
 .brand {
