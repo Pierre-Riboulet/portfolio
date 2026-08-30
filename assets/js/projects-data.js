@@ -7,8 +7,12 @@
  * avec ?calibrate à la fin de l'URL (ex: index.html?calibrate) : un clic sur un
  * symbole affiche ses coordonnées exactes dans la console, à recopier ici.
  *
- * title / description sont des textes provisoires ("on verra plus tard") —
- * à remplacer par le vrai contenu de chaque projet.
+ * Seuls les symboles listés ici sont cliquables (survol = son + tooltip).
+ * Les broches/épingles décoratives ne sont volontairement pas dans cette liste :
+ * elles ne mènent nulle part.
+ *
+ * description / media sont provisoires ("on verra plus tard") — à remplacer par
+ * le vrai contenu de chaque projet.
  */
 const PROJECTS = [
   {
@@ -44,99 +48,52 @@ const PROJECTS = [
     media: []
   },
   {
-    slug: "alpine",
-    title: "Alpine",
-    category: "Campagne",
+    slug: "prints",
+    title: "Prints",
+    category: "Collection",
     description: "Description à venir.",
     x: 44.75, y: 77.9, r: 4,
-    media: []
+    // Cette page rassemblera plusieurs projets : { title: "..." } par entrée.
+    subprojects: []
   },
   {
-    slug: "photographie",
-    title: "Photographie",
+    slug: "createur-dimmortels",
+    title: "Créateur d'immortels",
     category: "Projet personnel",
     description: "Description à venir.",
     x: 57.75, y: 52.9, r: 4.5,
     media: []
   },
   {
-    slug: "ukraine",
-    title: "Solidarité Ukraine",
+    slug: "united24",
+    title: "UNITED 24",
     category: "Projet",
     description: "Description à venir.",
     x: 58.5, y: 67.7, r: 3.5,
     media: []
   },
   {
-    slug: "casque",
-    title: "Casque",
+    slug: "firecatchers",
+    title: "Firecatchers",
     category: "Projet",
     description: "Description à venir.",
     x: 51.75, y: 83.8, r: 4,
     media: []
   },
   {
-    slug: "medaillon",
-    title: "Médaillon",
-    category: "Bijou",
+    slug: "plan-international",
+    title: "Plan International",
+    category: "Campagne",
     description: "Description à venir.",
     x: 45.25, y: 55, r: 4,
     media: []
   },
   {
-    slug: "eye-ring",
-    title: "Bague Œil",
-    category: "Bijou",
+    slug: "about",
+    title: "About Pierre",
+    category: "À propos",
     description: "Description à venir.",
     x: 45.25, y: 36.4, r: 3,
-    media: []
-  },
-  {
-    slug: "broche-saphir",
-    title: "Broche Saphir",
-    category: "Bijou",
-    description: "Description à venir.",
-    x: 39.75, y: 34.7, r: 3.5,
-    media: []
-  },
-  {
-    slug: "broche-rubis",
-    title: "Broche Rubis",
-    category: "Bijou",
-    description: "Description à venir.",
-    x: 38.25, y: 53.3, r: 4,
-    media: []
-  },
-  {
-    slug: "broche-diamant",
-    title: "Broche Diamant",
-    category: "Bijou",
-    description: "Description à venir.",
-    x: 38.75, y: 69.9, r: 3,
-    media: []
-  },
-  {
-    slug: "epingle-or-1",
-    title: "Épingle Or",
-    category: "Bijou",
-    description: "Description à venir.",
-    x: 45.25, y: 21.2, r: 2.5,
-    media: []
-  },
-  {
-    slug: "epingle-or-2",
-    title: "Épingle Or II",
-    category: "Bijou",
-    description: "Description à venir.",
-    x: 61, y: 69.9, r: 2.5,
-    media: []
-  },
-  {
-    slug: "fleur-gemmes",
-    title: "Fleur de Gemmes",
-    category: "Bijou",
-    description: "Description à venir.",
-    x: 53, y: 16.5, r: 2.5,
     media: []
   }
 ];

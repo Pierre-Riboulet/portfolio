@@ -2,7 +2,15 @@
 
 Portfolio publicitaire minimaliste : une seule image (une roche sur laquelle
 sont fixés les logos/symboles des projets), chaque symbole ouvre la page du
-projet correspondant.
+projet correspondant. 11 pages au total : la roche + 10 projets.
+
+- Acer, Canal+, La SPA, Louis Vuitton
+- Prints (page collection : rassemblera plusieurs projets)
+- Créateur d'immortels, UNITED 24, Firecatchers, Plan International
+- About Pierre
+
+Les broches/épingles décoratives sur la roche ne sont pas cliquables
+(pas de page attribuée) : ni point, ni son au survol.
 
 ## Structure
 
@@ -12,22 +20,20 @@ project.html                  Gabarit de page projet (lit ?slug=...)
 assets/css/style.css          Styles
 assets/js/main.js             Curseur pioche, son de roche, points cliquables
 assets/js/projects-data.js    Données des projets + position des points sur la roche
-assets/img/rock-placeholder.svg  Image de remplacement en attendant la vraie photo
+assets/img/rock.jpg           Photo de la roche
 ```
 
 ## À faire avant mise en ligne
 
-1. **Remplacer l'image** : mets ta vraie photo de la roche dans
-   `assets/img/`, puis mets à jour le `src` de l'`<img>` dans `index.html`
-   (actuellement `assets/img/rock-placeholder.svg`).
-2. **Recaler les points cliquables** : ouvre le site avec `?calibrate` à la
-   fin de l'URL (ex. `index.html?calibrate`) et clique sur chaque symbole de
-   la vraie photo. Les coordonnées exactes (x/y en %) s'affichent dans la
+1. **Recaler les points cliquables** si besoin : ouvre le site avec
+   `?calibrate` à la fin de l'URL (ex. `index.html?calibrate`) et clique sur
+   chaque symbole. Les coordonnées exactes (x/y en %) s'affichent dans la
    console et sont copiées dans le presse-papiers — reporte-les dans
    `assets/js/projects-data.js`.
-3. **Compléter chaque projet** dans `projects-data.js` : titre définitif,
-   catégorie, description, et médias (`media: [{ type: "video", src: "..." }]`
-   ou `{ type: "image", src: "..." }`).
+2. **Compléter chaque projet** dans `projects-data.js` : description
+   définitive, et médias (`media: [{ type: "video", src: "..." }]` ou
+   `{ type: "image", src: "..." }`). Pour "Prints", remplir `subprojects`
+   avec `{ title: "..." }` par projet une fois qu'ils existent.
 
 ## Détails techniques
 

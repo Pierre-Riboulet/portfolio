@@ -35,19 +35,33 @@
 
       document.title = project.title + " — Pierre Riboulet";
 
-      var mediaHtml = '<div class="project-media">';
-      if (project.media && project.media.length) {
-        project.media.forEach(function (m) {
-          if (m.type === "video") {
-            mediaHtml += '<video class="media-placeholder" controls src="' + m.src + '"></video>';
-          } else {
-            mediaHtml += '<img class="media-placeholder" src="' + m.src + '" alt="' + project.title + '">';
-          }
-        });
+      var mediaHtml;
+      if (project.subprojects) {
+        // Page collection (ex: Prints) : une carte par projet qu'elle contiendra.
+        mediaHtml = '<div class="project-media">';
+        if (project.subprojects.length) {
+          project.subprojects.forEach(function (sp) {
+            mediaHtml += '<div class="media-placeholder">' + sp.title + '</div>';
+          });
+        } else {
+          mediaHtml += '<div class="media-placeholder">Projets à venir</div>';
+        }
+        mediaHtml += "</div>";
       } else {
-        mediaHtml += '<div class="media-placeholder">Photos / vidéo à venir</div>';
+        mediaHtml = '<div class="project-media">';
+        if (project.media && project.media.length) {
+          project.media.forEach(function (m) {
+            if (m.type === "video") {
+              mediaHtml += '<video class="media-placeholder" controls src="' + m.src + '"></video>';
+            } else {
+              mediaHtml += '<img class="media-placeholder" src="' + m.src + '" alt="' + project.title + '">';
+            }
+          });
+        } else {
+          mediaHtml += '<div class="media-placeholder">Photos / vidéo à venir</div>';
+        }
+        mediaHtml += "</div>";
       }
-      mediaHtml += "</div>";
 
       app.innerHTML =
         '<a class="brand" href="index.html">Pierre Riboulet</a>' +
