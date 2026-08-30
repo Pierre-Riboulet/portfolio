@@ -49,7 +49,7 @@ body.home {
   height: 100dvh;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(to bottom, #b2abb4 0%, #d5d2db 50%, #f5f4fa 100%);
+  background: linear-gradient(to bottom, #dad2df 0%, #f5f4fa 100%);
 }
 
 .stage {

@@ -69,40 +69,29 @@
   ];
   var ABOUT_CRACK_SRC = "assets/audio/crack-3.mp3";
 
-  function preloadAudio(src, onReady) {
-    var probe = new Audio();
-    probe.addEventListener("canplaythrough", onReady, { once: true });
-    probe.preload = "auto";
-    probe.src = src;
-  }
-
-  var readyGeneralCrackSrcs = [];
-  GENERAL_CRACK_SRCS.forEach(function (src) {
-    preloadAudio(src, function () {
-      if (readyGeneralCrackSrcs.indexOf(src) === -1) readyGeneralCrackSrcs.push(src);
-    });
-  });
-
-  var aboutCrackReady = false;
-  preloadAudio(ABOUT_CRACK_SRC, function () { aboutCrackReady = true; });
-
+  // Safari iOS ne "débloque" la lecture/le préchargement audio qu'après un
+  // vrai geste utilisateur : attendre un événement "canplaythrough" en
+  // préchargement (comme avant) ne se déclenchait jamais avant le premier
+  // tap sur mobile, donc ça retombait toujours sur le son synthétisé. On
+  // tente maintenant la lecture directement au moment du survol/tap, et on
+  // ne bascule sur le repli que si cette tentative échoue vraiment.
   var crackIndex = 0;
   function playCrackSound(project) {
-    if (project && project.slug === "about") {
-      if (aboutCrackReady) {
-        new Audio(ABOUT_CRACK_SRC).play().catch(function () {});
-      } else {
-        playRockCrackSynth();
+    var special = project && project.slug === "about";
+    var src = special
+      ? ABOUT_CRACK_SRC
+      : GENERAL_CRACK_SRCS[crackIndex % GENERAL_CRACK_SRCS.length];
+    if (!special) crackIndex++;
+
+    try {
+      var el = new Audio(src);
+      var playPromise = el.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(function () { playRockCrackSynth(); });
       }
-      return;
-    }
-    if (readyGeneralCrackSrcs.length === 0) {
+    } catch (e) {
       playRockCrackSynth();
-      return;
     }
-    var src = readyGeneralCrackSrcs[crackIndex % readyGeneralCrackSrcs.length];
-    crackIndex++;
-    new Audio(src).play().catch(function () {});
   }
 
   var audioCtx = null;
