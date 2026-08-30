@@ -172,11 +172,58 @@
     click.stop(now + 0.1);
   }
 
+  /* ----------------------------------------------------------------------
+   * L'image remplit tout l'écran (object-fit: cover), donc elle est
+   * recadrée différemment selon la forme de la fenêtre : les points en %
+   * calés sur l'image d'origine ne tombent plus au bon endroit si on se
+   * contente d'un simple positionnement CSS. On recalcule leur position en
+   * pixels à chaque chargement/redimensionnement, avec la même géométrie
+   * que le "cover" du navigateur (agrandir jusqu'à couvrir, puis recadrer
+   * également des deux côtés du plus grand dépassement).
+   * -------------------------------------------------------------------- */
+
+  function getCoverGeometry(frame, img) {
+    var natW = img.naturalWidth;
+    var natH = img.naturalHeight;
+    if (!natW || !natH) return null;
+
+    var containerW = frame.clientWidth;
+    var containerH = frame.clientHeight;
+    var scale = Math.max(containerW / natW, containerH / natH);
+    var renderedW = natW * scale;
+    var renderedH = natH * scale;
+
+    return {
+      natW: natW,
+      natH: natH,
+      scale: scale,
+      offsetX: (renderedW - containerW) / 2,
+      offsetY: (renderedH - containerH) / 2
+    };
+  }
+
+  // % sur l'image d'origine -> pixels dans le conteneur affiché.
+  function imgPctToPx(geo, xPct, yPct) {
+    return {
+      x: (xPct / 100) * geo.natW * geo.scale - geo.offsetX,
+      y: (yPct / 100) * geo.natH * geo.scale - geo.offsetY
+    };
+  }
+
+  // pixels dans le conteneur affiché -> % sur l'image d'origine (calibration).
+  function pxToImgPct(geo, x, y) {
+    return {
+      x: ((x + geo.offsetX) / geo.scale / geo.natW) * 100,
+      y: ((y + geo.offsetY) / geo.scale / geo.natH) * 100
+    };
+  }
+
   /* ---------------- Points chauds sur la roche ---------------- */
 
   function buildHotspots(cursor) {
     var frame = document.querySelector(".rock-frame");
-    if (!frame || typeof PROJECTS === "undefined") return;
+    var img = frame && frame.querySelector("img");
+    if (!frame || !img || typeof PROJECTS === "undefined") return;
 
     var captionLeft = document.getElementById("hover-caption-left");
     var captionRight = document.getElementById("hover-caption-right");
@@ -199,11 +246,9 @@
       var a = document.createElement("a");
       a.href = "project.html?slug=" + encodeURIComponent(project.slug);
       a.className = "hotspot";
-      a.style.left = project.x + "%";
-      a.style.top = project.y + "%";
-      if (project.r) {
-        a.style.width = project.r * 2 + "%";
-      }
+      a.dataset.x = project.x;
+      a.dataset.y = project.y;
+      a.dataset.r = project.r || 0;
       a.setAttribute("aria-label", project.title);
 
       a.addEventListener("mouseenter", function () {
@@ -226,6 +271,35 @@
 
       frame.appendChild(a);
     });
+
+    function layout() {
+      var geo = getCoverGeometry(frame, img);
+      if (!geo) return;
+      frame.querySelectorAll(".hotspot").forEach(function (el) {
+        var pt = imgPctToPx(geo, parseFloat(el.dataset.x), parseFloat(el.dataset.y));
+        el.style.left = pt.x + "px";
+        el.style.top = pt.y + "px";
+        var r = parseFloat(el.dataset.r);
+        if (r) {
+          el.style.width = r * 2 * geo.scale + "px";
+        }
+      });
+    }
+
+    if (img.complete && img.naturalWidth) {
+      layout();
+    } else {
+      img.addEventListener("load", layout);
+    }
+
+    var resizeRaf = null;
+    window.addEventListener("resize", function () {
+      if (resizeRaf) return;
+      resizeRaf = requestAnimationFrame(function () {
+        layout();
+        resizeRaf = null;
+      });
+    });
   }
 
   /* ---------------- Mode calibration (?calibrate) ---------------- */
@@ -240,16 +314,18 @@
     if (!frame || !img) return;
 
     frame.addEventListener("click", function (e) {
-      var rect = img.getBoundingClientRect();
-      var x = ((e.clientX - rect.left) / rect.width) * 100;
-      var y = ((e.clientY - rect.top) / rect.height) * 100;
-      var xr = Math.round(x * 10) / 10;
-      var yr = Math.round(y * 10) / 10;
+      var geo = getCoverGeometry(frame, img);
+      if (!geo) return;
+      var rect = frame.getBoundingClientRect();
+      var pct = pxToImgPct(geo, e.clientX - rect.left, e.clientY - rect.top);
+      var xr = Math.round(pct.x * 10) / 10;
+      var yr = Math.round(pct.y * 10) / 10;
 
       var marker = document.createElement("div");
       marker.className = "calibrate-marker";
-      marker.style.left = xr + "%";
-      marker.style.top = yr + "%";
+      var pt = imgPctToPx(geo, xr, yr);
+      marker.style.left = pt.x + "px";
+      marker.style.top = pt.y + "px";
       frame.appendChild(marker);
 
       var coords = "x: " + xr + ", y: " + yr;
