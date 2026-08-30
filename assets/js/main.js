@@ -189,11 +189,6 @@
       }
       a.setAttribute("aria-label", project.title);
 
-      var label = document.createElement("span");
-      label.className = "hotspot-label";
-      label.textContent = project.title;
-      a.appendChild(label);
-
       a.addEventListener("mouseenter", function () {
         playCrackSound(project);
         if (cursor) {
@@ -203,17 +198,10 @@
         }
       });
 
-      // Tactile : premier tap = aperçu du nom, second tap = navigation
-      a.addEventListener("click", function (e) {
+      // Tactile : joue le son avant que la navigation ne parte.
+      a.addEventListener("click", function () {
         if (isFinePointer) return;
-        if (!a.classList.contains("touch-active")) {
-          e.preventDefault();
-          document.querySelectorAll(".hotspot.touch-active").forEach(function (el) {
-            el.classList.remove("touch-active");
-          });
-          a.classList.add("touch-active");
-          playCrackSound(project);
-        }
+        playCrackSound(project);
       });
 
       frame.appendChild(a);

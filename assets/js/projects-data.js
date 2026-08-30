@@ -43,7 +43,7 @@ Instead, we found one move that put Accor on screens around the world: we surfed
     category: "Campagne",
     description: `To promote the return of the TV show where rap meets gang business, Canal+ wanted a print campaign.
 So we went to the cities where street cred matters most: Paris, Marseille and Los Santos.`,
-    x: 45, y: 43.6, r: 5.5,
+    x: 45, y: 43.6, r: 4.5,
     media: []
   },
   {
@@ -122,7 +122,7 @@ One day, while waiting with 30,000 other people in front of a waiting screen, I 
     slug: "about",
     title: "About Pierre",
     category: "À propos",
-    x: 45.25, y: 36.4, r: 3,
+    x: 45.25, y: 36.4, r: 2.2,
     // Page "About" : contenu structuré au lieu de description/media.
     // photo = portrait (à côté du contact), awardsPhoto = photo des prix.
     // Dépose les deux fichiers dans assets/img/ et mets à jour les chemins ici.

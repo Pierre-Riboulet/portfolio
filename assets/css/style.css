@@ -3,7 +3,6 @@
   --ink: #17171a;
   --muted: #6b6b68;
   --accent: #17171a;
-  --hotspot-ring: rgba(23, 23, 26, 0.35);
 }
 
 * { box-sizing: border-box; }
@@ -87,53 +86,10 @@ body.home {
   -webkit-tap-highlight-color: transparent;
 }
 
-.hotspot::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+/* mode calibration (?calibrate) : seul endroit où le contour des points reste visible */
+.calibrate .hotspot {
+  outline: 1px solid rgba(200, 40, 40, 0.6);
   border-radius: 50%;
-  border: 1px solid var(--hotspot-ring);
-  opacity: 0;
-  transform: scale(0.6);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.hotspot:hover::before,
-.hotspot:focus-visible::before,
-.hotspot.touch-active::before {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.hotspot-label {
-  position: absolute;
-  left: 50%;
-  bottom: calc(100% + 10px);
-  transform: translateX(-50%) translateY(4px);
-  white-space: nowrap;
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  background: var(--ink);
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 3px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.hotspot:hover .hotspot-label,
-.hotspot:focus-visible .hotspot-label,
-.hotspot.touch-active .hotspot-label {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-/* mode calibration (?calibrate) */
-.calibrate .hotspot::before {
-  opacity: 1;
-  border-color: rgba(200, 40, 40, 0.6);
 }
 .calibrate-marker {
   position: absolute;
