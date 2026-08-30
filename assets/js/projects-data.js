@@ -2,10 +2,10 @@
  * Données des projets + position des points cliquables sur la roche.
  *
  * x / y = position en pourcentage (0-100) sur l'image ENTIÈRE (assets/img/rock.jpg),
- * pas seulement sur la roche. Ce sont des estimations à partir de l'image fournie ;
- * une fois la vraie photo en place, ouvre le site avec ?calibrate à la fin de l'URL
- * (ex: index.html?calibrate) : un clic sur un symbole affiche ses coordonnées exactes
- * dans la console, à recopier ici.
+ * pas seulement sur la roche. Ces coordonnées ont été calées visuellement sur la
+ * vraie photo (assets/img/rock.jpg). Pour les affiner au pixel près, ouvre le site
+ * avec ?calibrate à la fin de l'URL (ex: index.html?calibrate) : un clic sur un
+ * symbole affiche ses coordonnées exactes dans la console, à recopier ici.
  *
  * title / description sont des textes provisoires ("on verra plus tard") —
  * à remplacer par le vrai contenu de chaque projet.
@@ -16,7 +16,7 @@ const PROJECTS = [
     title: "Acer",
     category: "Campagne",
     description: "Description à venir.",
-    x: 53, y: 28, r: 4.5,
+    x: 52.8, y: 24.6, r: 4.5,
     media: []
   },
   {
@@ -24,7 +24,7 @@ const PROJECTS = [
     title: "Canal+",
     category: "Campagne",
     description: "Description à venir.",
-    x: 44, y: 48, r: 5,
+    x: 45, y: 43.6, r: 5.5,
     media: []
   },
   {
@@ -32,7 +32,7 @@ const PROJECTS = [
     title: "La SPA",
     category: "Campagne",
     description: "Description à venir.",
-    x: 58, y: 43, r: 4.5,
+    x: 57.5, y: 38.1, r: 3.5,
     media: []
   },
   {
@@ -40,7 +40,7 @@ const PROJECTS = [
     title: "Louis Vuitton",
     category: "Campagne",
     description: "Description à venir.",
-    x: 50, y: 74, r: 4.5,
+    x: 50, y: 68.6, r: 3.5,
     media: []
   },
   {
@@ -48,7 +48,7 @@ const PROJECTS = [
     title: "Alpine",
     category: "Campagne",
     description: "Description à venir.",
-    x: 44, y: 84, r: 4.5,
+    x: 44.75, y: 77.9, r: 4,
     media: []
   },
   {
@@ -56,7 +56,7 @@ const PROJECTS = [
     title: "Photographie",
     category: "Projet personnel",
     description: "Description à venir.",
-    x: 58, y: 56, r: 4.5,
+    x: 57.75, y: 52.9, r: 4.5,
     media: []
   },
   {
@@ -64,7 +64,7 @@ const PROJECTS = [
     title: "Solidarité Ukraine",
     category: "Projet",
     description: "Description à venir.",
-    x: 60, y: 71, r: 4,
+    x: 58.5, y: 67.7, r: 3.5,
     media: []
   },
   {
@@ -72,7 +72,7 @@ const PROJECTS = [
     title: "Casque",
     category: "Projet",
     description: "Description à venir.",
-    x: 51, y: 89, r: 4.5,
+    x: 51.75, y: 83.8, r: 4,
     media: []
   },
   {
@@ -80,7 +80,7 @@ const PROJECTS = [
     title: "Médaillon",
     category: "Bijou",
     description: "Description à venir.",
-    x: 46, y: 60, r: 4.5,
+    x: 45.25, y: 55, r: 4,
     media: []
   },
   {
@@ -88,7 +88,7 @@ const PROJECTS = [
     title: "Bague Œil",
     category: "Bijou",
     description: "Description à venir.",
-    x: 45, y: 41, r: 3.5,
+    x: 45.25, y: 36.4, r: 3,
     media: []
   },
   {
@@ -96,7 +96,7 @@ const PROJECTS = [
     title: "Broche Saphir",
     category: "Bijou",
     description: "Description à venir.",
-    x: 39, y: 39, r: 4,
+    x: 39.75, y: 34.7, r: 3.5,
     media: []
   },
   {
@@ -104,7 +104,7 @@ const PROJECTS = [
     title: "Broche Rubis",
     category: "Bijou",
     description: "Description à venir.",
-    x: 37, y: 58, r: 4,
+    x: 38.25, y: 53.3, r: 4,
     media: []
   },
   {
@@ -112,7 +112,7 @@ const PROJECTS = [
     title: "Broche Diamant",
     category: "Bijou",
     description: "Description à venir.",
-    x: 38, y: 74, r: 3.5,
+    x: 38.75, y: 69.9, r: 3,
     media: []
   },
   {
@@ -120,7 +120,7 @@ const PROJECTS = [
     title: "Épingle Or",
     category: "Bijou",
     description: "Description à venir.",
-    x: 46, y: 25, r: 3,
+    x: 45.25, y: 21.2, r: 2.5,
     media: []
   },
   {
@@ -128,7 +128,7 @@ const PROJECTS = [
     title: "Épingle Or II",
     category: "Bijou",
     description: "Description à venir.",
-    x: 65, y: 69, r: 3,
+    x: 61, y: 69.9, r: 2.5,
     media: []
   },
   {
@@ -136,7 +136,7 @@ const PROJECTS = [
     title: "Fleur de Gemmes",
     category: "Bijou",
     description: "Description à venir.",
-    x: 53, y: 19, r: 3,
+    x: 53, y: 16.5, r: 2.5,
     media: []
   }
 ];
