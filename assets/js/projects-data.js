@@ -26,7 +26,7 @@ const PROJECTS = [
 We didn't, or at least, not as much as everyone else.
 
 Instead, we found one move that put Accor on screens around the world: we surfed the Seine.`,
-    x: 45.25, y: 21.2, r: 3,
+    x: 45.5, y: 21.1, rx: 3.2, ry: 6.3,
     media: []
   },
   {
@@ -36,7 +36,7 @@ Instead, we found one move that put Accor on screens around the world: we surfed
     hoverLeft: "Acer", hoverRight: "We got you",
     category: "Campagne",
     description: "The Acer Swift 14 AI can do a lot of things. Even improve your relationship with your dad.",
-    x: 52.8, y: 24.6, r: 4.5,
+    x: 53.0, y: 27.5, rx: 4.6, ry: 3.0,
     media: []
   },
   {
@@ -47,7 +47,7 @@ Instead, we found one move that put Accor on screens around the world: we surfed
     category: "Campagne",
     description: `To promote the return of the TV show where rap meets gang business, Canal+ wanted a print campaign.
 So we went to the cities where street cred matters most: Paris, Marseille and Los Santos.`,
-    x: 45, y: 43.6, r: 4.5,
+    x: 45.7, y: 43.8, rx: 5.3, ry: 2.1,
     media: []
   },
   {
@@ -59,7 +59,7 @@ So we went to the cities where street cred matters most: Paris, Marseille and Lo
     description: `The Société Protectrice des Animaux is France's largest animal shelter. No need for tissues, there are no tearjerkers here. During three years, we decided to stay away from sad campaigns, convinced that humor could do more for the cause.
 
 Proof that a funny cat is more effective than a three-legged dog: the association jumped from 11th to 2nd place among the French's favorite charities.`,
-    x: 57.5, y: 38.1, r: 3.5,
+    x: 57.7, y: 39.3, rx: 2.6, ry: 4.4,
     media: []
   },
   {
@@ -69,7 +69,7 @@ Proof that a funny cat is more effective than a three-legged dog: the associatio
     hoverLeft: "LVMH", hoverRight: "Au-delà des bassins",
     category: "Campagne",
     description: "Ambassador for LVMH and Louis Vuitton, Léon Marchand has quickly become the world's number one swimmer. When the group asked us to create a series of images celebrating him, we did what Léon has always done: go far beyond the pool.",
-    x: 50, y: 68.6, r: 3.5,
+    x: 50.7, y: 67.7, rx: 2.6, ry: 4.2,
     media: []
   },
   {
@@ -78,7 +78,7 @@ Proof that a funny cat is more effective than a three-legged dog: the associatio
     hoverLeft: "", hoverRight: "Prints",
     category: "Collection",
     description: "A few headlines that ended up printed, framed or saved somewhere.",
-    x: 44.75, y: 77.9, r: 4,
+    x: 44.4, y: 77.1, rx: 2.5, ry: 5.1,
     // Cette page rassemblera plusieurs projets : { title: "..." } par entrée.
     subprojects: []
   },
@@ -94,7 +94,7 @@ The third, when I work on myself, explaining my job to my mother for the 73rd ti
 
 Here are a few examples of the second,
 when I turn strangers into immortals.`,
-    x: 57.75, y: 52.9, r: 4.5,
+    x: 57.5, y: 52.8, rx: 3.4, ry: 4.35,
     media: []
   },
   {
@@ -105,7 +105,7 @@ when I turn strangers into immortals.`,
     category: "Projet",
     description: `In 1748, Benjamin Franklin is said to have coined the phrase "Time is money."
 So we took him literally. For UNITED24, we created a Fortnite map where gamers' playtime generated donations for people affected by the war in Ukraine.`,
-    x: 58.5, y: 67.7, r: 3.5,
+    x: 58.4, y: 67.1, rx: 2.3, ry: 4.7,
     media: []
   },
   {
@@ -116,7 +116,7 @@ So we took him literally. For UNITED24, we created a Fortnite map where gamers' 
     category: "Projet",
     description: `I'm the kind of person who shows up early. Even when it's just to watch my favorite streamer go live.
 One day, while waiting with 30,000 other people in front of a waiting screen, I started wondering whether those 30,001 people could be useful for something. So we turned a few waiting screens into a way to watch over nature.`,
-    x: 51.75, y: 83.8, r: 4,
+    x: 52.1, y: 82.2, rx: 2.8, ry: 4.4,
     media: []
   },
   {
@@ -126,7 +126,7 @@ One day, while waiting with 30,000 other people in front of a waiting screen, I 
     hoverLeft: "Plan International", hoverRight: "What do you do for a living",
     category: "Campagne",
     description: "In our industry, we all like to think we have pretty cool jobs. Well, just wait until a Plan International donor tells you about theirs.",
-    x: 45.25, y: 55, r: 4,
+    x: 45.2, y: 57.7, rx: 3.3, ry: 5.0,
     media: []
   },
   {
@@ -134,7 +134,7 @@ One day, while waiting with 30,000 other people in front of a waiting screen, I 
     title: "About Pierre",
     hoverLeft: "About", hoverRight: "Pierre",
     category: "À propos",
-    x: 45.25, y: 36.4, r: 2.2,
+    x: 45.7, y: 37.7, rx: 3.1, ry: 3.3,
     // Page "About" : contenu structuré au lieu de description/media.
     // photo = portrait (à côté du contact), awardsPhoto = photo des prix.
     // Dépose les deux fichiers dans assets/img/ et mets à jour les chemins ici.

@@ -210,8 +210,14 @@
       a.className = "hotspot";
       a.style.left = project.x + "%";
       a.style.top = project.y + "%";
-      if (project.r) {
+      // rx/ry = demi-largeur/demi-hauteur en % (ellipse calée sur la forme
+      // réelle du symbole) ; r reste accepté comme repli pour un cercle simple.
+      if (project.rx || project.ry) {
+        a.style.width = (project.rx || project.ry) * 2 + "%";
+        a.style.height = (project.ry || project.rx) * 2 + "%";
+      } else if (project.r) {
         a.style.width = project.r * 2 + "%";
+        a.style.height = project.r * 2 + "%";
       }
       a.setAttribute("aria-label", project.title);
 
