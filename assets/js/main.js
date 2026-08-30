@@ -3,10 +3,7 @@
 
   var isFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-  // Dépose ton image dans assets/cursor/ avec ce nom exact (PNG avec fond
-  // transparent recommandé). Tant qu'elle n'y est pas, la pioche dessinée en
-  // SVG ci-dessous reste utilisée automatiquement.
-  var CURSOR_IMG_SRC = "assets/cursor/pickaxe.png";
+  var CURSOR_IMG_SRC = "assets/img/pickaxe.png";
   var FALLBACK_CURSOR_SVG =
     '<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">' +
     '<path d="M15 30 L27 8" stroke="#3b2a1a" stroke-width="3.4" stroke-linecap="round"/>' +

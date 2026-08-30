@@ -152,12 +152,13 @@ body.home {
   position: fixed;
   top: 0;
   left: 0;
-  width: 40px;
-  height: 40px;
   pointer-events: none;
   z-index: 9999;
-  transform: translate(-4px, -34px) rotate(-18deg);
-  transform-origin: 34px 34px;
+  /* La pointe du pic (coin haut-gauche de la photo) est calée sur le curseur ;
+     le pivot du balancement est vers la poignée. Recalcule ces valeurs si tu
+     changes d'image. */
+  transform: translate(-17px, -8px) rotate(-10deg);
+  transform-origin: 33px 59px;
   will-change: transform;
   transition: transform 0.08s ease-out;
   display: none;
@@ -170,10 +171,8 @@ body.has-custom-cursor #pickaxe-cursor {
 #pickaxe-cursor img,
 #pickaxe-cursor svg {
   display: block;
-  max-width: 100%;
-  max-height: 100%;
+  height: 80px;
   width: auto;
-  height: auto;
   pointer-events: none;
   user-select: none;
 }
@@ -183,9 +182,9 @@ body.has-custom-cursor #pickaxe-cursor {
 }
 
 @keyframes pickaxe-swing {
-  0%   { transform: translate(-4px, -34px) rotate(-18deg); }
-  40%  { transform: translate(-4px, -34px) rotate(28deg); }
-  100% { transform: translate(-4px, -34px) rotate(-18deg); }
+  0%   { transform: translate(-17px, -8px) rotate(-10deg); }
+  40%  { transform: translate(-17px, -8px) rotate(30deg); }
+  100% { transform: translate(-17px, -8px) rotate(-10deg); }
 }
 
 /* ---------- Page projet ---------- */
