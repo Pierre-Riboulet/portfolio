@@ -251,6 +251,13 @@
       a.dataset.r = project.r || 0;
       a.setAttribute("aria-label", project.title);
 
+      // Position immédiate et approximative (en %), toujours cliquable même
+      // si l'image met du temps à charger. layout() l'affine ensuite en
+      // pixels une fois la géométrie exacte du recadrage "cover" connue.
+      a.style.left = project.x + "%";
+      a.style.top = project.y + "%";
+      a.style.width = (project.r || 3) * 2 + "%";
+
       a.addEventListener("mouseenter", function () {
         playCrackSound(project);
         showCaption(project);
@@ -286,11 +293,12 @@
       });
     }
 
-    if (img.complete && img.naturalWidth) {
-      layout();
-    } else {
-      img.addEventListener("load", layout);
-    }
+    // Plusieurs déclencheurs redondants (sans risque, layout() est idempotent) :
+    // le calage précis en pixels doit se faire dès que possible, quelle que
+    // soit la vitesse réelle du réseau de l'utilisateur.
+    layout();
+    img.addEventListener("load", layout);
+    window.addEventListener("load", layout);
 
     var resizeRaf = null;
     window.addEventListener("resize", function () {
