@@ -161,6 +161,32 @@
     click.stop(now + 0.1);
   }
 
+  /* Les navigateurs bloquent tout son tant qu'aucun vrai geste (clic/tap/
+     touche) n'a eu lieu sur la page — un simple survol ne compte pas. Donc le
+     tout premier survol, avant le tout premier clic, restera toujours
+     silencieux (aucun site web ne peut contourner cette règle). En revanche,
+     on peut réduire cette fenêtre au minimum : dès le tout premier clic/tap
+     n'importe où sur la page (pas forcément sur un symbole), on débloque
+     immédiatement le son au lieu d'attendre qu'une navigation le fasse. */
+  var audioUnlocked = false;
+  function unlockAudioOnce() {
+    if (audioUnlocked) return;
+    audioUnlocked = true;
+    var ctx = getAudioContext();
+    if (ctx && ctx.state === "suspended") ctx.resume();
+    GENERAL_CRACK_SRCS.concat([ABOUT_CRACK_SRC]).forEach(function (src) {
+      var el = new Audio(src);
+      el.volume = 0;
+      var p = el.play();
+      if (p && typeof p.then === "function") {
+        p.then(function () { el.pause(); }).catch(function () {});
+      }
+    });
+  }
+  ["pointerdown", "touchstart", "keydown"].forEach(function (evt) {
+    window.addEventListener(evt, unlockAudioOnce, { once: true, passive: true });
+  });
+
   /* ----------------------------------------------------------------------
    * L'image remplit tout l'écran en pur CSS (assets/css/style.css :
    * .rock-frame img a min-width:100vw / min-height:100vh, la technique
