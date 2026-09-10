@@ -1,5 +1,4 @@
 :root {
-  --bg: #f7f6f4;
   --ink: #17171a;
   --muted: #6b6b68;
   --accent: #17171a;
@@ -22,31 +21,35 @@
 
 * { box-sizing: border-box; }
 
+/* Même dégradé gris partout (accueil ET pages projets), calé sur le fond réel
+   de rock.jpg. background-attachment: fixed le cale sur la fenêtre plutôt que
+   sur la hauteur de la page, pour garder le même dégradé visuel même sur une
+   page projet qui défile (comme About, plus longue qu'un écran). */
 html, body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
+  background: linear-gradient(to bottom, #b0a9b1 0%, #c1bbc5 20%, #d5d4dc 50%, #e4e1ec 80%, #f3f2f8 100%);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
+@media (max-width: 700px) {
+  html, body {
+    background: linear-gradient(to bottom, #c0b4c2 0%, #e0dae6 20%, #f2ecf6 40%, #f3f0f7 100%);
+    background-attachment: fixed;
+  }
+}
+
 /* Sur mobile, un léger scroll résiduel peut faire "rebondir" la page (effet
    élastique iOS) et laisser entrevoir un instant le blanc par défaut de
-   <html> derrière .stage. overscroll-behavior coupe ce rebond, et html
-   reprend le même dégradé que .stage au cas où il serait visible une
-   fraction de seconde pendant le chargement. */
+   <html> derrière le contenu. overscroll-behavior coupe ce rebond. */
 html {
   overscroll-behavior: none;
 }
 html.home {
   height: 100%;
-  background: linear-gradient(to bottom, #b0a9b1 0%, #c1bbc5 20%, #d5d4dc 50%, #e4e1ec 80%, #f3f2f8 100%);
-}
-@media (max-width: 700px) {
-  html.home {
-    background: linear-gradient(to bottom, #c0b4c2 0%, #e0dae6 20%, #f2ecf6 40%, #f3f0f7 100%);
-  }
 }
 
 /* Curseur natif masqué uniquement sur pointeur fin (souris) ;
@@ -307,6 +310,8 @@ body.has-custom-cursor #pickaxe-cursor {
 }
 
 .project-title {
+  font-family: "Minion Pro", Georgia, "Times New Roman", serif;
+  font-style: italic;
   font-size: clamp(2rem, 6vw, 3.4rem);
   margin: 0 0 2rem;
   font-weight: 500;
