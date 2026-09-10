@@ -314,9 +314,52 @@
     });
   }
 
+  /* ---------------- Diagnostic temporaire (?debug) ---------------- */
+  // But : voir les vraies valeurs sur le téléphone qui pose problème au lieu
+  // de deviner depuis des tests locaux. À retirer une fois le bug résolu.
+  function initDebugOverlay() {
+    var params = new URLSearchParams(window.location.search);
+    if (!params.has("debug")) return;
+
+    var box = document.createElement("div");
+    box.style.cssText =
+      "position:fixed;top:0;left:0;right:0;z-index:99999;background:rgba(0,0,0,0.85);" +
+      "color:#0f0;font:11px/1.5 monospace;padding:8px;white-space:pre-wrap;pointer-events:none;";
+    document.body.appendChild(box);
+
+    function update() {
+      var frame = document.querySelector(".rock-frame");
+      var img = frame && frame.querySelector("img");
+      var frameRect = frame ? frame.getBoundingClientRect() : null;
+      var imgRect = img ? img.getBoundingClientRect() : null;
+      var lines = [
+        "innerWidth x innerHeight: " + window.innerWidth + " x " + window.innerHeight,
+        "visualViewport: " + (window.visualViewport ? Math.round(window.visualViewport.width) + " x " + Math.round(window.visualViewport.height) : "n/a"),
+        "documentElement.clientHeight: " + document.documentElement.clientHeight,
+        "img currentSrc: " + (img ? img.currentSrc.split("/").pop() : "n/a"),
+        "img natural size: " + (img ? img.naturalWidth + " x " + img.naturalHeight : "n/a"),
+        ".rock-frame rect: " + (frameRect ? Math.round(frameRect.width) + " x " + Math.round(frameRect.height) + " @ (" + Math.round(frameRect.left) + "," + Math.round(frameRect.top) + ")" : "n/a"),
+        "img rendered rect: " + (imgRect ? Math.round(imgRect.width) + " x " + Math.round(imgRect.height) + " @ (" + Math.round(imgRect.left) + "," + Math.round(imgRect.top) + ")" : "n/a"),
+        "body.home computed height: " + (document.body ? getComputedStyle(document.body).height : "n/a"),
+        "html computed height: " + getComputedStyle(document.documentElement).height
+      ];
+      box.textContent = lines.join("\n");
+    }
+
+    update();
+    window.addEventListener("resize", update);
+    window.addEventListener("scroll", update);
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", update);
+      window.visualViewport.addEventListener("scroll", update);
+    }
+    setInterval(update, 1000);
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     var cursor = initCursor();
     buildHotspots(cursor);
     initCalibration();
+    initDebugOverlay();
   });
 })();
