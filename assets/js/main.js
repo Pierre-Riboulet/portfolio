@@ -188,15 +188,25 @@
   });
 
   /* ----------------------------------------------------------------------
-   * L'image remplit tout l'écran en pur CSS (assets/css/style.css :
-   * .rock-frame img a min-width:100vw / min-height:100vh, la technique
-   * "cover" classique d'avant object-fit). .rock-frame se redimensionne
-   * automatiquement sur la taille réelle de l'image (display:inline-block),
-   * donc les points en % positionnés dedans restent toujours calés sur les
-   * bons symboles, sans aucun calcul JS ni écouteur de redimensionnement.
+   * L'image remplit tout l'écran en pur CSS (assets/css/style.css : .rock-frame
+   * est mis à l'échelle via calc() pour couvrir l'écran en conservant le ratio
+   * de la photo, comme background-size:cover mais sans JS). Les points chauds
+   * positionnés en % dedans restent donc toujours calés sur les bons symboles,
+   * sans aucun calcul de géométrie en JS.
    * -------------------------------------------------------------------- */
 
   /* ---------------- Points chauds sur la roche ---------------- */
+
+  // Sous 700px, <picture> (index.html) charge rock-mobile.jpg à la place de
+  // rock.jpg : cadrage différent, donc chaque projet a son propre jeu de
+  // coordonnées (project.mobile). On regarde cette même largeur ici pour
+  // savoir lequel utiliser, et on réagit à un changement (rotation d'écran)
+  // en reconstruisant les points chauds avec le bon jeu de coordonnées.
+  var mobileMQ = window.matchMedia("(max-width: 700px)");
+
+  function coordsFor(project) {
+    return (mobileMQ.matches && project.mobile) ? project.mobile : project;
+  }
 
   function buildHotspots(cursor) {
     var frame = document.querySelector(".rock-frame");
@@ -219,43 +229,57 @@
       captionRight.classList.remove("visible");
     }
 
-    PROJECTS.forEach(function (project) {
-      var a = document.createElement("a");
-      a.href = "project.html?slug=" + encodeURIComponent(project.slug);
-      a.className = "hotspot";
-      a.style.left = project.x + "%";
-      a.style.top = project.y + "%";
-      // rx/ry = demi-largeur/demi-hauteur en % (ellipse calée sur la forme
-      // réelle du symbole) ; r reste accepté comme repli pour un cercle simple.
-      if (project.rx || project.ry) {
-        a.style.width = (project.rx || project.ry) * 2 + "%";
-        a.style.height = (project.ry || project.rx) * 2 + "%";
-      } else if (project.r) {
-        a.style.width = project.r * 2 + "%";
-        a.style.height = project.r * 2 + "%";
-      }
-      a.setAttribute("aria-label", project.title);
+    function render() {
+      frame.querySelectorAll(".hotspot").forEach(function (el) {
+        el.remove();
+      });
 
-      a.addEventListener("mouseenter", function () {
-        playCrackSound(project);
-        showCaption(project);
-        if (cursor) {
-          cursor.classList.remove("swing");
-          void cursor.offsetWidth; // relance l'animation
-          cursor.classList.add("swing");
+      PROJECTS.forEach(function (project) {
+        var coords = coordsFor(project);
+        var a = document.createElement("a");
+        a.href = "project.html?slug=" + encodeURIComponent(project.slug);
+        a.className = "hotspot";
+        a.style.left = coords.x + "%";
+        a.style.top = coords.y + "%";
+        // rx/ry = demi-largeur/demi-hauteur en % (ellipse calée sur la forme
+        // réelle du symbole) ; r reste accepté comme repli pour un cercle simple.
+        if (coords.rx || coords.ry) {
+          a.style.width = (coords.rx || coords.ry) * 2 + "%";
+          a.style.height = (coords.ry || coords.rx) * 2 + "%";
+        } else if (coords.r) {
+          a.style.width = coords.r * 2 + "%";
+          a.style.height = coords.r * 2 + "%";
         }
+        a.setAttribute("aria-label", project.title);
+
+        // Le son au clic/tap a été retiré : sur mobile (le seul endroit où un
+        // clic sur un point chaud comptait comme interaction tactile avant la
+        // navigation), Pierre ne veut plus de bruit à l'appui. Sur ordinateur,
+        // le son reste déclenché par le survol (mouseenter) ci-dessous.
+        a.addEventListener("mouseenter", function () {
+          if (!isFinePointer) return;
+          playCrackSound(project);
+          showCaption(project);
+          if (cursor) {
+            cursor.classList.remove("swing");
+            void cursor.offsetWidth; // relance l'animation
+            cursor.classList.add("swing");
+          }
+        });
+
+        a.addEventListener("mouseleave", hideCaption);
+
+        frame.appendChild(a);
       });
+    }
 
-      a.addEventListener("mouseleave", hideCaption);
+    render();
 
-      // Tactile : joue le son avant que la navigation ne parte.
-      a.addEventListener("click", function () {
-        if (isFinePointer) return;
-        playCrackSound(project);
-      });
-
-      frame.appendChild(a);
-    });
+    if (mobileMQ.addEventListener) {
+      mobileMQ.addEventListener("change", render);
+    } else if (mobileMQ.addListener) {
+      mobileMQ.addListener(render); // repli Safari iOS ancien
+    }
   }
 
   /* ---------------- Mode calibration (?calibrate) ---------------- */

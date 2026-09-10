@@ -93,6 +93,19 @@ body.home {
   -webkit-user-drag: none;
 }
 
+/* Sous 700px, <picture> charge rock-mobile.jpg (1356x2941, recadrage portrait
+   dédié, avec sa propre marge grise sur les côtés) au lieu de rock.jpg : le
+   ratio utilisé par la technique "cover" ci-dessus doit changer en même temps,
+   sinon .rock-frame continue de calculer sa taille sur le ratio bureau et
+   déforme/surcadre la photo mobile. */
+@media (max-width: 700px) {
+  .rock-frame {
+    min-width: calc(100vh * 1356 / 2941);
+    min-width: calc(100dvh * 1356 / 2941);
+    min-height: calc(100vw * 2941 / 1356);
+  }
+}
+
 .hover-caption {
   position: fixed;
   top: 50%;
