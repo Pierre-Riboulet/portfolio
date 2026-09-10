@@ -115,8 +115,17 @@ body.home {
   display: block;
   width: 100%;
   height: 100%;
+  /* Tant que la photo n'est pas encore chargée (4G lente, cache froid), cette
+     couleur remplace le blanc par défaut du navigateur pour une image vide. */
+  background: #d5d4dc;
   user-select: none;
   -webkit-user-drag: none;
+}
+
+@media (max-width: 700px) {
+  .rock-frame img {
+    background: #f2ecf6;
+  }
 }
 
 /* Sous 700px, <picture> charge rock-mobile.jpg (1356x2941, recadrage portrait
