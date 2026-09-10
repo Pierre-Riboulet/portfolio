@@ -46,16 +46,16 @@ html, body {
    fichier) : si un espace apparaît malgré tout (barre d'adresse mobile,
    marge sur petit écran…), il se fond dedans au lieu de trancher en blanc. */
 body.home {
-  height: 100dvh;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   background: linear-gradient(to bottom, #dad2df 0%, #f5f4fa 100%);
 }
 
 .stage {
   position: relative;
-  height: 100dvh;
   height: 100vh;
+  height: 100dvh;
   width: 100vw;
   margin: 0;
   overflow: hidden;
