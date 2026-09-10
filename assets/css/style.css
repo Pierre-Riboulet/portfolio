@@ -193,18 +193,6 @@ body.home {
   }
 }
 
-.brand {
-  position: fixed;
-  top: 28px;
-  left: 32px;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-  z-index: 20;
-}
-
 /* ---------- Points chauds ---------- */
 
 .hotspot {
@@ -319,7 +307,7 @@ body.has-custom-cursor #pickaxe-cursor {
 }
 
 .project-description {
-  font-size: 1.05rem;
+  font-size: 0.92rem;
   line-height: 1.7;
   color: #333;
   max-width: 60ch;

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projet — Pierre Riboulet</title>
-  <link rel="stylesheet" href="assets/css/style.css?v=8">
+  <link rel="stylesheet" href="assets/css/style.css?v=9">
 </head>
 <body>
   <div id="app"></div>
@@ -23,11 +23,10 @@
 
       if (!project) {
         app.innerHTML =
-          '<a class="brand" href="index.html">Pierre Riboulet</a>' +
           '<div class="not-found">' +
           '<p class="project-category">404</p>' +
           '<h1 class="project-title">Projet introuvable</h1>' +
-          '<a class="back-link" href="index.html">&larr; Retour à la roche</a>' +
+          '<a class="back-link" href="index.html">&larr; Back</a>' +
           '</div>';
         document.title = "Projet introuvable — Pierre Riboulet";
         return;
@@ -69,9 +68,8 @@
         }).join("");
 
         app.innerHTML =
-          '<a class="brand" href="index.html">Pierre Riboulet</a>' +
           '<div class="project-page about-page">' +
-          '<a class="back-link" href="index.html">&larr; Retour à la roche</a>' +
+          '<a class="back-link" href="index.html">&larr; Back</a>' +
           '<p class="project-category">' + project.category + '</p>' +
           '<h1 class="project-title">' + project.title + '</h1>' +
 
@@ -136,9 +134,8 @@
       }
 
       app.innerHTML =
-        '<a class="brand" href="index.html">Pierre Riboulet</a>' +
         '<div class="project-page">' +
-        '<a class="back-link" href="index.html">&larr; Retour à la roche</a>' +
+        '<a class="back-link" href="index.html">&larr; Back</a>' +
         '<p class="project-category">' + project.category + '</p>' +
         '<h1 class="project-title">' + displayTitle + '</h1>' +
         '<p class="project-description">' + project.description + '</p>' +
