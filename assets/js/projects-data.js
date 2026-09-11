@@ -34,7 +34,7 @@ We didn't, or at least, not as much as everyone else.
 Instead, we found one move that put Accor on screens around the world: we surfed the Seine.`,
     x: 45.5, y: 21.1, rx: 3.2, ry: 6.3,
     mobile: { x: 37.3, y: 27.3, rx: 7.2, ry: 4.3 },
-    media: []
+    media: [{ type: "vimeo", id: "1054417358" }]
   },
   {
     slug: "acer",
@@ -45,7 +45,7 @@ Instead, we found one move that put Accor on screens around the world: we surfed
     description: "The Acer Swift 14 AI can do a lot of things. Even improve your relationship with your dad.",
     x: 53.0, y: 27.5, rx: 4.6, ry: 3.0,
     mobile: { x: 56.1, y: 32.8, rx: 11.8, ry: 1.8 },
-    media: []
+    media: [{ type: "vimeo", id: "1050499345" }]
   },
   {
     slug: "canal-plus",
@@ -57,7 +57,7 @@ Instead, we found one move that put Accor on screens around the world: we surfed
 So we went to the cities where street cred matters most: Paris, Marseille and Los Santos.`,
     x: 45.7, y: 43.8, rx: 5.3, ry: 2.1,
     mobile: { x: 38.5, y: 46.15, rx: 19.5, ry: 1.55 },
-    media: []
+    media: [{ type: "vimeo", id: "1058393916" }]
   },
   {
     slug: "la-spa",
@@ -120,7 +120,7 @@ when I turn strangers into immortals.`,
 So we took him literally. For UNITED24, we created a Fortnite map where gamers' playtime generated donations for people affected by the war in Ukraine.`,
     x: 58.4, y: 67.1, rx: 2.3, ry: 4.7,
     mobile: { x: 73.75, y: 63.35, rx: 5.25, ry: 3.65 },
-    media: []
+    media: [{ type: "vimeo", id: "1056571140" }]
   },
   {
     slug: "firecatchers",
@@ -132,7 +132,7 @@ So we took him literally. For UNITED24, we created a Fortnite map where gamers' 
 One day, while waiting with 30,000 other people in front of a waiting screen, I started wondering whether those 30,001 people could be useful for something. So we turned a few waiting screens into a way to watch over nature.`,
     x: 52.1, y: 82.2, rx: 2.8, ry: 4.4,
     mobile: { x: 53.5, y: 74.65, rx: 9.5, ry: 3.65 },
-    media: []
+    media: [{ type: "vimeo", id: "1225917302" }]
   },
   {
     slug: "plan-international",
@@ -143,7 +143,7 @@ One day, while waiting with 30,000 other people in front of a waiting screen, I 
     description: "In our industry, we all like to think we have pretty cool jobs. Well, just wait until a Plan International donor tells you about theirs.",
     x: 45.2, y: 57.7, rx: 3.3, ry: 5.0,
     mobile: { x: 34.25, y: 56.0, rx: 9.75, ry: 4.3 },
-    media: []
+    media: [{ type: "vimeo", id: "1057237781", hash: "780a04aa5e" }]
   },
   {
     slug: "about",

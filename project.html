@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projet — Pierre Riboulet</title>
-  <link rel="stylesheet" href="assets/css/style.css?v=9">
+  <link rel="stylesheet" href="assets/css/style.css?v=10">
 </head>
 <body>
   <div id="app"></div>
 
-  <script src="assets/js/projects-data.js?v=3"></script>
+  <script src="assets/js/projects-data.js?v=4"></script>
   <script src="assets/js/main.js?v=3"></script>
   <script>
     (function () {
@@ -121,7 +121,11 @@
         mediaHtml = '<div class="project-media">';
         if (project.media && project.media.length) {
           project.media.forEach(function (m) {
-            if (m.type === "video") {
+            if (m.type === "vimeo") {
+              var vimeoSrc = "https://player.vimeo.com/video/" + m.id + (m.hash ? "?h=" + m.hash : "");
+              mediaHtml += '<div class="video-embed"><iframe src="' + vimeoSrc + '" ' +
+                'allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>';
+            } else if (m.type === "video") {
               mediaHtml += '<video class="media-placeholder" controls src="' + m.src + '"></video>';
             } else {
               mediaHtml += '<img class="media-placeholder" src="' + m.src + '" alt="' + project.title + '">';
