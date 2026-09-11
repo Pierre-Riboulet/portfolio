@@ -122,7 +122,11 @@
         if (project.media && project.media.length) {
           project.media.forEach(function (m) {
             if (m.type === "vimeo") {
-              var vimeoSrc = "https://player.vimeo.com/video/" + m.id + (m.hash ? "?h=" + m.hash : "");
+              // title=0&byline=0&portrait=0 : Vimeo affiche par défaut le titre
+              // de la vidéo en incrustation sur le lecteur — indépendamment de
+              // toute page HTML, c'est Vimeo qui l'ajoute. On le désactive.
+              var vimeoParams = "title=0&byline=0&portrait=0" + (m.hash ? "&h=" + m.hash : "");
+              var vimeoSrc = "https://player.vimeo.com/video/" + m.id + "?" + vimeoParams;
               mediaHtml += '<div class="video-embed"><iframe src="' + vimeoSrc + '" ' +
                 'allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>';
             } else if (m.type === "video") {
