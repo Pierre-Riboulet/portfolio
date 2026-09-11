@@ -306,12 +306,16 @@ body.has-custom-cursor #pickaxe-cursor {
 .project-title {
   font-family: "Minion Pro", Georgia, "Times New Roman", serif;
   font-style: italic;
-  font-size: clamp(2.2rem, 6.5vw, 3.7rem);
+  font-size: clamp(6.6rem, 19.5vw, 11.1rem);
   margin: 0 0 1.2rem;
-  /* Le seul fichier Minion Pro chargé est en graisse 400 : demander 500 ne
-     déclenche pas de gras synthétique (poids trop proche de "normal") et
-     rendait le titre trop fin. 700 force le navigateur à épaissir le tracé. */
   font-weight: 700;
+  /* Le seul fichier Minion Pro chargé est en graisse 400 : le gras "synthétique"
+     déclenché par font-weight n'est pas fiable partout (Safari/iOS l'ignore
+     souvent pour une police personnalisée sans vraie graisse grasse). Épaissir
+     directement le tracé avec un contour fonctionne, lui, sur tous les
+     navigateurs. La largeur est en em pour rester proportionnelle à la taille
+     (qui varie selon la longueur du titre, voir fitTitleToOneLine en JS). */
+  -webkit-text-stroke: 0.025em currentColor;
   letter-spacing: -0.01em;
 }
 
