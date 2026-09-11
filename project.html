@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projet — Pierre Riboulet</title>
-  <link rel="stylesheet" href="assets/css/style.css?v=11">
+  <link rel="stylesheet" href="assets/css/style.css?v=12">
 </head>
 <body>
   <div id="app"></div>
@@ -24,7 +24,6 @@
       if (!project) {
         app.innerHTML =
           '<div class="not-found">' +
-          '<p class="project-category">404</p>' +
           '<h1 class="project-title">Projet introuvable</h1>' +
           '<a class="back-link" href="index.html">&larr; Back</a>' +
           '</div>';
@@ -70,7 +69,6 @@
         app.innerHTML =
           '<div class="project-page about-page">' +
           '<a class="back-link" href="index.html">&larr; Back</a>' +
-          '<p class="project-category">' + project.category + '</p>' +
           '<h1 class="project-title">' + project.title + '</h1>' +
 
           '<div class="about-header">' +
@@ -140,12 +138,46 @@
       app.innerHTML =
         '<div class="project-page">' +
         '<a class="back-link" href="index.html">&larr; Back</a>' +
-        '<p class="project-category">' + project.category + '</p>' +
         '<h1 class="project-title">' + displayTitle + '</h1>' +
         '<p class="project-description">' + project.description + '</p>' +
         mediaHtml +
         '</div>';
+
+      fitTitleToOneLine();
     })();
+
+    function fitTitleToOneLine() {
+      var title = document.querySelector(".project-title");
+      var container = title && title.parentElement;
+      if (!title || !container) return;
+
+      function fit() {
+        title.style.whiteSpace = "nowrap";
+        title.style.fontSize = ""; // repart de la taille CSS (clamp) à chaque mesure
+        var containerStyle = getComputedStyle(container);
+        // clientWidth inclut le padding du conteneur ; il faut le retirer pour
+        // avoir la largeur réellement disponible pour le contenu.
+        var availableWidth = container.clientWidth -
+          parseFloat(containerStyle.paddingLeft) -
+          parseFloat(containerStyle.paddingRight);
+        var size = parseFloat(getComputedStyle(title).fontSize);
+        var minSize = 16;
+        while (title.scrollWidth > availableWidth && size > minSize) {
+          size -= 1;
+          title.style.fontSize = size + "px";
+        }
+      }
+
+      // ResizeObserver plutôt que l'événement "resize" de window : plus fiable
+      // (se déclenche aussi sur rotation d'écran ou changement de la barre
+      // d'adresse mobile, pas seulement un vrai redimensionnement de fenêtre).
+      if (window.ResizeObserver) {
+        new ResizeObserver(fit).observe(container);
+      } else {
+        fit();
+        window.addEventListener("resize", fit);
+      }
+    }
   </script>
 </body>
 </html>

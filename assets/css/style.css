@@ -303,14 +303,6 @@ body.has-custom-cursor #pickaxe-cursor {
   border-bottom-color: var(--ink);
 }
 
-.project-category {
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 0.4rem;
-}
-
 .project-title {
   font-family: "Minion Pro", Georgia, "Times New Roman", serif;
   font-style: italic;
