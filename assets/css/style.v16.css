@@ -303,22 +303,6 @@ body.has-custom-cursor #pickaxe-cursor {
   border-bottom-color: var(--ink);
 }
 
-.project-title {
-  font-family: "Minion Pro", Georgia, "Times New Roman", serif;
-  font-style: italic;
-  font-size: clamp(3.2rem, 9vw, 5.6rem);
-  margin: 0 0 1.2rem;
-  font-weight: 700;
-  /* Le seul fichier Minion Pro chargé est en graisse 400 : le gras "synthétique"
-     déclenché par font-weight n'est pas fiable partout (Safari/iOS l'ignore
-     souvent pour une police personnalisée sans vraie graisse grasse). Épaissir
-     directement le tracé avec un contour fonctionne, lui, sur tous les
-     navigateurs. La largeur est en em pour rester proportionnelle à la taille
-     (qui varie selon la longueur du titre, voir fitTitleToOneLine en JS). */
-  -webkit-text-stroke: 0.025em currentColor;
-  letter-spacing: -0.01em;
-}
-
 .project-description {
   font-size: 0.92rem;
   line-height: 1.65;
@@ -366,10 +350,6 @@ body.has-custom-cursor #pickaxe-cursor {
 }
 
 /* ---------- Page About ---------- */
-
-.about-page .project-title {
-  margin-bottom: 2.5rem;
-}
 
 .about-header {
   display: flex;
