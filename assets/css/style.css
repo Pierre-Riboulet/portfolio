@@ -268,21 +268,35 @@ body.has-custom-cursor #pickaxe-cursor {
 
 /* ---------- Page projet ---------- */
 
+/* min-height (pas height) + justify-content:center : si le contenu tient sur
+   un écran (cas courant : titre + texte court + une seule vidéo), tout se
+   centre verticalement et il n'y a rien à scroller. Si le contenu dépasse
+   (About, plusieurs vidéos...), le conteneur grandit normalement au-delà du
+   min-height et ça défile comme avant : aucun cas n'est cassé par l'autre. */
 .project-page {
   max-width: 860px;
   margin: 0 auto;
-  padding: 12vh 6vw 10vh;
+  padding: 8vh 6vw;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
+/* Détaché du flux centré : reste toujours en haut à gauche de l'écran, peu
+   importe si le contenu en dessous est court (centré) ou long (défile). */
 .back-link {
-  display: inline-block;
-  margin-bottom: 3rem;
+  position: fixed;
+  top: 28px;
+  left: 32px;
   font-size: 0.8rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
   text-decoration: none;
   border-bottom: 1px solid transparent;
+  z-index: 20;
 }
 .back-link:hover {
   color: var(--ink);
@@ -294,24 +308,24 @@ body.has-custom-cursor #pickaxe-cursor {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.4rem;
 }
 
 .project-title {
   font-family: "Minion Pro", Georgia, "Times New Roman", serif;
   font-style: italic;
   font-size: clamp(2rem, 6vw, 3.4rem);
-  margin: 0 0 2rem;
+  margin: 0 0 1.2rem;
   font-weight: 500;
   letter-spacing: -0.01em;
 }
 
 .project-description {
   font-size: 0.92rem;
-  line-height: 1.7;
+  line-height: 1.65;
   color: #333;
   max-width: 60ch;
-  margin: 0 0 3.5rem;
+  margin: 0 0 2rem;
   white-space: pre-line;
 }
 
