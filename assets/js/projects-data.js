@@ -70,7 +70,11 @@ So we went to the cities where street cred matters most: Paris, Marseille and Lo
 Proof that a funny cat is more effective than a three-legged dog: the association jumped from 11th to 2nd place among the French's favorite charities.`,
     x: 57.7, y: 39.3, rx: 2.6, ry: 4.4,
     mobile: { x: 71.0, y: 42.65, rx: 7.5, ry: 4.65 },
-    media: []
+    media: [
+      { type: "vimeo", id: "1059450283" },
+      { type: "vimeo", id: "1059436357" },
+      { type: "vimeo", id: "1059451872", hash: "42fbb53afc" }
+    ]
   },
   {
     slug: "louis-vuitton",
