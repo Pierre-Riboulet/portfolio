@@ -4,16 +4,16 @@
   --accent: #17171a;
 }
 
-/* Dépose le fichier de la police dans assets/fonts/ (woff2 de préférence,
-   otf/ttf marchent aussi) sous le nom minion-pro-italic.* — tant qu'il n'y
-   est pas, le repli Georgia italique prend le relais tout seul. */
+/* Seul assets/fonts/minion-pro-italic.ttf existe réellement (ni woff2, ni
+   woff, ni otf). Un navigateur qui échoue à CHARGER le format qu'il a
+   choisi dans une liste src ne retente pas le suivant (il ne bascule que
+   si le format n'est pas SUPPORTÉ) — woff2 étant listé en premier et 404,
+   la police entière échouait silencieusement et retombait sur Georgia,
+   d'où le rendu incohérent (gras, taille) observé jusqu'ici. Un seul src
+   pointant vers le fichier qui existe vraiment règle ça. */
 @font-face {
   font-family: "Minion Pro";
-  src:
-    url("../fonts/minion-pro-italic.woff2") format("woff2"),
-    url("../fonts/minion-pro-italic.woff") format("woff"),
-    url("../fonts/minion-pro-italic.otf") format("opentype"),
-    url("../fonts/minion-pro-italic.ttf") format("truetype");
+  src: url("../fonts/minion-pro-italic.ttf") format("truetype");
   font-style: italic;
   font-weight: 400;
   font-display: swap;
