@@ -28,10 +28,7 @@ const PROJECTS = [
     pageTitle: "All Accor — Surfin' the Seine",
     hoverLeft: "All Accor", hoverRight: "Surfin' the Seine",
     category: "Campagne",
-    description: `At the world's biggest sporting events, brands spend millions trying to get noticed.
-We didn't, or at least, not as much as everyone else.
-
-Instead, we found one move that put Accor on screens around the world: we surfed the Seine.`,
+    description: "At the world's biggest sporting events, brands spend millions trying to get noticed. We didn't, or at least, not as much as everyone else. Instead, we found one move that put Accor on screens around the world: we surfed the Seine.",
     x: 45.5, y: 21.1, rx: 3.2, ry: 6.3,
     mobile: { x: 37.3, y: 27.3, rx: 7.2, ry: 4.3 },
     media: [{ type: "vimeo", id: "1054417358" }]
@@ -120,8 +117,7 @@ when I turn strangers into immortals.`,
     pageTitle: "UNITED 24 — The Donation Map",
     hoverLeft: "UNITED 24", hoverRight: "The Donation Map",
     category: "Projet",
-    description: `In 1748, Benjamin Franklin is said to have coined the phrase "Time is money."
-So we took him literally. For UNITED24, we created a Fortnite map where gamers' playtime generated donations for people affected by the war in Ukraine.`,
+    description: "In 1748, Benjamin Franklin is said to have coined the phrase \"Time is money.\" So we took him literally. For UNITED24, we created a Fortnite map where gamers' playtime generated donations for people affected by the war in Ukraine.",
     x: 58.4, y: 67.1, rx: 2.3, ry: 4.7,
     mobile: { x: 73.75, y: 63.35, rx: 5.25, ry: 3.65 },
     media: [{ type: "vimeo", id: "1056571140" }]
