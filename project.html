@@ -7,12 +7,12 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="assets/css/style.v17.css">
+  <link rel="stylesheet" href="assets/css/style.v18.css">
 </head>
 <body>
   <div id="app"></div>
 
-  <script src="assets/js/projects-data.js?v=6"></script>
+  <script src="assets/js/projects-data.v2.js"></script>
   <script src="assets/js/main.js?v=4"></script>
   <script>
     (function () {
@@ -144,12 +144,22 @@
         mediaHtml += "</div>";
       }
 
+      var pressHtml = "";
+      if (project.pressShots && project.pressShots.length) {
+        pressHtml = '<div class="press-grid">' +
+          project.pressShots.map(function (src) {
+            return '<img class="press-shot" src="' + src + '" alt="' + project.title + ' — retombées réseaux sociaux" loading="lazy">';
+          }).join("") +
+          '</div>';
+      }
+
       app.innerHTML =
         '<div class="project-page">' +
         '<a class="back-link" href="index.html">&larr; Back</a>' +
         '<h1 class="project-title">' + displayTitle + '</h1>' +
         '<p class="project-description">' + project.description + '</p>' +
         mediaHtml +
+        pressHtml +
         '</div>';
 
       fitTitleToOneLine();

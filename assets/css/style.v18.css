@@ -347,6 +347,27 @@ body.has-custom-cursor #pickaxe-cursor {
   padding: 1rem;
 }
 
+/* Grille de captures presse/réseaux sociaux (screenshots portrait, ratios
+   variables) : column-count s'adapte à des hauteurs différentes sans
+   étirer les images, contrairement à une grille avec aspect-ratio fixe. */
+.press-grid {
+  column-count: 4;
+  column-gap: 1rem;
+}
+@media (max-width: 900px) {
+  .press-grid { column-count: 2; }
+}
+@media (max-width: 520px) {
+  .press-grid { column-count: 1; }
+}
+.press-shot {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  break-inside: avoid;
+}
+
 .video-embed {
   position: relative;
   width: 100%;

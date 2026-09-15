@@ -31,7 +31,23 @@ const PROJECTS = [
     description: "At the world's biggest sporting events, brands spend millions trying to get noticed. We didn't, or at least, not as much as everyone else. Instead, we found one move that put Accor on screens around the world: we surfed the Seine.",
     x: 45.5, y: 21.1, rx: 3.2, ry: 6.3,
     mobile: { x: 37.3, y: 27.3, rx: 7.2, ry: 4.3 },
-    media: [{ type: "vimeo", id: "1054417358" }]
+    media: [{ type: "vimeo", id: "1054417358" }],
+    pressShots: [
+      "assets/img/accor-press/accor-press-01.webp",
+      "assets/img/accor-press/accor-press-02.webp",
+      "assets/img/accor-press/accor-press-03.webp",
+      "assets/img/accor-press/accor-press-04.webp",
+      "assets/img/accor-press/accor-press-05.webp",
+      "assets/img/accor-press/accor-press-06.webp",
+      "assets/img/accor-press/accor-press-07.jpg",
+      "assets/img/accor-press/accor-press-08.webp",
+      "assets/img/accor-press/accor-press-09.jpg",
+      "assets/img/accor-press/accor-press-10.jpg",
+      "assets/img/accor-press/accor-press-11.jpg",
+      "assets/img/accor-press/accor-press-12.jpg",
+      "assets/img/accor-press/accor-press-13.jpg",
+      "assets/img/accor-press/accor-press-14.jpg"
+    ]
   },
   {
     slug: "acer",
