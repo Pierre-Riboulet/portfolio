@@ -173,12 +173,20 @@
         }
       }
 
+      fit();
+      window.addEventListener("resize", fit);
       if (window.ResizeObserver) {
         new ResizeObserver(fit).observe(container);
-      } else {
-        fit();
-        window.addEventListener("resize", fit);
       }
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener("resize", fit);
+      }
+      // Filet de sécurité : le zoom natif du navigateur (Cmd/Ctrl +/-) ne
+      // déclenche pas toujours resize/ResizeObserver de façon fiable, ce qui
+      // pouvait laisser le titre coincé à une taille calculée pour l'ancien
+      // niveau de zoom. Un recalcul périodique garantit que ça se corrige
+      // tout seul en moins d'une seconde, quel que soit ce qui a changé.
+      setInterval(fit, 800);
     }
   </script>
 </body>
