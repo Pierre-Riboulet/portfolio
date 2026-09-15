@@ -27,7 +27,7 @@
       if (!project) {
         app.innerHTML =
           '<div class="not-found">' +
-          '<p>Projet introuvable</p>' +
+          '<h1 class="project-title">Projet introuvable</h1>' +
           '<a class="back-link" href="index.html">&larr; Back</a>' +
           '</div>';
         document.title = "Projet introuvable — Pierre Riboulet";
@@ -72,6 +72,7 @@
         app.innerHTML =
           '<div class="project-page about-page">' +
           '<a class="back-link" href="index.html">&larr; Back</a>' +
+          '<h1 class="project-title">' + project.title + '</h1>' +
 
           '<div class="about-header">' +
           photoOrPlaceholder(a.photo, "Photo à venir", "about-photo") +
@@ -144,10 +145,41 @@
       app.innerHTML =
         '<div class="project-page">' +
         '<a class="back-link" href="index.html">&larr; Back</a>' +
+        '<h1 class="project-title">' + displayTitle + '</h1>' +
         '<p class="project-description">' + project.description + '</p>' +
         mediaHtml +
         '</div>';
+
+      fitTitleToOneLine();
     })();
+
+    function fitTitleToOneLine() {
+      var title = document.querySelector(".project-title");
+      var container = title && title.parentElement;
+      if (!title || !container) return;
+
+      function fit() {
+        title.style.whiteSpace = "nowrap";
+        title.style.fontSize = ""; // repart de la taille CSS (clamp) à chaque mesure
+        var containerStyle = getComputedStyle(container);
+        var availableWidth = container.clientWidth -
+          parseFloat(containerStyle.paddingLeft) -
+          parseFloat(containerStyle.paddingRight);
+        var size = parseFloat(getComputedStyle(title).fontSize);
+        var minSize = 16;
+        while (title.scrollWidth > availableWidth && size > minSize) {
+          size -= 1;
+          title.style.fontSize = size + "px";
+        }
+      }
+
+      if (window.ResizeObserver) {
+        new ResizeObserver(fit).observe(container);
+      } else {
+        fit();
+        window.addEventListener("resize", fit);
+      }
+    }
   </script>
 </body>
 </html>
