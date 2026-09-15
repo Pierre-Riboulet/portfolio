@@ -31,6 +31,7 @@
           '<a class="back-link" href="index.html">&larr; Back</a>' +
           '</div>';
         document.title = "Projet introuvable — Pierre Riboulet";
+        fitTitleToOneLine();
         return;
       }
 
@@ -103,6 +104,7 @@
           '<div class="award-groups">' + awardsHtml + '</div>' +
           '</section>' +
           '</div>';
+        fitTitleToOneLine();
         return;
       }
 
@@ -155,16 +157,19 @@
 
     function fitTitleToOneLine() {
       var title = document.querySelector(".project-title");
-      var container = title && title.parentElement;
-      if (!title || !container) return;
+      if (!title) return;
+      // Le titre est en "full-bleed" (voir CSS) et n'est plus contenu par la
+      // colonne de 1100px de .project-page ; la largeur dispo se mesure donc
+      // sur le titre lui-même (son propre padding), pas sur son parent.
+      var container = title;
 
       function fit() {
         title.style.whiteSpace = "nowrap";
         title.style.fontSize = ""; // repart de la taille CSS (clamp) à chaque mesure
-        var containerStyle = getComputedStyle(container);
-        var availableWidth = container.clientWidth -
-          parseFloat(containerStyle.paddingLeft) -
-          parseFloat(containerStyle.paddingRight);
+        // scrollWidth (texte + padding du titre) vs clientWidth (boîte du
+        // titre, padding inclus puisque box-sizing:border-box) : les deux
+        // incluent le padding de la même façon, pas besoin de le soustraire.
+        var availableWidth = container.clientWidth;
         var size = parseFloat(getComputedStyle(title).fontSize);
         var minSize = 16;
         while (title.scrollWidth > availableWidth && size > minSize) {

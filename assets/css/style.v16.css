@@ -303,12 +303,22 @@ body.has-custom-cursor #pickaxe-cursor {
   border-bottom-color: var(--ink);
 }
 
+/* Le titre casse volontairement la colonne de 1100px de .project-page pour
+   utiliser (presque) toute la largeur de la fenêtre : sinon, quelle que soit
+   la taille de police visée ci-dessous, le script qui le force sur une seule
+   ligne le rétrécissait pour tenir dans ces 1100px — la vraie police jamais
+   atteinte. margin-left: calc(50% - 50vw) est l'astuce "full-bleed" standard
+   pour un enfant d'un conteneur centré par margin:auto (contrairement à
+   left:50%, qui se base sur la largeur du PARENT et ne marche pas ici). */
 .project-title {
   font-family: "Minion Pro", Georgia, "Times New Roman", serif;
   font-style: italic;
-  font-size: clamp(7.8rem, 21vw, 13.8rem);
-  margin: 0 0 1.2rem;
+  font-size: clamp(10rem, 27vw, 18rem);
   letter-spacing: -0.01em;
+  box-sizing: border-box;
+  width: 100vw;
+  margin: 0 0 1.2rem calc(50% - 50vw);
+  padding: 0 6vw;
 }
 
 .project-description {
