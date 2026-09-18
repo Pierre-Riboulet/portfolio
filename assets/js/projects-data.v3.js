@@ -25,7 +25,7 @@ const PROJECTS = [
   {
     slug: "accor",
     title: "Accor",
-    pageTitle: "All Accor — Surfin' the Seine",
+    pageTitle: "All Accor - Surfin' the Seine",
     hoverLeft: "All Accor", hoverRight: "Surfin' the Seine",
     category: "Campagne",
     description: "At the world's biggest sporting events, brands spend millions trying to get noticed. We didn't, or at least, not as much as everyone else. Instead, we found one move that put Accor on screens around the world: we surfed the Seine.",
@@ -52,7 +52,7 @@ const PROJECTS = [
   {
     slug: "acer",
     title: "Acer",
-    pageTitle: "Acer — We got you",
+    pageTitle: "Acer - We got you",
     hoverLeft: "Acer", hoverRight: "We got you",
     category: "Campagne",
     description: "The Acer Swift 14 AI can do a lot of things. Even improve your relationship with your dad.",
@@ -63,7 +63,7 @@ const PROJECTS = [
   {
     slug: "canal-plus",
     title: "Canal+",
-    pageTitle: "Validé — Season 2",
+    pageTitle: "Validé - Season 2",
     hoverLeft: "Validé", hoverRight: "Season 2",
     category: "Campagne",
     description: `To promote the return of the TV show where rap meets gang business, Canal+ wanted a print campaign.
@@ -75,7 +75,7 @@ So we went to the cities where street cred matters most: Paris, Marseille and Lo
   {
     slug: "la-spa",
     title: "La SPA",
-    pageTitle: "La SPA — Films",
+    pageTitle: "La SPA - Films",
     hoverLeft: "La SPA", hoverRight: "Films",
     category: "Campagne",
     description: `The Société Protectrice des Animaux is France's largest animal shelter. No need for tissues, there are no tearjerkers here. During three years, we decided to stay away from sad campaigns, convinced that humor could do more for the cause.
@@ -92,7 +92,7 @@ Proof that a funny cat is more effective than a three-legged dog: the associatio
   {
     slug: "louis-vuitton",
     title: "Louis Vuitton",
-    pageTitle: "LVMH — Au-delà des bassins",
+    pageTitle: "LVMH - Au-delà des bassins",
     hoverLeft: "LVMH", hoverRight: "Au-delà des bassins",
     category: "Campagne",
     description: "Ambassador for LVMH and Louis Vuitton, Léon Marchand has quickly become the world's number one swimmer. When the group asked us to create a series of images celebrating him, we did what Léon has always done: go far beyond the pool.",
@@ -130,7 +130,7 @@ when I turn strangers into immortals.`,
   {
     slug: "united24",
     title: "UNITED 24",
-    pageTitle: "UNITED 24 — The Donation Map",
+    pageTitle: "UNITED 24 - The Donation Map",
     hoverLeft: "UNITED 24", hoverRight: "The Donation Map",
     category: "Projet",
     description: "In 1748, Benjamin Franklin is said to have coined the phrase \"Time is money.\" So we took him literally. For UNITED24, we created a Fortnite map where gamers' playtime generated donations for people affected by the war in Ukraine.",
@@ -141,7 +141,7 @@ when I turn strangers into immortals.`,
   {
     slug: "firecatchers",
     title: "Firecatchers",
-    pageTitle: "French Firefighters — Firecatchers",
+    pageTitle: "French Firefighters - Firecatchers",
     hoverLeft: "French Firefighters", hoverRight: "Firecatchers",
     category: "Projet",
     description: `I'm the kind of person who shows up early. Even when it's just to watch my favorite streamer go live.
@@ -153,7 +153,7 @@ One day, while waiting with 30,000 other people in front of a waiting screen, I 
   {
     slug: "plan-international",
     title: "Plan International",
-    pageTitle: "Plan International — What do you do for a living",
+    pageTitle: "Plan International - What do you do for a living",
     hoverLeft: "Plan International", hoverRight: "What do you do for a living",
     category: "Campagne",
     description: "In our industry, we all like to think we have pretty cool jobs. Well, just wait until a Plan International donor tells you about theirs.",
