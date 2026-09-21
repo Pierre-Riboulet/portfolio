@@ -29,6 +29,20 @@ const PROJECTS = [
     hoverLeft: "All Accor", hoverRight: "Surfin' the Seine",
     category: "Campagne",
     description: "At the world's biggest sporting events, brands spend millions trying to get noticed. We didn't, or at least, not as much as everyone else. Instead, we found one move that put Accor on screens around the world: we surfed the Seine.",
+    credits: [
+      [
+        { role: "Art director", name: "Charlotte Merlaud" },
+        { role: "Copywriter", name: "Pierre Riboulet" }
+      ],
+      [
+        { role: "Motion", name: "Lio Studio" },
+        { role: "Direction", name: "Fabrice Plazolles" }
+      ],
+      [
+        { role: "Production", name: "Prose on Pixels" },
+        { role: "Agency", name: "Havas Play" }
+      ]
+    ],
     x: 45.5, y: 21.1, rx: 3.2, ry: 6.3,
     mobile: { x: 37.3, y: 27.3, rx: 7.2, ry: 4.3 },
     media: [{ type: "vimeo", id: "1054417358" }],
@@ -56,6 +70,20 @@ const PROJECTS = [
     hoverLeft: "Acer", hoverRight: "We got you",
     category: "Campagne",
     description: "The Acer Swift 14 AI can do a lot of things. Even improve your relationship with your dad.",
+    credits: [
+      [
+        { role: "Director", name: "Luke Brookner" },
+        { role: "Creative Director", name: "Fabrice Plazolles" }
+      ],
+      [
+        { role: "Art Director", name: "Charlotte Merlaud" },
+        { role: "Copywriter", name: "Pierre Riboulet" }
+      ],
+      [
+        { role: "Production", name: "Prose on Pixels" },
+        { role: "Agency", name: "Havas Play" }
+      ]
+    ],
     x: 53.0, y: 27.5, rx: 4.6, ry: 3.0,
     mobile: { x: 56.1, y: 32.8, rx: 11.8, ry: 1.8 },
     media: [{ type: "vimeo", id: "1050499345" }]
@@ -68,6 +96,20 @@ const PROJECTS = [
     category: "Campagne",
     description: `To promote the return of the TV show where rap meets gang business, Canal+ wanted a print campaign.
 So we went to the cities where street cred matters most: Paris, Marseille and Los Santos.`,
+    credits: [
+      [
+        { role: "Motion", name: "Chloe Mencarelli" },
+        { role: "Creative Director", name: "Fabrice Plazolles" }
+      ],
+      [
+        { role: "Art Director", name: "Pierre Riboulet" },
+        { role: "Copywriter", name: "Pierre Riboulet" }
+      ],
+      [
+        { role: "InGame production", name: "Pierre Acuña" },
+        { role: "Agency", name: "Havas Play" }
+      ]
+    ],
     x: 45.7, y: 43.8, rx: 5.3, ry: 2.1,
     mobile: { x: 38.5, y: 46.15, rx: 19.5, ry: 1.55 },
     media: [{ type: "vimeo", id: "1058393916" }]
@@ -81,6 +123,16 @@ So we went to the cities where street cred matters most: Paris, Marseille and Lo
     description: `The Société Protectrice des Animaux is France's largest animal shelter. No need for tissues, there are no tearjerkers here. During three years, we decided to stay away from sad campaigns, convinced that humor could do more for the cause.
 
 Proof that a funny cat is more effective than a three-legged dog: the association jumped from 11th to 2nd place among the French's favorite charities.`,
+    credits: [
+      [
+        { role: "Art Director", name: "Charlotte Merlaud" },
+        { role: "Copywriter", name: "Pierre Riboulet" }
+      ],
+      [
+        { role: "Creative Director", name: "Fabrice Plazolles" },
+        { role: "Production", name: "Wanda - Jungler" }
+      ]
+    ],
     x: 57.7, y: 39.3, rx: 2.6, ry: 4.4,
     mobile: { x: 71.0, y: 42.65, rx: 7.5, ry: 4.65 },
     media: [
@@ -160,6 +212,20 @@ when I turn strangers into immortals.`,
     hoverLeft: "UNITED 24", hoverRight: "The Donation Map",
     category: "Projet",
     description: "In 1748, Benjamin Franklin is said to have coined the phrase \"Time is money.\" So we took him literally. For UNITED24, we created a Fortnite map where gamers' playtime generated donations for people affected by the war in Ukraine.",
+    credits: [
+      [
+        { role: "InGame Production", name: "Pierre Acuña" },
+        { role: "Creative Director", name: "Fabrice Plazolles" }
+      ],
+      [
+        { role: "Art Director", name: "Quentin Clausse" },
+        { role: "Copywriter", name: "Nil Nivière Schouvaloff - Pierre Riboulet" }
+      ],
+      [
+        { role: "Motion", name: "Erwan Thomas" },
+        { role: "Agency", name: "Havas Play" }
+      ]
+    ],
     x: 58.4, y: 67.1, rx: 2.3, ry: 4.7,
     mobile: { x: 73.75, y: 63.35, rx: 5.25, ry: 3.65 },
     media: [{ type: "vimeo", id: "1056571140" }]
@@ -172,6 +238,20 @@ when I turn strangers into immortals.`,
     category: "Projet",
     description: `I'm the kind of person who shows up early. Even when it's just to watch my favorite streamer go live.
 One day, while waiting with 30,000 other people in front of a waiting screen, I started wondering whether those 30,001 people could be useful for something. So we turned a few waiting screens into a way to watch over nature.`,
+    credits: [
+      [
+        { role: "Art Director", name: "Charlotte Merlaud - Alvaro Barth" },
+        { role: "Copywriter", name: "Pierre Riboulet" }
+      ],
+      [
+        { role: "Creative Director", name: "Fabrice Plazolles" },
+        { role: "Motion", name: "Vitor Araujo" }
+      ],
+      [
+        { role: "Production", name: "BETC Sao Paulo" },
+        { role: "Agency", name: "Havas Play" }
+      ]
+    ],
     x: 52.1, y: 82.2, rx: 2.8, ry: 4.4,
     mobile: { x: 53.5, y: 74.65, rx: 9.5, ry: 3.65 },
     media: [{ type: "vimeo", id: "1225917302" }]
@@ -183,6 +263,20 @@ One day, while waiting with 30,000 other people in front of a waiting screen, I 
     hoverLeft: "Plan International", hoverRight: "What do you do for a living",
     category: "Campagne",
     description: "In our industry, we all like to think we have pretty cool jobs. Well, just wait until a Plan International donor tells you about theirs.",
+    credits: [
+      [
+        { role: "Director", name: "Axel Segala" },
+        { role: "Creative Director", name: "Fabrice Plazolles" }
+      ],
+      [
+        { role: "Art Director", name: "Pierre Riboulet" },
+        { role: "Copywriter", name: "Pierre Riboulet" }
+      ],
+      [
+        { role: "Credits photo", name: "Plan International" },
+        { role: "Agency", name: "Havas Play" }
+      ]
+    ],
     x: 45.2, y: 57.7, rx: 3.3, ry: 5.0,
     mobile: { x: 34.25, y: 56.0, rx: 9.75, ry: 4.3 },
     media: [{ type: "vimeo", id: "1057237781", hash: "780a04aa5e" }]
