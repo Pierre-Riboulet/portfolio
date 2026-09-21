@@ -276,7 +276,7 @@ body.has-custom-cursor #pickaxe-cursor {
 .project-page {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 8vh 6vw;
+  padding: 5vh 6vw;
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
@@ -313,11 +313,11 @@ body.has-custom-cursor #pickaxe-cursor {
 .project-title {
   font-family: "Minion Pro", Georgia, "Times New Roman", serif;
   font-style: italic;
-  font-size: clamp(5rem, 13.5vw, 9rem);
+  font-size: clamp(3.5rem, 9vw, 6.5rem);
   letter-spacing: -0.01em;
   box-sizing: border-box;
   width: 100vw;
-  margin: 0 0 1.2rem calc(50% - 50vw);
+  margin: 0 0 0.8rem calc(50% - 50vw);
   padding: 0 6vw;
 }
 
@@ -392,9 +392,9 @@ body.has-custom-cursor #pickaxe-cursor {
 }
 .photo-carousel-track img {
   flex: 0 0 auto;
-  height: min(52vh, 460px);
+  height: min(60vh, 560px);
   width: auto;
-  max-width: 88vw;
+  max-width: 92vw;
   object-fit: cover;
   border-radius: 4px;
   scroll-snap-align: center;
