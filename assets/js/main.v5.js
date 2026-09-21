@@ -85,6 +85,7 @@
 
     try {
       var el = new Audio(src);
+      el.volume = 0.8;
       var playPromise = el.play();
       if (playPromise && typeof playPromise.catch === "function") {
         playPromise.catch(function () { playRockCrackSynth(); });
@@ -135,7 +136,7 @@
     highpass.frequency.value = 600;
 
     var gain = ctx.createGain();
-    gain.gain.setValueAtTime(0.55, now);
+    gain.gain.setValueAtTime(0.44, now);
     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
 
     noise.connect(bandpass);
@@ -152,7 +153,7 @@
     click.frequency.exponentialRampToValueAtTime(60, now + 0.09);
 
     var clickGain = ctx.createGain();
-    clickGain.gain.setValueAtTime(0.35, now);
+    clickGain.gain.setValueAtTime(0.28, now);
     clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
 
     click.connect(clickGain);
