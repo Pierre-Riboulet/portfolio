@@ -7,7 +7,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="assets/css/style.v19.css">
+  <link rel="stylesheet" href="assets/css/style.v20.css">
 </head>
 <body>
   <div id="app"></div>
@@ -120,6 +120,18 @@
           mediaHtml += '<div class="media-placeholder">Projets à venir</div>';
         }
         mediaHtml += "</div>";
+      } else if (project.media && project.media.length && project.media.every(function (m) { return m.type === "image"; })) {
+        // Plusieurs photos et rien d'autre (pas de vidéo) : carrousel horizontal
+        // plutôt qu'un empilement vertical, pour tenir sur un seul écran.
+        mediaHtml = '<div class="photo-carousel">' +
+          '<button class="carousel-arrow prev" aria-label="Photo précédente">&larr;</button>' +
+          '<div class="photo-carousel-track">' +
+          project.media.map(function (m) {
+            return '<img src="' + m.src + '" alt="' + project.title + '" draggable="false">';
+          }).join("") +
+          '</div>' +
+          '<button class="carousel-arrow next" aria-label="Photo suivante">&rarr;</button>' +
+          '</div>';
       } else {
         mediaHtml = '<div class="project-media">';
         if (project.media && project.media.length) {
@@ -163,7 +175,53 @@
         '</div>';
 
       fitTitleToOneLine();
+      setupPhotoCarousels();
     })();
+
+    function setupPhotoCarousels() {
+      document.querySelectorAll(".photo-carousel").forEach(function (carousel) {
+        var track = carousel.querySelector(".photo-carousel-track");
+        var prevBtn = carousel.querySelector(".prev");
+        var nextBtn = carousel.querySelector(".next");
+        var isDown = false, startX = 0, startScroll = 0, moved = false;
+
+        function step() {
+          var img = track.querySelector("img");
+          return img ? img.getBoundingClientRect().width + 16 : track.clientWidth * 0.8;
+        }
+
+        track.addEventListener("mousedown", function (e) {
+          isDown = true;
+          moved = false;
+          startX = e.pageX;
+          startScroll = track.scrollLeft;
+          track.classList.add("dragging");
+        });
+        window.addEventListener("mousemove", function (e) {
+          if (!isDown) return;
+          e.preventDefault();
+          var dx = e.pageX - startX;
+          if (Math.abs(dx) > 4) moved = true;
+          track.scrollLeft = startScroll - dx;
+        });
+        window.addEventListener("mouseup", function () {
+          isDown = false;
+          track.classList.remove("dragging");
+        });
+        // Un drag qui bouge la piste ne doit pas déclencher un clic
+        // fantôme (ex: sur une image cliquable) au relâchement.
+        track.addEventListener("click", function (e) {
+          if (moved) { e.preventDefault(); e.stopPropagation(); }
+        }, true);
+
+        prevBtn.addEventListener("click", function () {
+          track.scrollBy({ left: -step(), behavior: "smooth" });
+        });
+        nextBtn.addEventListener("click", function () {
+          track.scrollBy({ left: step(), behavior: "smooth" });
+        });
+      });
+    }
 
     function fitTitleToOneLine() {
       var title = document.querySelector(".project-title");

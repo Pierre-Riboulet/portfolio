@@ -366,6 +366,64 @@ body.has-custom-cursor #pickaxe-cursor {
   break-inside: avoid;
 }
 
+/* Carrousel photo (ex: LVMH) : une bande horizontale scrollable plutôt
+   qu'un empilement vertical, pour tenir sur un seul écran sans scroll de
+   page même avec plusieurs photos. Hauteur bornée en vh (pas en largeur
+   fixe) : chaque image garde son propre ratio, seule sa hauteur est
+   contrainte. */
+.photo-carousel {
+  position: relative;
+  margin-top: 1.5rem;
+}
+.photo-carousel-track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+}
+.photo-carousel-track::-webkit-scrollbar { display: none; }
+.photo-carousel-track.dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+.photo-carousel-track img {
+  flex: 0 0 auto;
+  height: min(52vh, 460px);
+  width: auto;
+  max-width: 88vw;
+  object-fit: cover;
+  border-radius: 4px;
+  scroll-snap-align: center;
+}
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(23, 23, 26, 0.55);
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+}
+.carousel-arrow:hover { background: rgba(23, 23, 26, 0.8); }
+.carousel-arrow.prev { left: -8px; }
+.carousel-arrow.next { right: -8px; }
+@media (max-width: 700px) {
+  .carousel-arrow { display: none; }
+}
+
 .video-embed {
   position: relative;
   width: 100%;
