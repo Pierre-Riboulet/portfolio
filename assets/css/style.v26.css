@@ -341,7 +341,7 @@ body.has-custom-cursor #pickaxe-cursor {
   align-items: flex-start;
   margin-top: 0;
   margin-right: 0;
-  margin-bottom: 1.25rem;
+  margin-bottom: 2.25rem;
   /* Même astuce full-bleed que .project-title (padding 6vw identique) :
      sans ça, la ligne texte/crédits restait calée sur la colonne de
      1100px de .project-page, décalée par rapport au titre qui, lui,
