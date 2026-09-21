@@ -7,12 +7,12 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="assets/css/style.v21.css">
+  <link rel="stylesheet" href="assets/css/style.v22.css">
 </head>
 <body>
   <div id="app"></div>
 
-  <script src="assets/js/projects-data.v5.js"></script>
+  <script src="assets/js/projects-data.v6.js"></script>
   <script src="assets/js/main.v5.js"></script>
   <script>
     (function () {
@@ -165,11 +165,28 @@
           '</div>';
       }
 
+      // Quand un projet a des crédits, la description partage sa ligne avec
+      // un second bloc à droite plutôt que de prendre toute la largeur seule.
+      var descriptionHtml;
+      if (project.credits && project.credits.length) {
+        var creditsHtml = '<div class="project-credits">' +
+          project.credits.map(function (c) {
+            return '<p><span class="credit-role">' + c.role + '</span>' + c.name + '</p>';
+          }).join("") +
+          '</div>';
+        descriptionHtml = '<div class="project-header">' +
+          '<p class="project-description">' + project.description + '</p>' +
+          creditsHtml +
+          '</div>';
+      } else {
+        descriptionHtml = '<p class="project-description">' + project.description + '</p>';
+      }
+
       app.innerHTML =
         '<div class="project-page">' +
         '<a class="back-link" href="index.html">&larr; Back</a>' +
         '<h1 class="project-title">' + displayTitle + '</h1>' +
-        '<p class="project-description">' + project.description + '</p>' +
+        descriptionHtml +
         mediaHtml +
         pressHtml +
         '</div>';
