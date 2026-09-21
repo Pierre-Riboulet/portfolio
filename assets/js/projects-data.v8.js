@@ -96,15 +96,20 @@ Proof that a funny cat is more effective than a three-legged dog: the associatio
     hoverLeft: "LVMH", hoverRight: "Au-delà des bassins",
     category: "Campagne",
     description: "Ambassador for LVMH and Louis Vuitton, Léon Marchand has quickly become the world's number one swimmer. When the group asked us to create a series of images celebrating him, we did what Léon has always done: go far beyond the pool.",
+    // Convention crédits : la dernière colonne (la plus à droite) est
+    // toujours Production puis Agency, quel que soit le nombre de
+    // colonnes précédentes.
     credits: [
       [
         { role: "Photography", name: "Nelson Rosier" },
-        { role: "Art direction", name: "Gabriel Santos - Pierre Riboulet" },
-        { role: "Production", name: "Prose on Pixels" }
+        { role: "Art direction", name: "Gabriel Santos - Pierre Riboulet" }
       ],
       [
         { role: "Vidéo", name: "Tom Weber" },
-        { role: "Direction", name: "Sophie Suard" },
+        { role: "Direction", name: "Sophie Suard" }
+      ],
+      [
+        { role: "Production", name: "Prose on Pixels" },
         { role: "Agency", name: "Havas Play" }
       ]
     ],
