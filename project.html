@@ -7,7 +7,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="assets/css/style.v26.css">
+  <link rel="stylesheet" href="assets/css/style.v27.css">
 </head>
 <body>
   <div id="app"></div>
@@ -120,17 +120,26 @@
           mediaHtml += '<div class="media-placeholder">Projets à venir</div>';
         }
         mediaHtml += "</div>";
-      } else if (project.media && project.media.length && project.media.every(function (m) { return m.type === "image"; })) {
-        // Plusieurs photos et rien d'autre (pas de vidéo) : carrousel horizontal
+      } else if (project.media && project.media.length > 1) {
+        // Plusieurs médias (photos et/ou vidéos) : carrousel horizontal
         // plutôt qu'un empilement vertical, pour tenir sur un seul écran.
         mediaHtml = '<div class="photo-carousel">' +
-          '<button class="carousel-arrow prev" aria-label="Photo précédente">&larr;</button>' +
+          '<button class="carousel-arrow prev" aria-label="Média précédent">&larr;</button>' +
           '<div class="photo-carousel-track">' +
           project.media.map(function (m) {
-            return '<img src="' + m.src + '" alt="' + project.title + '" draggable="false">';
+            if (m.type === "vimeo") {
+              var vimeoParams = "title=0&byline=0&portrait=0" + (m.hash ? "&h=" + m.hash : "");
+              var vimeoSrc = "https://player.vimeo.com/video/" + m.id + "?" + vimeoParams;
+              return '<div class="carousel-video"><iframe src="' + vimeoSrc + '" ' +
+                'allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>';
+            } else if (m.type === "video") {
+              return '<div class="carousel-video"><video controls src="' + m.src + '"></video></div>';
+            } else {
+              return '<img src="' + m.src + '" alt="' + project.title + '" draggable="false">';
+            }
           }).join("") +
           '</div>' +
-          '<button class="carousel-arrow next" aria-label="Photo suivante">&rarr;</button>' +
+          '<button class="carousel-arrow next" aria-label="Média suivant">&rarr;</button>' +
           '</div>';
       } else {
         mediaHtml = '<div class="project-media">';

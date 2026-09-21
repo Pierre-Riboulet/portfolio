@@ -467,6 +467,28 @@ body.has-custom-cursor #pickaxe-cursor {
   border-radius: 4px;
   scroll-snap-align: center;
 }
+/* Une vidéo n'a pas de taille intrinsèque comme une image : on fixe la
+   hauteur (comme .photo-carousel-track img) et on en déduit la largeur
+   via aspect-ratio, au lieu de compter sur width:auto. */
+.carousel-video {
+  flex: 0 0 auto;
+  position: relative;
+  height: min(54vh, 520px);
+  aspect-ratio: 16 / 9;
+  max-width: 92vw;
+  background: #000;
+  border-radius: 4px;
+  overflow: hidden;
+  scroll-snap-align: center;
+}
+.carousel-video iframe,
+.carousel-video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 .carousel-arrow {
   position: absolute;
   top: 50%;
@@ -499,6 +521,11 @@ body.has-custom-cursor #pickaxe-cursor {
     cursor: default;
   }
   .photo-carousel-track img {
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+  }
+  .carousel-video {
     height: auto;
     width: 100%;
     max-width: 100%;
