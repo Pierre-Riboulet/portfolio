@@ -154,7 +154,7 @@ Proof that a funny cat is more effective than a three-legged dog: the associatio
     credits: [
       [
         { role: "Photography", name: "Nelson Rosier" },
-        { role: "Art direction", name: "Gabriel Santos - Pierre Riboulet" }
+        { role: "Art direction", name: "Gabriel Santos<br>Pierre Riboulet" }
       ],
       [
         { role: "Vidéo", name: "Tom Weber" },
