@@ -7,12 +7,12 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="assets/css/style.v23.css">
+  <link rel="stylesheet" href="assets/css/style.v24.css">
 </head>
 <body>
   <div id="app"></div>
 
-  <script src="assets/js/projects-data.v6.js"></script>
+  <script src="assets/js/projects-data.v7.js"></script>
   <script src="assets/js/main.v5.js"></script>
   <script>
     (function () {
@@ -166,12 +166,18 @@
       }
 
       // Quand un projet a des crédits, la description partage sa ligne avec
-      // un second bloc à droite plutôt que de prendre toute la largeur seule.
+      // un second bloc à droite (une ou deux colonnes) plutôt que de
+      // prendre toute la largeur seule. project.credits = un tableau de
+      // colonnes, chaque colonne un tableau de { role, name }.
       var descriptionHtml;
       if (project.credits && project.credits.length) {
         var creditsHtml = '<div class="project-credits">' +
-          project.credits.map(function (c) {
-            return '<p><span class="credit-role">' + c.role + '</span>' + c.name + '</p>';
+          project.credits.map(function (col) {
+            return '<div class="project-credits-col">' +
+              col.map(function (c) {
+                return '<p><span class="credit-role">' + c.role + '</span>' + c.name + '</p>';
+              }).join("") +
+              '</div>';
           }).join("") +
           '</div>';
         descriptionHtml = '<div class="project-header">' +
