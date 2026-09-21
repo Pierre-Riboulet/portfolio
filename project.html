@@ -7,12 +7,12 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="assets/css/style.v27.css">
+  <link rel="stylesheet" href="assets/css/style.v28.css">
 </head>
 <body>
   <div id="app"></div>
 
-  <script src="assets/js/projects-data.v10.js"></script>
+  <script src="assets/js/projects-data.v11.js"></script>
   <script src="assets/js/main.v6.js"></script>
   <script>
     (function () {
@@ -54,10 +54,6 @@
             '</div>';
         }).join("");
 
-        var clientsHtml = a.clients.map(function (c) {
-          return '<span class="client-tag">' + c + '</span>';
-        }).join("");
-
         var educationHtml = a.education.map(function (e) {
           return '<li>' + e + '</li>';
         }).join("");
@@ -86,11 +82,6 @@
           '<section class="about-section">' +
           '<h2 class="about-section-title">Expérience</h2>' +
           experienceHtml +
-          '</section>' +
-
-          '<section class="about-section">' +
-          '<h2 class="about-section-title">Clients</h2>' +
-          '<div class="client-tags">' + clientsHtml + '</div>' +
           '</section>' +
 
           '<section class="about-section">' +

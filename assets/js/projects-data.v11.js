@@ -302,10 +302,6 @@ One day, while waiting with 30,000 other people in front of a waiting screen, I 
         { period: "Août 2022 — Présent", role: "Copywriter", company: "Havas Play Paris" },
         { period: "Juin 2020 — Août 2022", role: "Junior Copywriter", company: "Havas Sports & Entertainment" }
       ],
-      clients: [
-        "Acer", "Action contre la faim", "Alpine F1 Team", "Berluti", "Canal +",
-        "GMF", "La SPA", "Paris 2024", "PSG", "Renault"
-      ],
       education: [
         "Master Art and Creative Direction — Sup de Pub Paris",
         "Master Copywriting — Sup de Pub Paris",

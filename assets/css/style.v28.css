@@ -563,16 +563,14 @@ body.has-custom-cursor #pickaxe-cursor {
 }
 
 .about-photo {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  object-fit: cover;
+  max-width: 240px;
+  height: auto;
   flex-shrink: 0;
 }
 
 .about-photo.media-placeholder {
-  aspect-ratio: auto;
-  border-radius: 50%;
+  width: 200px;
+  aspect-ratio: 3 / 4;
   font-size: 0.75rem;
 }
 
@@ -634,20 +632,6 @@ body.has-custom-cursor #pickaxe-cursor {
 
 .exp-company {
   color: var(--muted);
-}
-
-.client-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-
-.client-tag {
-  font-size: 0.85rem;
-  padding: 0.4rem 0.9rem;
-  border: 1px solid #d8d5cd;
-  border-radius: 999px;
-  color: #333;
 }
 
 .education-list {
