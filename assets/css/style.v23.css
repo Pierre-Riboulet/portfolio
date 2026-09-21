@@ -470,6 +470,19 @@ body.has-custom-cursor #pickaxe-cursor {
 .carousel-arrow.next { right: -8px; }
 @media (max-width: 700px) {
   .carousel-arrow { display: none; }
+  /* Pas de carrousel sur mobile : toutes les photos à la suite, en
+     colonne pleine largeur, et on laisse la page défiler normalement. */
+  .photo-carousel-track {
+    flex-direction: column;
+    overflow: visible;
+    scroll-snap-type: none;
+    cursor: default;
+  }
+  .photo-carousel-track img {
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .video-embed {
