@@ -186,8 +186,13 @@ Proof that a funny cat is more effective than a three-legged dog: the associatio
     description: "A few headlines that ended up printed, framed or saved somewhere.",
     x: 44.4, y: 77.1, rx: 2.5, ry: 5.1,
     mobile: { x: 35.0, y: 71.6, rx: 6.5, ry: 4.6 },
-    // Cette page rassemblera plusieurs projets : { title: "..." } par entrée.
-    subprojects: []
+    media: [
+      { type: "image", src: "assets/img/prints/prints-01.webp" },
+      { type: "image", src: "assets/img/prints/prints-02.webp" },
+      { type: "image", src: "assets/img/prints/prints-03.webp" },
+      { type: "image", src: "assets/img/prints/prints-04.webp" },
+      { type: "image", src: "assets/img/prints/prints-05.webp" }
+    ]
   },
   {
     slug: "createur-dimmortels",
