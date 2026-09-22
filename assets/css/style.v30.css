@@ -474,20 +474,28 @@ body.has-custom-cursor #pickaxe-cursor {
   cursor: grabbing;
   scroll-snap-type: none;
 }
-.photo-carousel-track img {
+/* Chaque média est enveloppé dans .carousel-slide (plutôt que d'être
+   directement l'enfant flex de la piste) pour pouvoir loger sa légende
+   juste en dessous de lui en version mobile (empilée). */
+.carousel-slide {
   flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 92vw;
+  scroll-snap-align: center;
+}
+.photo-carousel-track img {
   height: min(54vh, 520px);
   width: auto;
   max-width: 92vw;
   object-fit: cover;
   border-radius: 4px;
-  scroll-snap-align: center;
 }
 /* Une vidéo n'a pas de taille intrinsèque comme une image : on fixe la
    hauteur (comme .photo-carousel-track img) et on en déduit la largeur
    via aspect-ratio, au lieu de compter sur width:auto. */
 .carousel-video {
-  flex: 0 0 auto;
   position: relative;
   height: min(54vh, 520px);
   aspect-ratio: 16 / 9;
@@ -495,7 +503,22 @@ body.has-custom-cursor #pickaxe-cursor {
   background: #000;
   border-radius: 4px;
   overflow: hidden;
-  scroll-snap-align: center;
+}
+/* Légende partagée sous le carrousel (desktop) : un seul texte qui change
+   selon la photo actuellement centrée, mis à jour en JS via
+   IntersectionObserver. */
+.carousel-caption {
+  margin: 1rem 0 0;
+  text-align: center;
+  font-size: 0.92rem;
+  color: #333;
+  min-height: 1.4em;
+}
+/* Légende par photo, utilisée seulement en version mobile empilée (voir
+   media query ci-dessous) : pas de "photo active" en mode empilé, donc
+   chaque légende reste collée à sa propre photo. */
+.carousel-slide-caption {
+  display: none;
 }
 .carousel-video iframe,
 .carousel-video video {
@@ -536,6 +559,10 @@ body.has-custom-cursor #pickaxe-cursor {
     scroll-snap-type: none;
     cursor: default;
   }
+  .carousel-slide {
+    width: 100%;
+    max-width: 100%;
+  }
   .photo-carousel-track img {
     height: auto;
     width: 100%;
@@ -545,6 +572,19 @@ body.has-custom-cursor #pickaxe-cursor {
     height: auto;
     width: 100%;
     max-width: 100%;
+  }
+  /* En version empilée, la légende partagée n'a pas de sens (pas de
+     "photo active") : on la cache et on affiche plutôt une légende sous
+     chaque photo. */
+  .carousel-caption {
+    display: none;
+  }
+  .carousel-slide-caption {
+    display: block;
+    margin: 0.5rem 0 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #333;
   }
 }
 

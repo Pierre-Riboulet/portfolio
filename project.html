@@ -7,7 +7,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="assets/css/style.v29.css">
+  <link rel="stylesheet" href="assets/css/style.v30.css">
 </head>
 <body>
   <div id="app"></div>
@@ -42,6 +42,14 @@
       function photoOrPlaceholder(src, label, className) {
         return '<img class="' + className + '" src="' + src + '" alt="' + label + '" ' +
           'onerror="this.outerHTML=\'<div class=&quot;' + className + ' media-placeholder&quot;>' + label + '</div>\'">';
+      }
+
+      function escapeAttr(s) {
+        return String(s)
+          .replace(/&/g, "&amp;")
+          .replace(/"/g, "&quot;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
       }
 
       if (project.about) {
@@ -114,24 +122,36 @@
       } else if (project.media && project.media.length > 1) {
         // Plusieurs médias (photos et/ou vidéos) : carrousel horizontal
         // plutôt qu'un empilement vertical, pour tenir sur un seul écran.
+        // Chaque média optionnel "caption" alimente une légende qui change
+        // avec la photo active (voir setupPhotoCarousels).
+        var hasCaptions = project.media.some(function (m) { return m.caption; });
         mediaHtml = '<div class="photo-carousel">' +
           '<button class="carousel-arrow prev" aria-label="Média précédent">&larr;</button>' +
           '<div class="photo-carousel-track">' +
           project.media.map(function (m) {
+            var captionAttr = m.caption ? ' data-caption="' + escapeAttr(m.caption) + '"' : '';
+            var slideCaption = m.caption ? '<p class="carousel-slide-caption">' + m.caption + '</p>' : '';
             if (m.type === "vimeo") {
               var vimeoParams = "title=0&byline=0&portrait=0" + (m.hash ? "&h=" + m.hash : "");
               var vimeoSrc = "https://player.vimeo.com/video/" + m.id + "?" + vimeoParams;
-              return '<div class="carousel-video"><iframe src="' + vimeoSrc + '" ' +
-                'allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>';
+              return '<div class="carousel-slide"' + captionAttr + '>' +
+                '<div class="carousel-video"><iframe src="' + vimeoSrc + '" ' +
+                'allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>' +
+                slideCaption + '</div>';
             } else if (m.type === "video") {
-              return '<div class="carousel-video"><video controls src="' + m.src + '"></video></div>';
+              return '<div class="carousel-slide"' + captionAttr + '>' +
+                '<div class="carousel-video"><video controls src="' + m.src + '"></video></div>' +
+                slideCaption + '</div>';
             } else {
-              return '<img src="' + m.src + '" alt="' + project.title + '" draggable="false">';
+              return '<div class="carousel-slide"' + captionAttr + '>' +
+                '<img src="' + m.src + '" alt="' + project.title + '" draggable="false">' +
+                slideCaption + '</div>';
             }
           }).join("") +
           '</div>' +
           '<button class="carousel-arrow next" aria-label="Média suivant">&rarr;</button>' +
-          '</div>';
+          '</div>' +
+          (hasCaptions ? '<p class="carousel-caption"></p>' : '');
       } else {
         mediaHtml = '<div class="project-media">';
         if (project.media && project.media.length) {
@@ -243,6 +263,52 @@
         nextBtn.addEventListener("click", function () {
           track.scrollBy({ left: step(), behavior: "smooth" });
         });
+
+        // Légende partagée qui suit la photo active. N'a de sens qu'en
+        // carrousel horizontal (desktop) : en version mobile empilée,
+        // chaque photo porte déjà sa propre légende (.carousel-slide-caption).
+        // On détermine la photo "active" comme celle la plus proche du
+        // centre de la piste (cohérent avec scroll-snap-align: center),
+        // recalculé à chaque scroll (drag, flèches, trackpad).
+        var captionEl = carousel.nextElementSibling;
+        if (captionEl && captionEl.classList.contains("carousel-caption") &&
+            !window.matchMedia("(max-width: 700px)").matches) {
+          var slides = Array.prototype.slice.call(track.querySelectorAll(".carousel-slide[data-caption]"));
+          if (slides.length) {
+            var activeSlide = null;
+            var updateCaption = function () {
+              var trackRect = track.getBoundingClientRect();
+              var trackCenter = trackRect.left + trackRect.width / 2;
+              var closest = null, closestDist = Infinity;
+              slides.forEach(function (s) {
+                var r = s.getBoundingClientRect();
+                var dist = Math.abs((r.left + r.width / 2) - trackCenter);
+                if (dist < closestDist) { closestDist = dist; closest = s; }
+              });
+              if (closest && closest !== activeSlide) {
+                activeSlide = closest;
+                captionEl.textContent = activeSlide.getAttribute("data-caption");
+              }
+            };
+            updateCaption();
+            // Au premier rendu, les images n'ont pas encore chargé : leur
+            // largeur réelle (donc leur centre) n'est connue qu'une fois
+            // chargées. On recalcule quand leur taille se stabilise.
+            if (window.ResizeObserver) {
+              var captionResizeObserver = new ResizeObserver(updateCaption);
+              slides.forEach(function (s) { captionResizeObserver.observe(s); });
+            }
+            var captionTicking = false;
+            track.addEventListener("scroll", function () {
+              if (captionTicking) return;
+              captionTicking = true;
+              requestAnimationFrame(function () {
+                updateCaption();
+                captionTicking = false;
+              });
+            });
+          }
+        }
       });
     }
 
