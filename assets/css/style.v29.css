@@ -330,6 +330,20 @@ body.has-custom-cursor #pickaxe-cursor {
   color: #333;
   margin: 0 0 2rem;
   white-space: pre-line;
+  /* Même astuce full-bleed que .project-title : sans elle, une description
+     seule (pas de crédits à côté) reste calée sur la colonne de 1100px de
+     .project-page, décalée par rapport au titre qui démarre à 6vw du bord
+     réel de l'écran. */
+  width: 100vw;
+  max-width: 50vw;
+  margin-left: calc(50% - 50vw);
+  padding: 0 6vw;
+  box-sizing: border-box;
+}
+@media (max-width: 700px) {
+  .project-description {
+    max-width: 100vw;
+  }
 }
 
 /* Layout standard de chaque page projet : description à gauche (jamais
@@ -353,8 +367,10 @@ body.has-custom-cursor #pickaxe-cursor {
 }
 .project-header .project-description {
   flex: 0 1 50%;
+  width: auto;
   max-width: 50%;
   margin: 0;
+  padding: 0;
 }
 .project-credits {
   display: flex;
