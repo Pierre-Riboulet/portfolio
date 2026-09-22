@@ -206,10 +206,11 @@ Proof that a funny cat is more effective than a three-legged dog: the associatio
     description: `I divide my life into three parts.
 The first, when I work on my computer.
 The second, when I work with my camera.
-The third, when I work on myself, explaining my job to my mother for the 73rd time.
+The third, when I work on myself,
+explaining my job to my parents for the 73rd time.
 
 Here are a few examples of the second,
-when I turn strangers into immortals.`,
+when I turn strangers into immortals`,
     x: 57.5, y: 52.8, rx: 3.4, ry: 4.35,
     mobile: { x: 70.75, y: 52.85, rx: 11.75, ry: 3.15 },
     media: []
