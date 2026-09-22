@@ -191,6 +191,7 @@ Proof that a funny cat is more effective than a three-legged dog: the associatio
       { type: "image", src: "assets/img/prints/prints-02.webp" },
       { type: "image", src: "assets/img/prints/prints-03.webp" },
       { type: "image", src: "assets/img/prints/prints-04.webp" },
+      { type: "image", src: "assets/img/prints/prints-09.webp" },
       { type: "image", src: "assets/img/prints/prints-05.webp" },
       { type: "image", src: "assets/img/prints/prints-06.webp" },
       { type: "image", src: "assets/img/prints/prints-07.webp" },
