@@ -214,6 +214,7 @@ when I turn strangers into immortals`,
     x: 57.5, y: 52.8, rx: 3.4, ry: 4.35,
     mobile: { x: 70.75, y: 52.85, rx: 11.75, ry: 3.15 },
     media: [
+      { type: "image", src: "assets/img/createur-dimmortels/street-00.webp" },
       { type: "image", src: "assets/img/createur-dimmortels/street-01.webp" },
       { type: "image", src: "assets/img/createur-dimmortels/street-02.webp" },
       { type: "image", src: "assets/img/createur-dimmortels/street-03.webp" },
