@@ -7,12 +7,12 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="assets/css/style.v31.css">
+  <link rel="stylesheet" href="assets/css/style.v32.css">
 </head>
 <body>
   <div id="app"></div>
 
-  <script src="assets/js/projects-data.v21.js"></script>
+  <script src="assets/js/projects-data.v22.js"></script>
   <script src="assets/js/main.v8.js"></script>
   <script>
     (function () {
@@ -273,9 +273,14 @@
         var captionEl = carousel.nextElementSibling;
         if (captionEl && captionEl.classList.contains("carousel-caption") &&
             !window.matchMedia("(max-width: 700px)").matches) {
-          var slides = Array.prototype.slice.call(track.querySelectorAll(".carousel-slide[data-caption]"));
+          // Toutes les diapositives (pas seulement celles avec légende) :
+          // ça permet à la légende de s'estomper quand on arrive sur une
+          // photo qui n'en a pas, plutôt que de rester bloquée sur la
+          // dernière légende trouvée.
+          var slides = Array.prototype.slice.call(track.querySelectorAll(".carousel-slide"));
           if (slides.length) {
             var activeSlide = null;
+            var captionFadeTimeout = null;
             var updateCaption = function () {
               var trackRect = track.getBoundingClientRect();
               var trackCenter = trackRect.left + trackRect.width / 2;
@@ -287,7 +292,15 @@
               });
               if (closest && closest !== activeSlide) {
                 activeSlide = closest;
-                captionEl.textContent = activeSlide.getAttribute("data-caption");
+                var nextText = activeSlide.getAttribute("data-caption") || "";
+                // Fondu : on estompe l'ancien texte, puis on écrit le nouveau
+                // une fois invisible pour éviter un "cross-fade" illisible.
+                if (captionFadeTimeout) clearTimeout(captionFadeTimeout);
+                captionEl.style.opacity = "0";
+                captionFadeTimeout = setTimeout(function () {
+                  captionEl.textContent = nextText;
+                  captionEl.style.opacity = "1";
+                }, 250);
               }
             };
             updateCaption();

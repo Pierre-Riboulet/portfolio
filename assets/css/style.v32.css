@@ -513,6 +513,11 @@ body.has-custom-cursor #pickaxe-cursor {
   font-size: 0.92rem;
   color: #333;
   min-height: 1.4em;
+  white-space: pre-line;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: opacity 0.25s ease;
 }
 /* Légende par photo, utilisée seulement en version mobile empilée (voir
    media query ci-dessous) : pas de "photo active" en mode empilé, donc
@@ -593,6 +598,7 @@ body.has-custom-cursor #pickaxe-cursor {
     text-align: center;
     font-size: 0.85rem;
     color: #333;
+    white-space: pre-line;
   }
 }
 
