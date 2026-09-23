@@ -7,7 +7,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="assets/css/style.v30.css">
+  <link rel="stylesheet" href="assets/css/style.v31.css">
 </head>
 <body>
   <div id="app"></div>
@@ -209,7 +209,7 @@
       }
 
       app.innerHTML =
-        '<div class="project-page">' +
+        '<div class="project-page project-page-' + project.slug + '">' +
         '<a class="back-link" href="index.html">&larr; Back</a>' +
         '<h1 class="project-title">' + displayTitle + '</h1>' +
         descriptionHtml +

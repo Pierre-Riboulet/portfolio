@@ -549,6 +549,14 @@ body.has-custom-cursor #pickaxe-cursor {
 .carousel-arrow:hover { background: rgba(23, 23, 26, 0.8); }
 .carousel-arrow.prev { left: -8px; }
 .carousel-arrow.next { right: -8px; }
+/* Carrousel 20% plus grand sur la page Créateur d'immortels (desktop
+   uniquement) : les photos de street photography méritent plus de place. */
+@media (min-width: 701px) {
+  .project-page-createur-dimmortels .photo-carousel-track img,
+  .project-page-createur-dimmortels .carousel-video {
+    height: min(64.8vh, 624px);
+  }
+}
 @media (max-width: 700px) {
   .carousel-arrow { display: none; }
   /* Pas de carrousel sur mobile : toutes les photos à la suite, en
