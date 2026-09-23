@@ -228,18 +228,26 @@ Yeah, back then, we knew how to live.
       { type: "image", src: "assets/img/createur-dimmortels/street-01.webp" },
       { type: "image", src: "assets/img/createur-dimmortels/street-02.webp" },
       { type: "image", src: "assets/img/createur-dimmortels/street-03.webp" },
-      { type: "image", src: "assets/img/createur-dimmortels/street-04.webp" },
+      { type: "image", src: "assets/img/createur-dimmortels/street-04.webp", caption: `A book in hand, frozen in the middle of the bike lane. He'd just taken an emotional uppercut and was wondering how the author had managed to hit him so hard (truth is, he was on Candy Crush, level 97).` },
       { type: "image", src: "assets/img/createur-dimmortels/street-05.webp" },
-      { type: "image", src: "assets/img/createur-dimmortels/street-06.webp" },
+      { type: "image", src: "assets/img/createur-dimmortels/street-06.webp", caption: `He had the face of a man working
+when he should've been sleeping.
+Luckily, his son was dreaming for him.` },
       { type: "image", src: "assets/img/createur-dimmortels/street-07.webp" },
       { type: "image", src: "assets/img/createur-dimmortels/street-08.webp" },
-      { type: "image", src: "assets/img/createur-dimmortels/street-09.webp" },
+      { type: "image", src: "assets/img/createur-dimmortels/street-09.webp", caption: `For a split second,
+I was married,
+had two kids,
+a dog, and a stable life.` },
       { type: "image", src: "assets/img/createur-dimmortels/street-10.webp" },
-      { type: "image", src: "assets/img/createur-dimmortels/street-11.webp" },
+      { type: "image", src: "assets/img/createur-dimmortels/street-11.webp", caption: `She was beautiful to die for,
+but also beautiful to live with.` },
       { type: "image", src: "assets/img/createur-dimmortels/street-12.webp" },
-      { type: "image", src: "assets/img/createur-dimmortels/street-13.webp" },
+      { type: "image", src: "assets/img/createur-dimmortels/street-13.webp", caption: `If the night really brought wisdom,
+night guards wouldn't still be night guards.` },
       { type: "image", src: "assets/img/createur-dimmortels/street-14.webp" },
-      { type: "image", src: "assets/img/createur-dimmortels/street-15.webp" },
+      { type: "image", src: "assets/img/createur-dimmortels/street-15.webp", caption: `The wanderer cultivates two things: contemplation and amnesia.
+Ahead, everything to discover. Behind, everything to forget.` },
       { type: "image", src: "assets/img/createur-dimmortels/street-16.webp" },
       { type: "image", src: "assets/img/createur-dimmortels/street-17.webp" }
     ]
