@@ -210,7 +210,7 @@ The third, when I work on myself,
 explaining my job to my parents for the 73rd time.
 
 Here are a few examples of the second,
-when I turn strangers into immortals`,
+when I turn strangers into immortals.`,
     x: 57.5, y: 52.8, rx: 3.4, ry: 4.35,
     mobile: { x: 70.75, y: 52.85, rx: 11.75, ry: 3.15 },
     media: [
