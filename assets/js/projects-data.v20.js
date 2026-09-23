@@ -229,7 +229,9 @@ when I turn strangers into immortals`,
       { type: "image", src: "assets/img/createur-dimmortels/street-12.webp" },
       { type: "image", src: "assets/img/createur-dimmortels/street-13.webp" },
       { type: "image", src: "assets/img/createur-dimmortels/street-14.webp" },
-      { type: "image", src: "assets/img/createur-dimmortels/street-15.webp" }
+      { type: "image", src: "assets/img/createur-dimmortels/street-15.webp" },
+      { type: "image", src: "assets/img/createur-dimmortels/street-16.webp" },
+      { type: "image", src: "assets/img/createur-dimmortels/street-17.webp" }
     ]
   },
   {
