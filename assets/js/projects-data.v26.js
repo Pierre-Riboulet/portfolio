@@ -258,7 +258,7 @@ Ahead, everything to discover. Behind, everything to forget.` },
     pageTitle: "UNITED 24 - The Donation Map",
     hoverLeft: "UNITED 24", hoverRight: "The Donation Map",
     category: "Projet",
-    description: "In 1748, Benjamin Franklin is said to have coined the phrase \"Time is money.\" So we took him literally. For UNITED24, we created a Fortnite map where gamers' playtime generated donations for people affected by the war in Ukraine.",
+    description: "In 1748, Benjamin Franklin is said to have coined the phrase \"Time is money.\"<br class=\"desktop-only-break\"> So we took him literally. For UNITED24, we created a Fortnite map where gamers' playtime generated donations for people affected by the war in Ukraine.",
     credits: [
       [
         { role: "InGame Production", name: "Pierre Acuña" },
@@ -266,7 +266,7 @@ Ahead, everything to discover. Behind, everything to forget.` },
       ],
       [
         { role: "Art Director", name: "Quentin Clausse" },
-        { role: "Copywriter", name: "Nil Nivière Schouvaloff - Pierre Riboulet" }
+        { role: "Copywriter", name: "Nil Nivière Schouvaloff<br>Pierre Riboulet" }
       ],
       [
         { role: "Motion", name: "Erwan Thomas" },

@@ -344,6 +344,12 @@ body.has-custom-cursor #pickaxe-cursor {
   .project-description {
     max-width: 100vw;
   }
+  /* Retour à la ligne ajouté uniquement pour éviter un mot seul en fin de
+     ligne sur desktop (ex: UNITED24) : sur mobile, la largeur de ligne est
+     différente et ce retour forcé n'a plus lieu d'être. */
+  .desktop-only-break {
+    display: none;
+  }
 }
 
 /* Layout standard de chaque page projet : description à gauche (jamais
