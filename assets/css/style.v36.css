@@ -511,6 +511,7 @@ body.has-custom-cursor #pickaxe-cursor {
   margin: 1rem 0 0;
   text-align: center;
   font-size: 0.92rem;
+  font-style: italic;
   color: #333;
   min-height: 1.4em;
   white-space: pre-line;
@@ -533,25 +534,40 @@ body.has-custom-cursor #pickaxe-cursor {
   height: 100%;
   border: 0;
 }
+/* Triangle épuré plutôt qu'un rond plein : le bouton garde une zone de clic
+   de 40px (accessibilité tactile), mais n'affiche visuellement qu'un
+   triangle via ::before (technique des bordures CSS). Le glyphe flèche
+   d'origine (&larr;/&rarr;) reste dans le HTML pour les lecteurs d'écran,
+   juste rendu invisible ici. */
 .carousel-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   width: 40px;
   height: 40px;
-  border-radius: 50%;
   border: none;
-  background: rgba(23, 23, 26, 0.55);
-  color: #fff;
-  font-size: 1.1rem;
-  line-height: 1;
+  background: transparent;
+  color: transparent;
+  font-size: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 5;
+  padding: 0;
 }
-.carousel-arrow:hover { background: rgba(23, 23, 26, 0.8); }
+.carousel-arrow::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  opacity: 0.55;
+  transition: opacity 0.2s ease;
+}
+.carousel-arrow.prev::before { border-right: 13px solid var(--ink); }
+.carousel-arrow.next::before { border-left: 13px solid var(--ink); }
+.carousel-arrow:hover::before { opacity: 0.9; }
 .carousel-arrow.prev { left: -8px; }
 .carousel-arrow.next { right: -8px; }
 /* Mise en page dédiée à Créateur d'immortels (desktop uniquement) :
@@ -561,7 +577,10 @@ body.has-custom-cursor #pickaxe-cursor {
 @media (min-width: 701px) {
   .project-page-createur-dimmortels {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    /* Colonne carrousel plus large que la colonne texte : les photos
+       paysage (largeur > hauteur) ont besoin de plus d'espace horizontal
+       pour ne pas se retrouver minuscules une fois bridées par la hauteur. */
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
     grid-template-rows: auto auto 1fr;
     grid-template-areas:
       "title    carousel"
@@ -597,7 +616,9 @@ body.has-custom-cursor #pickaxe-cursor {
     grid-area: caption;
     text-align: left;
     max-width: none;
-    margin: 0;
+    /* Espace visible avant la légende plutôt que collée juste sous le
+       texte d'intro (cf. maquette : zone violette détachée de la rouge). */
+    margin: 2.5rem 0 0;
   }
   .project-page-createur-dimmortels .photo-carousel {
     grid-area: carousel;
@@ -627,10 +648,9 @@ body.has-custom-cursor #pickaxe-cursor {
     height: auto;
     width: auto;
     max-height: 100%;
-    /* Largeur réelle de la colonne : (100vw - 2*6vw de padding - 5vw de
-       column-gap) / 2 colonnes = 41.5vw. 44vw dépassait légèrement la
-       colonne, ce qui poussait les photos larges sous les flèches. */
-    max-width: 41vw;
+    /* Largeur réelle de la colonne carrousel : (100vw - 2*6vw de padding -
+       5vw de column-gap) * 1.2/2fr = 49.8vw. Marge de sécurité à 49vw. */
+    max-width: 49vw;
   }
   /* Sans le padding latéral qu'ont les autres pages autour de .photo-carousel,
      les flèches (positionnées par rapport à ce conteneur) touchaient presque
@@ -678,6 +698,7 @@ body.has-custom-cursor #pickaxe-cursor {
     margin: 0.5rem 0 0;
     text-align: center;
     font-size: 0.85rem;
+    font-style: italic;
     color: #333;
     white-space: pre-line;
   }
