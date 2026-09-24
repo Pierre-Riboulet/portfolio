@@ -377,7 +377,12 @@ One day, while waiting with 30,000 other people in front of a waiting screen, I 
           "Bronze — PR Cause Related"
         ] },
         { org: "Effie Awards", items: ["Silver — Film"] },
-        { org: "French Art Director Club", items: ["Bronze — Film"] },
+        { org: "French Art Director Club", items: [
+          "Bronze — Film",
+          "Gold — Social & Creator",
+          "Silver — Social Impact",
+          "Bronze — Digital Experience"
+        ] },
         { org: "Gerety", items: ["Silver — Media"] }
       ]
     }
