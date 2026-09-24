@@ -354,15 +354,6 @@ One day, while waiting with 30,000 other people in front of a waiting screen, I 
       ],
       awards: [
         { org: "D&AD", items: ["Graphite — Creator Content", "Wood — Media / Direct", "Merit — User Participation"] },
-        { org: "CLIO", items: [
-          "Silver — Direct",
-          "Bronze — Social Media",
-          "Bronze — Specific Target Audience",
-          "Bronze — Single-Platform",
-          "Bronze — Experience/Activation",
-          "Bronze — Entertainment",
-          "Bronze — Partnerships & Sponsorships"
-        ] },
         { org: "Cannes Lions", items: [
           "Silver — Media / Use of Influencers",
           "Bronze — Media / Audience Insight",
@@ -375,6 +366,15 @@ One day, while waiting with 30,000 other people in front of a waiting screen, I 
           "Shortlist — Social & Creators"
         ] },
         { org: "One Show", items: ["Gold — Livestream", "Bronze — Community Activation", "Bronze — Social Channel", "Bronze — Innovation"] },
+        { org: "CLIO", items: [
+          "Silver — Direct",
+          "Bronze — Social Media",
+          "Bronze — Specific Target Audience",
+          "Bronze — Single-Platform",
+          "Bronze — Experience/Activation",
+          "Bronze — Entertainment",
+          "Bronze — Partnerships & Sponsorships"
+        ] },
         { org: "Stratégies", items: ["Grand Prix — Media", "Grand Prix — Digital", "9x Gold"] },
         { org: "LIA", items: ["Young Creative 2023"] },
         { org: "Eurobest", items: [
