@@ -627,7 +627,20 @@ body.has-custom-cursor #pickaxe-cursor {
     height: auto;
     width: auto;
     max-height: 100%;
-    max-width: 44vw;
+    /* Largeur réelle de la colonne : (100vw - 2*6vw de padding - 5vw de
+       column-gap) / 2 colonnes = 41.5vw. 44vw dépassait légèrement la
+       colonne, ce qui poussait les photos larges sous les flèches. */
+    max-width: 41vw;
+  }
+  /* Sans le padding latéral qu'ont les autres pages autour de .photo-carousel,
+     les flèches (positionnées par rapport à ce conteneur) touchaient presque
+     les photos larges. On les repousse dans la marge de la grille plutôt que
+     de rogner encore la largeur dispo pour les photos. */
+  .project-page-createur-dimmortels .carousel-arrow.prev {
+    left: -48px;
+  }
+  .project-page-createur-dimmortels .carousel-arrow.next {
+    right: -48px;
   }
 }
 @media (max-width: 700px) {
