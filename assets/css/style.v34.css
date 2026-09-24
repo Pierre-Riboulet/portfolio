@@ -609,17 +609,25 @@ body.has-custom-cursor #pickaxe-cursor {
   }
   .project-page-createur-dimmortels .photo-carousel-track {
     height: 100%;
-    align-items: stretch;
+    align-items: center;
   }
   .project-page-createur-dimmortels .carousel-slide {
     max-width: none;
     height: 100%;
+    justify-content: center;
   }
+  /* height/width:auto + max-height/max-width plutôt qu'une hauteur forcée à
+     100% : une photo paysage, une fois sa largeur bridée à celle de la
+     colonne, dépasserait moins en hauteur que le carrousel et ne doit pas
+     être recadrée pour combler l'espace - elle se centre verticalement à
+     sa propre taille (comme les portraits, déjà correctement contraints
+     par la hauteur). */
   .project-page-createur-dimmortels .photo-carousel-track img,
   .project-page-createur-dimmortels .carousel-video {
-    height: 100%;
+    height: auto;
     width: auto;
-    max-width: none;
+    max-height: 100%;
+    max-width: 44vw;
   }
 }
 @media (max-width: 700px) {
