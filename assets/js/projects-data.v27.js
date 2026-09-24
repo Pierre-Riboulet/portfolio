@@ -94,8 +94,7 @@ const PROJECTS = [
     pageTitle: "Validé - Season 2",
     hoverLeft: "Validé", hoverRight: "Season 2",
     category: "Campagne",
-    description: `To promote the return of the TV show where rap meets gang business, Canal+ wanted a print campaign.
-So we went to the cities where street cred matters most: Paris, Marseille and Los Santos.`,
+    description: "To promote the return of the TV show where rap meets gang business, Canal+ wanted a print campaign. So we went to the cities where street cred matters most: Paris, Marseille and Los Santos.",
     credits: [
       [
         { role: "Motion", name: "Chloe Mencarelli" },
