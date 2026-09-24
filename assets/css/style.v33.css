@@ -554,12 +554,72 @@ body.has-custom-cursor #pickaxe-cursor {
 .carousel-arrow:hover { background: rgba(23, 23, 26, 0.8); }
 .carousel-arrow.prev { left: -8px; }
 .carousel-arrow.next { right: -8px; }
-/* Carrousel 20% plus grand sur la page Créateur d'immortels (desktop
-   uniquement) : les photos de street photography méritent plus de place. */
+/* Mise en page dédiée à Créateur d'immortels (desktop uniquement) :
+   deux colonnes - à gauche titre / texte / légende empilés, à droite
+   le carrousel qui occupe toute la hauteur disponible. grid-template-areas
+   permet de placer chaque élément indépendamment de son ordre dans le DOM. */
 @media (min-width: 701px) {
+  .project-page-createur-dimmortels {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "title    carousel"
+      "desc     carousel"
+      "caption  carousel";
+    column-gap: 5vw;
+    max-width: none;
+    width: 100vw;
+    margin: 0 0 0 calc(50% - 50vw);
+    padding: max(4vh, 70px) 6vw 4vh;
+    /* height (pas juste min-height) : la ligne 1fr de la grille a besoin
+       d'une hauteur définie à répartir pour que le carrousel (height:100%
+       en cascade jusqu'à l'image) se calcule correctement, plutôt que de
+       grandir à la taille naturelle de l'image et faire déborder la page. */
+    height: 100vh;
+    height: 100dvh;
+    box-sizing: border-box;
+  }
+  .project-page-createur-dimmortels .project-title {
+    grid-area: title;
+    width: auto;
+    margin: 0 0 1.5rem;
+    padding: 0;
+  }
+  .project-page-createur-dimmortels .project-description {
+    grid-area: desc;
+    width: auto;
+    max-width: none;
+    margin: 0 0 2rem;
+    padding: 0;
+  }
+  .project-page-createur-dimmortels .carousel-caption {
+    grid-area: caption;
+    text-align: left;
+    max-width: none;
+    margin: 0;
+  }
+  .project-page-createur-dimmortels .photo-carousel {
+    grid-area: carousel;
+    width: auto;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .project-page-createur-dimmortels .photo-carousel-track {
+    height: 100%;
+    align-items: stretch;
+  }
+  .project-page-createur-dimmortels .carousel-slide {
+    max-width: none;
+    height: 100%;
+  }
   .project-page-createur-dimmortels .photo-carousel-track img,
   .project-page-createur-dimmortels .carousel-video {
-    height: min(64.8vh, 624px);
+    height: 100%;
+    width: auto;
+    max-width: none;
   }
 }
 @media (max-width: 700px) {
