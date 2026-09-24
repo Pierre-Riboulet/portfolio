@@ -593,7 +593,10 @@ body.has-custom-cursor #pickaxe-cursor {
     max-width: none;
     width: 100vw;
     margin: 0 0 0 calc(50% - 50vw);
-    padding: max(4vh, 70px) 6vw 4vh;
+    /* Même plancher en haut et en bas (max(4vh, 70px)) : sinon le bas,
+       resté à 4vh sans plancher, finissait plus proche du bord que le
+       haut sur la plupart des hauteurs d'écran. */
+    padding: max(4vh, 70px) 6vw max(4vh, 70px);
     /* height (pas juste min-height) : la ligne 1fr de la grille a besoin
        d'une hauteur définie à répartir pour que le carrousel (height:100%
        en cascade jusqu'à l'image) se calcule correctement, plutôt que de
