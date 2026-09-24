@@ -354,6 +354,15 @@ One day, while waiting with 30,000 other people in front of a waiting screen, I 
       ],
       awards: [
         { org: "D&AD", items: ["Graphite — Creator Content", "Wood — Media / Direct", "Merit — User Participation"] },
+        { org: "CLIO", items: [
+          "Silver — Direct",
+          "Bronze — Social Media",
+          "Bronze — Specific Target Audience",
+          "Bronze — Single-Platform",
+          "Bronze — Experience/Activation",
+          "Bronze — Entertainment",
+          "Bronze — Partnerships & Sponsorships"
+        ] },
         { org: "Cannes Lions", items: [
           "Silver — Media / Use of Influencers",
           "Bronze — Media / Audience Insight",
