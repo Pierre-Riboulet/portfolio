@@ -581,13 +581,13 @@ body.has-custom-cursor #pickaxe-cursor {
        paysage (largeur > hauteur) ont besoin de plus d'espace horizontal
        pour ne pas se retrouver minuscules une fois bridées par la hauteur. */
     grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-    /* La ligne vide (1fr) entre le titre et le texte pousse ce dernier vers
-       le bas de l'écran plutôt que de le laisser juste sous le titre. */
-    grid-template-rows: auto 1fr auto auto;
+    /* Le texte d'intro reste collé sous le titre (haut d'écran) ; seule la
+       légende photo est poussée vers le bas par la ligne vide (1fr). */
+    grid-template-rows: auto auto 1fr auto;
     grid-template-areas:
       "title    carousel"
-      ".        carousel"
       "desc     carousel"
+      ".        carousel"
       "caption  carousel";
     column-gap: 5vw;
     max-width: none;
@@ -619,9 +619,7 @@ body.has-custom-cursor #pickaxe-cursor {
     grid-area: caption;
     text-align: left;
     max-width: none;
-    /* Espace visible avant la légende plutôt que collée juste sous le
-       texte d'intro (cf. maquette : zone violette détachée de la rouge). */
-    margin: 2.5rem 0 0;
+    margin: 0;
   }
   .project-page-createur-dimmortels .photo-carousel {
     grid-area: carousel;
