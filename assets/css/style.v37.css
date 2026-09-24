@@ -581,9 +581,12 @@ body.has-custom-cursor #pickaxe-cursor {
        paysage (largeur > hauteur) ont besoin de plus d'espace horizontal
        pour ne pas se retrouver minuscules une fois bridées par la hauteur. */
     grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-    grid-template-rows: auto auto 1fr;
+    /* La ligne vide (1fr) entre le titre et le texte pousse ce dernier vers
+       le bas de l'écran plutôt que de le laisser juste sous le titre. */
+    grid-template-rows: auto 1fr auto auto;
     grid-template-areas:
       "title    carousel"
+      ".        carousel"
       "desc     carousel"
       "caption  carousel";
     column-gap: 5vw;

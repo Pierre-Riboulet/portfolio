@@ -214,6 +214,7 @@ when I turn strangers into immortals.`,
     x: 57.5, y: 52.8, rx: 3.4, ry: 4.35,
     mobile: { x: 70.75, y: 52.85, rx: 11.75, ry: 3.15 },
     media: [
+      { type: "image", src: "assets/img/createur-dimmortels/street-02.webp" },
       { type: "image", src: "assets/img/createur-dimmortels/street-00.webp", caption: `-You see, Timothée, this is the kind of junk food they don't make anymore.
 
 Back then, we knew how to live. We knew the toy in the kids' meal wasn't gonna be a jigsaw puzzle. It was gonna be diabetes. Or, if you were lucky, a heart attack.
@@ -226,7 +227,6 @@ Yeah, back then, we knew how to live.
 
 -No. There's still some leg of lamb at home.` },
       { type: "image", src: "assets/img/createur-dimmortels/street-01.webp" },
-      { type: "image", src: "assets/img/createur-dimmortels/street-02.webp" },
       { type: "image", src: "assets/img/createur-dimmortels/street-03.webp" },
       { type: "image", src: "assets/img/createur-dimmortels/street-04.webp", caption: `A book in hand, frozen in the middle of the bike lane. He'd just taken an emotional uppercut and was wondering how the author had managed to hit him so hard (truth is, he was on Candy Crush, level 97).` },
       { type: "image", src: "assets/img/createur-dimmortels/street-05.webp" },
