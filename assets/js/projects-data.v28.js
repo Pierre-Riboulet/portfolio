@@ -286,7 +286,7 @@ Ahead, everything to discover. Behind, everything to forget.` },
 One day, while waiting with 30,000 other people in front of a waiting screen, I started wondering whether those 30,001 people could be useful for something. So we turned a few waiting screens into a way to watch over nature.`,
     credits: [
       [
-        { role: "Art Director", name: "Charlotte Merlaud - Alvaro Barth" },
+        { role: "Art Director", name: "Charlotte Merlaud<br>Alvaro Barth" },
         { role: "Copywriter", name: "Pierre Riboulet" }
       ],
       [
@@ -294,7 +294,6 @@ One day, while waiting with 30,000 other people in front of a waiting screen, I 
         { role: "Motion", name: "Vitor Araujo" }
       ],
       [
-        { role: "Production", name: "BETC Sao Paulo" },
         { role: "Agency", name: "Havas Play" }
       ]
     ],
