@@ -863,17 +863,12 @@ body.has-custom-cursor #pickaxe-cursor {
   .about-fit-content {
     margin-top: 0;
   }
-  .about-fit-intro,
-  .about-fit-background {
-    left: 6vw;
-  }
   .about-fit-intro {
+    left: 6vw;
     max-width: min(36vw, 560px);
   }
+  .about-fit-awards,
   .about-fit-background {
-    max-width: min(60vw, 760px);
-  }
-  .about-fit-awards {
     left: 6vw;
     right: 6vw;
   }
@@ -901,14 +896,19 @@ body.has-custom-cursor #pickaxe-cursor {
   .about-fit-background .exp-period,
   .about-fit-background .exp-role {
     font-size: 0.8rem;
+    white-space: nowrap;
   }
   .about-fit-background .education-list li {
     padding: 0.35rem 0;
     font-size: 0.8rem;
+    white-space: nowrap;
   }
   .background-columns {
     display: flex;
     gap: 4rem;
+  }
+  .background-columns .about-section {
+    flex: 0 0 auto;
   }
   /* Une colonne par festival, alignées sur la même ligne (le nombre
      d'organismes est amené à grandir ; l'écran Awards déborde alors en
