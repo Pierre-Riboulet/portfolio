@@ -361,24 +361,6 @@ If you need help with incomprehensible Ikea instructions: +33 7 81 49 49 00`,
       ],
       // Un organisme = une colonne sur l'écran Awards (desktop).
       awards: [
-        { org: "Gerety", items: ["Silver — Media"] },
-        { org: "LIA", items: ["Young Creative 2023"] },
-        { org: "D&AD", items: ["Graphite — Creator Content", "Wood — Media / Direct", "Merit — User Participation"] },
-        { org: "Stratégies", items: ["Grand Prix — Media", "Grand Prix — Digital", "9x Gold"] },
-        { org: "Effie Awards", items: ["Silver — Film"] },
-        { org: "One Show", items: ["Gold — Livestream", "Bronze — Community Activation", "Bronze — Social Channel", "Bronze — Innovation"] },
-        { org: "French Art Director Club", items: [
-          "Bronze — Film",
-          "Gold — Social & Creator",
-          "Silver — Social Impact",
-          "Bronze — Digital Experience"
-        ] },
-        { org: "Eurobest", items: [
-          "Bronze — Media Not-for-profit",
-          "Bronze — Activation Gaming",
-          "Bronze — Media Entertainment",
-          "Bronze — PR Cause Related"
-        ] },
         { org: "Cannes Lions", items: [
           "Silver — Media / Use of Influencers",
           "Bronze — Media / Audience Insight",
@@ -390,6 +372,8 @@ If you need help with incomprehensible Ikea instructions: +33 7 81 49 49 00`,
           "Shortlist — Brand Experience",
           "Shortlist — Social & Creators"
         ] },
+        { org: "D&AD", items: ["Graphite — Creator Content", "Wood — Media / Direct", "Merit — User Participation"] },
+        { org: "One Show", items: ["Gold — Livestream", "Bronze — Community Activation", "Bronze — Social Channel", "Bronze — Innovation"] },
         { org: "CLIO", items: [
           "Silver — Direct",
           "Bronze — Social Media",
@@ -398,6 +382,22 @@ If you need help with incomprehensible Ikea instructions: +33 7 81 49 49 00`,
           "Bronze — Experience/Activation",
           "Bronze — Entertainment",
           "Bronze — Partnerships & Sponsorships"
+        ] },
+        { org: "Gerety", items: ["Silver — Media"] },
+        { org: "LIA", items: ["Young Creative 2023"] },
+        { org: "Stratégies", items: ["Grand Prix — Media", "Grand Prix — Digital", "9x Gold"] },
+        { org: "Effie Awards", items: ["Silver — Film"] },
+        { org: "French Art Director Club", items: [
+          "Bronze — Film",
+          "Gold — Social & Creator",
+          "Silver — Social Impact",
+          "Bronze — Digital Experience"
+        ] },
+        { org: "Eurobest", items: [
+          "Bronze — Media Not-for-profit",
+          "Bronze — Activation Gaming",
+          "Bronze — Media Entertainment",
+          "Bronze — PR Cause Related"
         ] }
       ]
     }
