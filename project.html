@@ -11,12 +11,12 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/favicon-180.png">
-  <link rel="stylesheet" href="assets/css/style.v45.css">
+  <link rel="stylesheet" href="assets/css/style.v46.css">
 </head>
 <body>
   <div id="app"></div>
 
-  <script src="assets/js/projects-data.v34.js"></script>
+  <script src="assets/js/projects-data.v35.js"></script>
   <script src="assets/js/main.v9.js"></script>
   <script>
     (function () {
@@ -87,7 +87,7 @@
           '<div class="about-screens">' +
 
           '<div class="about-screen about-screen-intro">' +
-          '<div class="about-fit about-fit-intro">' +
+          '<div class="about-fit about-fit-intro" data-fit-max-vh="32">' +
           '<div class="about-fit-content">' +
           '<h1 class="about-hero-title">' + displayTitle + '</h1>' +
           '<p class="about-hero-description">' + a.description + '</p>' +
@@ -103,7 +103,7 @@
           '</div>' +
 
           '<div class="about-screen about-screen-background">' +
-          '<div class="about-fit about-fit-background">' +
+          '<div class="about-fit about-fit-background" data-fit-max-vh="46">' +
           '<div class="about-fit-content">' +
           '<h2 class="about-hero-title">Background</h2>' +
           '<div class="background-columns">' +
@@ -323,7 +323,9 @@
           var screen = fitEl.parentElement;
           var content = fitEl.firstElementChild;
           fitEl.style.transform = "scale(1)";
-          var availableH = screen.clientHeight - fitEl.offsetTop - 16;
+          var availableH = screen.clientHeight - fitEl.offsetTop - 24;
+          var maxVh = fitEl.getAttribute("data-fit-max-vh");
+          if (maxVh) availableH = Math.min(availableH, screen.clientHeight * (parseFloat(maxVh) / 100));
           var availableW = fitEl.clientWidth;
           var scale = Math.min(1, availableH / content.scrollHeight, availableW / content.scrollWidth);
           fitEl.style.transform = "scale(" + Math.max(scale, 0.01) + ")";
@@ -334,6 +336,15 @@
         fitAll();
         window.addEventListener("resize", fitAll);
       }
+
+      // Le lien "other awards" dans le texte About envoie directement sur
+      // l'écran Awards (même geste qu'un clic sur la flèche suivante).
+      document.querySelectorAll(".about-jump-awards").forEach(function (link) {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          track.scrollBy({ left: screenWidth(), behavior: "smooth" });
+        });
+      });
     }
 
     function setupPhotoCarousels() {

@@ -774,6 +774,15 @@ body.has-custom-cursor #pickaxe-cursor {
   white-space: pre-line;
   margin: 1rem 0 0;
 }
+.about-hero-description a,
+.about-hero-description .about-underline {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.about-hero-description a {
+  cursor: pointer;
+}
 .about-nav-arrow {
   display: none;
 }
@@ -847,6 +856,13 @@ body.has-custom-cursor #pickaxe-cursor {
     top: 10vh;
     transform-origin: top left;
   }
+  /* Le margin-top de .about-fit-content sert au flux mobile (espace sous
+     la photo) ; en positionnement absolu ici, .about-fit gère déjà le top,
+     ce margin ne ferait qu'ajouter un espace mesuré à tort dans le calcul
+     du scale-to-fit. */
+  .about-fit-content {
+    margin-top: 0;
+  }
   .about-fit-intro,
   .about-fit-background {
     left: 6vw;
@@ -872,6 +888,23 @@ body.has-custom-cursor #pickaxe-cursor {
   }
   .about-fit-background .about-section {
     margin-bottom: 0;
+  }
+  .about-fit-background .about-section-title {
+    font-size: 0.72rem;
+    margin: 0 0 0.75rem;
+    padding-bottom: 0.4rem;
+  }
+  .about-fit-background .exp-item {
+    padding: 0.4rem 0;
+    gap: 0.1rem 1rem;
+  }
+  .about-fit-background .exp-period,
+  .about-fit-background .exp-role {
+    font-size: 0.8rem;
+  }
+  .about-fit-background .education-list li {
+    padding: 0.35rem 0;
+    font-size: 0.8rem;
   }
   .background-columns {
     display: flex;
