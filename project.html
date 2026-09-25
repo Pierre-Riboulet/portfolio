@@ -11,12 +11,12 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/favicon-180.png">
-  <link rel="stylesheet" href="assets/css/style.v40.css">
+  <link rel="stylesheet" href="assets/css/style.v41.css">
 </head>
 <body>
   <div id="app"></div>
 
-  <script src="assets/js/projects-data.v30.js"></script>
+  <script src="assets/js/projects-data.v31.js"></script>
   <script src="assets/js/main.v8.js"></script>
   <script>
     (function () {
@@ -81,13 +81,12 @@
         app.innerHTML =
           '<div class="project-page about-page">' +
           '<a class="back-link" href="index.html">&larr; Back</a>' +
-          '<h1 class="project-title">' + project.title + '</h1>' +
 
-          '<div class="about-header">' +
-          photoOrPlaceholder(a.photo, "Photo à venir", "about-photo") +
-          '<div class="about-contact">' +
-          '<a href="mailto:' + a.contact.email + '">' + a.contact.email + '</a>' +
-          '<span>' + a.contact.phone + '</span>' +
+          '<div class="about-hero">' +
+          photoOrPlaceholder(a.heroPhoto, "Photo à venir", "about-hero-photo") +
+          '<div class="about-hero-text">' +
+          '<h1 class="project-title">' + project.title + '</h1>' +
+          '<p class="about-hero-description">' + a.description + '</p>' +
           '</div>' +
           '</div>' +
 

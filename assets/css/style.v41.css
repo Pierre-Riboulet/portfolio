@@ -736,44 +736,69 @@ body.has-custom-cursor #pickaxe-cursor {
 
 /* ---------- Page About ---------- */
 
-.about-header {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+/* Bannière "hero" : photo de fond avec titre + texte de présentation
+   superposés (coordonnées et contact désormais inclus dans le texte plutôt
+   que dans un bloc séparé). Empilée sur mobile, plein écran avec texte en
+   incrustation sur desktop (voir media query plus bas). */
+.about-hero {
+  position: relative;
   margin-bottom: 4rem;
-  flex-wrap: wrap;
 }
-
-.about-photo {
-  max-width: 240px;
+.about-hero-photo {
+  display: block;
+  width: 100%;
   height: auto;
-  flex-shrink: 0;
+  border-radius: 4px;
 }
-
-.about-photo.media-placeholder {
-  width: 200px;
-  aspect-ratio: 3 / 4;
-  font-size: 0.75rem;
+.about-hero-photo.media-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
 }
-
-.about-contact {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  font-size: 1rem;
+.about-hero-text {
+  margin-top: 1.5rem;
 }
-
-.about-contact a {
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--muted);
-}
-.about-contact a:hover {
-  border-bottom-color: var(--ink);
-}
-
-.about-contact span {
+.about-hero-description {
+  font-size: 0.92rem;
+  line-height: 1.65;
   color: #333;
+  white-space: pre-line;
+  margin: 1rem 0 0;
+}
+@media (min-width: 701px) {
+  .about-hero {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    height: 78vh;
+    min-height: 520px;
+    max-height: 820px;
+    overflow: hidden;
+  }
+  .about-hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+  }
+  .about-hero-photo.media-placeholder {
+    aspect-ratio: auto;
+  }
+  .about-hero-text {
+    position: absolute;
+    top: 12vh;
+    left: 6vw;
+    max-width: min(46vw, 640px);
+    margin-top: 0;
+  }
+  /* Le titre n'est plus "full-bleed" ici : il doit rester dans le bloc de
+     texte en incrustation plutôt que casser la colonne de .about-hero-text
+     (voir la même astuce annulée pour .project-header .project-description). */
+  .about-hero-text .project-title {
+    width: auto;
+    margin: 0 0 1.2rem;
+    padding: 0;
+  }
 }
 
 .about-section {
