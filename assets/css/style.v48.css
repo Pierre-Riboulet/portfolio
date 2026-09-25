@@ -865,7 +865,7 @@ body.has-custom-cursor #pickaxe-cursor {
   }
   .about-fit-intro {
     left: 6vw;
-    max-width: min(36vw, 560px);
+    max-width: min(52vw, 760px);
   }
   .about-fit-awards,
   .about-fit-background {
@@ -877,7 +877,7 @@ body.has-custom-cursor #pickaxe-cursor {
     margin: 0 0 1.1rem;
   }
   .about-hero-description {
-    font-size: 0.82rem;
+    font-size: 0.95rem;
     line-height: 1.6;
     margin-top: 0.9rem;
   }
