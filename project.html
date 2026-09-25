@@ -11,12 +11,12 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/favicon-180.png">
-  <link rel="stylesheet" href="assets/css/style.v44.css">
+  <link rel="stylesheet" href="assets/css/style.v45.css">
 </head>
 <body>
   <div id="app"></div>
 
-  <script src="assets/js/projects-data.v32.js"></script>
+  <script src="assets/js/projects-data.v33.js"></script>
   <script src="assets/js/main.v9.js"></script>
   <script>
     (function () {
@@ -71,8 +71,7 @@
         }).join("");
 
         var awardsHtml = a.awards.map(function (group) {
-          var colAttr = group.col ? ' data-col="' + group.col + '"' : "";
-          return '<div class="award-group"' + colAttr + '>' +
+          return '<div class="award-group">' +
             '<h3 class="award-org">' + group.org + '</h3>' +
             '<ul class="award-list">' +
             group.items.map(function (i) { return '<li>' + i + '</li>'; }).join("") +
@@ -88,34 +87,36 @@
           '<div class="about-screens">' +
 
           '<div class="about-screen about-screen-intro">' +
-          '<div class="about-hero-text">' +
-          '<h1 class="project-title">' + project.title + '</h1>' +
+          '<div class="about-fit about-fit-intro">' +
+          '<div class="about-fit-content">' +
+          '<h1 class="about-hero-title">' + displayTitle + '</h1>' +
           '<p class="about-hero-description">' + a.description + '</p>' +
-          '</div>' +
+          '</div></div>' +
           '</div>' +
 
-          '<div class="about-screen about-screen-info">' +
-          '<div class="about-fit">' +
-          '<div class="about-info-columns">' +
+          '<div class="about-screen about-screen-awards">' +
+          '<div class="about-fit about-fit-awards">' +
+          '<div class="about-fit-content">' +
+          '<h2 class="about-hero-title">Awards</h2>' +
+          '<div class="award-groups">' + awardsHtml + '</div>' +
+          '</div></div>' +
+          '</div>' +
 
+          '<div class="about-screen about-screen-background">' +
+          '<div class="about-fit about-fit-background">' +
+          '<div class="about-fit-content">' +
+          '<h2 class="about-hero-title">Background</h2>' +
+          '<div class="background-columns">' +
           '<section class="about-section">' +
-          '<h2 class="about-section-title">Expérience</h2>' +
+          '<h3 class="about-section-title">Expérience</h3>' +
           experienceHtml +
           '</section>' +
-
           '<section class="about-section">' +
-          '<h2 class="about-section-title">Formation</h2>' +
+          '<h3 class="about-section-title">Formation</h3>' +
           '<ul class="education-list">' + educationHtml + '</ul>' +
           '</section>' +
-
-          '<section class="about-section about-section-awards">' +
-          '<h2 class="about-section-title">Récompenses</h2>' +
-          photoOrPlaceholder(a.awardsPhoto, "Photo à venir", "awards-photo") +
-          '<div class="award-groups">' + awardsHtml + '</div>' +
-          '</section>' +
-
           '</div>' +
-          '</div>' +
+          '</div></div>' +
           '</div>' +
 
           '</div>' +
@@ -123,7 +124,6 @@
           '<button class="about-nav-arrow next" aria-label="Écran suivant">&rarr;</button>' +
           '</div>' +
           '</div>';
-        fitTitleToOneLine();
         setupAboutScreens();
         return;
       }
@@ -311,24 +311,28 @@
       track.addEventListener("scroll", updateArrows);
       updateArrows();
 
-      // Le bloc Expérience/Formation/Récompenses (long) doit tenir sur un
-      // seul écran sans scroll : on réduit son échelle visuelle (transform,
-      // pas font-size, pour que ça marche quels que soient les unités CSS
-      // utilisées à l'intérieur) jusqu'à ce qu'il rentre dans la hauteur
-      // disponible de son écran.
-      var fitEl = document.querySelector(".about-fit");
-      var infoScreen = document.querySelector(".about-screen-info");
-      if (fitEl && infoScreen && window.matchMedia("(min-width: 701px)").matches) {
-        var fitContent = fitEl.firstElementChild;
-        function fitToScreen() {
+      // Chaque écran (About / Awards / Background) doit tenir sans scroll :
+      // on réduit son échelle visuelle (transform, pas font-size, pour que
+      // ça marche quels que soient les unités CSS utilisées à l'intérieur)
+      // jusqu'à ce qu'il rentre dans la place disponible — en hauteur comme
+      // en largeur (Awards peut déborder en largeur avec beaucoup de
+      // festivals, une colonne par festival).
+      var fitEls = document.querySelectorAll(".about-fit");
+      if (fitEls.length && window.matchMedia("(min-width: 701px)").matches) {
+        function fitToScreen(fitEl) {
+          var screen = fitEl.parentElement;
+          var content = fitEl.firstElementChild;
           fitEl.style.transform = "scale(1)";
-          var available = infoScreen.clientHeight;
-          var needed = fitContent.scrollHeight;
-          var scale = Math.min(1, available / needed);
-          fitEl.style.transform = "scale(" + scale + ")";
+          var availableH = screen.clientHeight - fitEl.offsetTop - 16;
+          var availableW = fitEl.clientWidth;
+          var scale = Math.min(1, availableH / content.scrollHeight, availableW / content.scrollWidth);
+          fitEl.style.transform = "scale(" + Math.max(scale, 0.01) + ")";
         }
-        fitToScreen();
-        window.addEventListener("resize", fitToScreen);
+        function fitAll() {
+          fitEls.forEach(fitToScreen);
+        }
+        fitAll();
+        window.addEventListener("resize", fitAll);
       }
     }
 

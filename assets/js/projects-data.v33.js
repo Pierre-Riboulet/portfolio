@@ -329,17 +329,15 @@ One day, while waiting with 30,000 other people in front of a waiting screen, I 
   {
     slug: "about",
     title: "About Pierre",
+    pageTitle: "About",
     hoverLeft: "About", hoverRight: "Pierre",
     category: "À propos",
     x: 45.7, y: 37.7, rx: 3.1, ry: 3.3,
     mobile: { x: 35.0, y: 40.5, rx: 9.5, ry: 2.3 },
-    // Page "About" : contenu structuré au lieu de description/media.
-    // photo = portrait (à côté du contact), awardsPhoto = photo des prix.
-    // Dépose les deux fichiers dans assets/img/ et mets à jour les chemins ici.
+    // Page "About" : contenu structuré au lieu de description/media, sur 3
+    // écrans horizontaux (About / Awards / Background).
     about: {
-      photo: "assets/img/pierre-portrait.jpg",
       heroPhoto: "assets/img/about-hero.jpg",
-      awardsPhoto: "assets/img/pierre-awards.jpg",
       description: `I'm Pierre Riboulet,  a copywriter based in Paris.
 I grew up in a village in the middle of France. Picture a small village, cut it in half, and you get a place where cows hold an absolute majority.
 
@@ -361,30 +359,26 @@ If you need help with incomprehensible Ikea instructions: +33 7 81 49 49 00`,
         "Master Copywriting — Sup de Pub Paris",
         "Bachelor Information & Communication — Clermont University"
       ],
-      // La colonne 1 de .award-groups tombe visuellement sur le portrait N&B
-      // de la photo de fond : elle doit rester très courte. `col` fixe
-      // explicitement la colonne de chaque organisme (grid-column en JS),
-      // car grid-auto-flow:column ne peut pas produire des colonnes de
-      // hauteurs inégales.
+      // Un organisme = une colonne sur l'écran Awards (desktop).
       awards: [
-        { org: "Gerety", items: ["Silver — Media"], col: 1 },
-        { org: "LIA", items: ["Young Creative 2023"], col: 1 },
-        { org: "D&AD", items: ["Graphite — Creator Content", "Wood — Media / Direct", "Merit — User Participation"], col: 2 },
-        { org: "Stratégies", items: ["Grand Prix — Media", "Grand Prix — Digital", "9x Gold"], col: 2 },
-        { org: "Effie Awards", items: ["Silver — Film"], col: 2 },
-        { org: "One Show", items: ["Gold — Livestream", "Bronze — Community Activation", "Bronze — Social Channel", "Bronze — Innovation"], col: 2 },
+        { org: "Gerety", items: ["Silver — Media"] },
+        { org: "LIA", items: ["Young Creative 2023"] },
+        { org: "D&AD", items: ["Graphite — Creator Content", "Wood — Media / Direct", "Merit — User Participation"] },
+        { org: "Stratégies", items: ["Grand Prix — Media", "Grand Prix — Digital", "9x Gold"] },
+        { org: "Effie Awards", items: ["Silver — Film"] },
+        { org: "One Show", items: ["Gold — Livestream", "Bronze — Community Activation", "Bronze — Social Channel", "Bronze — Innovation"] },
         { org: "French Art Director Club", items: [
           "Bronze — Film",
           "Gold — Social & Creator",
           "Silver — Social Impact",
           "Bronze — Digital Experience"
-        ], col: 3 },
+        ] },
         { org: "Eurobest", items: [
           "Bronze — Media Not-for-profit",
           "Bronze — Activation Gaming",
           "Bronze — Media Entertainment",
           "Bronze — PR Cause Related"
-        ], col: 3 },
+        ] },
         { org: "Cannes Lions", items: [
           "Silver — Media / Use of Influencers",
           "Bronze — Media / Audience Insight",
@@ -395,7 +389,7 @@ If you need help with incomprehensible Ikea instructions: +33 7 81 49 49 00`,
           "Shortlist — Gaming Entertainment",
           "Shortlist — Brand Experience",
           "Shortlist — Social & Creators"
-        ], col: 3 },
+        ] },
         { org: "CLIO", items: [
           "Silver — Direct",
           "Bronze — Social Media",
@@ -404,7 +398,7 @@ If you need help with incomprehensible Ikea instructions: +33 7 81 49 49 00`,
           "Bronze — Experience/Activation",
           "Bronze — Entertainment",
           "Bronze — Partnerships & Sponsorships"
-        ], col: 3 }
+        ] }
       ]
     }
   }

@@ -757,8 +757,15 @@ body.has-custom-cursor #pickaxe-cursor {
   width: 100%;
   aspect-ratio: 16 / 9;
 }
-.about-hero-text {
+.about-fit-content {
   margin-top: 1.5rem;
+}
+.about-hero-title {
+  font-family: "Minion Pro", Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: clamp(2.2rem, 8vw, 3rem);
+  letter-spacing: -0.01em;
+  margin: 0 0 1rem;
 }
 .about-hero-description {
   font-size: 0.92rem;
@@ -832,87 +839,66 @@ body.has-custom-cursor #pickaxe-cursor {
        "texte à même la photo" voulu. */
     text-shadow: 0 1px 3px rgba(255, 255, 255, 0.85), 0 0 10px rgba(255, 255, 255, 0.7);
   }
-  .about-hero-text {
-    position: absolute;
-    top: 12vh;
-    left: 6vw;
-    max-width: min(44vw, 600px);
-    margin-top: 0;
-  }
-  /* Le titre n'est plus "full-bleed" ici : il doit rester dans le bloc de
-     texte en incrustation plutôt que casser la colonne de .about-hero-text
-     (voir la même astuce annulée pour .project-header .project-description). */
-  .about-hero-text .project-title {
-    width: auto;
-    margin: 0 0 1.2rem;
-    padding: 0;
-  }
-  /* .about-fit est réduit (transform: scale, via JS) si son contenu
-     dépasse la hauteur de l'écran disponible, pour ne jamais avoir besoin
-     de scroller verticalement sur cet écran non plus. */
+  /* .about-fit est réduit (transform: scale, via JS) si son contenu dépasse
+     la place disponible (hauteur ou largeur) de son écran, pour ne jamais
+     avoir besoin de scroller à l'intérieur d'un écran. */
   .about-fit {
     position: absolute;
-    top: 12vh;
-    left: 6vw;
-    right: 6vw;
+    top: 10vh;
     transform-origin: top left;
   }
-  .about-info-columns {
-    display: grid;
-    grid-template-columns: 15rem 15rem 1fr;
-    gap: 0 2.5rem;
+  .about-fit-intro,
+  .about-fit-background {
+    left: 6vw;
   }
-  .about-screen-info .about-section {
+  .about-fit-intro {
+    max-width: min(36vw, 560px);
+  }
+  .about-fit-background {
+    max-width: min(60vw, 760px);
+  }
+  .about-fit-awards {
+    left: 6vw;
+    right: 6vw;
+  }
+  .about-hero-title {
+    font-size: clamp(1.9rem, 2.6vw, 2.6rem);
+    margin: 0 0 1.1rem;
+  }
+  .about-hero-description {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    margin-top: 0.9rem;
+  }
+  .about-fit-background .about-section {
     margin-bottom: 0;
   }
-  .about-screen-info .about-section-title {
+  .background-columns {
+    display: flex;
+    gap: 4rem;
+  }
+  /* Une colonne par festival, alignées sur la même ligne (le nombre
+     d'organismes est amené à grandir ; l'écran Awards déborde alors en
+     largeur, mais about-fit le réduit automatiquement via transform). */
+  .about-fit-awards .award-groups {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.1rem;
+  }
+  .about-fit-awards .award-group {
+    flex: 0 0 auto;
+    width: 7.5rem;
+  }
+  .about-fit-awards .award-org {
+    font-size: 0.74rem;
+    margin: 0 0 0.5rem;
+  }
+  .about-fit-awards .award-list {
+    gap: 0.25rem;
+  }
+  .about-fit-awards .award-list li {
     font-size: 0.68rem;
-    margin: 0 0 0.85rem;
-    padding-bottom: 0.5rem;
-  }
-  .about-screen-info .exp-item {
-    padding: 0.5rem 0;
-    gap: 0.15rem 1rem;
-  }
-  .about-screen-info .exp-period,
-  .about-screen-info .exp-role {
-    font-size: 0.78rem;
-  }
-  .about-screen-info .exp-period {
-    width: auto;
-  }
-  .about-screen-info .education-list li {
-    padding: 0.4rem 0;
-    font-size: 0.78rem;
-  }
-  .about-screen-info .awards-photo {
-    max-width: 220px;
-    margin-bottom: 1rem;
-  }
-  .about-screen-info .award-groups {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0 1.5rem;
-  }
-  /* Placement explicite par colonne (voir group.col dans
-     project.about.awards / project.html) plutôt qu'un auto-flow : la
-     colonne 1 doit rester plus courte que les colonnes 2/3 pour ne pas
-     chevaucher le portrait de la photo de fond, ce qu'un auto-flow ne peut
-     pas produire. Scopé à ce media query pour ne pas affecter la grille
-     mobile (qui utilise .award-groups en flux normal). */
-  .about-screen-info .award-group[data-col="1"] { grid-column: 1; }
-  .about-screen-info .award-group[data-col="2"] { grid-column: 2; }
-  .about-screen-info .award-group[data-col="3"] { grid-column: 3; }
-  .about-screen-info .award-org {
-    font-size: 0.72rem;
-    margin: 0 0 0.4rem;
-  }
-  .about-screen-info .award-list {
-    gap: 0.2rem;
-    margin-bottom: 0.85rem;
-  }
-  .about-screen-info .award-list li {
-    font-size: 0.68rem;
-    line-height: 1.3;
+    line-height: 1.35;
   }
   /* Triangles de navigation entre écrans, dans le même style épuré que
      .carousel-arrow. Fixés à l'écran (pas à la photo) : ils restent au
