@@ -786,10 +786,16 @@ body.has-custom-cursor #pickaxe-cursor {
   }
   .about-hero-text {
     position: absolute;
-    top: 12vh;
+    top: 10vh;
     left: 6vw;
-    max-width: min(46vw, 640px);
+    max-width: min(44vw, 600px);
     margin-top: 0;
+    padding: 1.75rem 2.25rem;
+    border-radius: 6px;
+    /* Fond clair derrière tout le bloc de texte : la photo n'a pas
+       toujours assez d'espace neutre à cet endroit (polaroids, portrait...)
+       pour garantir la lisibilité du texte sans lui. */
+    background: rgba(243, 242, 248, 0.92);
   }
   /* Le titre n'est plus "full-bleed" ici : il doit rester dans le bloc de
      texte en incrustation plutôt que casser la colonne de .about-hero-text
