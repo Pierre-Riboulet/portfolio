@@ -738,8 +738,11 @@ body.has-custom-cursor #pickaxe-cursor {
 
 /* Bannière "hero" : photo de fond avec titre + texte de présentation
    superposés (coordonnées et contact désormais inclus dans le texte plutôt
-   que dans un bloc séparé). Empilée sur mobile, plein écran avec texte en
-   incrustation sur desktop (voir media query plus bas). */
+   que dans un bloc séparé). Empilée sur mobile (flux normal, scroll
+   vertical classique) ; sur desktop, page plein écran unique (100vh, pas
+   de scroll vertical) parcourue avec deux "écrans" en défilement
+   horizontal - la photo reste fixe, seul le texte en incrustation change
+   (voir .about-screens plus bas et setupAboutScreens() dans le script). */
 .about-hero {
   position: relative;
   margin-bottom: 4rem;
@@ -764,13 +767,28 @@ body.has-custom-cursor #pickaxe-cursor {
   white-space: pre-line;
   margin: 1rem 0 0;
 }
+.about-nav-arrow {
+  display: none;
+}
 @media (min-width: 701px) {
+  /* Le conteneur de page lui-même doit occuper exactement 100vh sans
+     aucune marge/centrage vertical hérité de .project-page, sinon la
+     page entière dépasse d'un poil et un scroll vertical réapparaît. */
+  .project-page.about-page {
+    display: block;
+    padding: 0;
+    margin: 0;
+    max-width: none;
+    min-height: 0;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
   .about-hero {
     width: 100vw;
-    margin-left: calc(50% - 50vw);
-    height: 78vh;
-    min-height: 520px;
-    max-height: 820px;
+    height: 100vh;
+    height: 100dvh;
+    margin: 0;
     overflow: hidden;
   }
   .about-hero-photo {
@@ -784,18 +802,42 @@ body.has-custom-cursor #pickaxe-cursor {
   .about-hero-photo.media-placeholder {
     aspect-ratio: auto;
   }
+  /* Piste horizontale plein écran : deux écrans de 100vw, un par-dessus la
+     photo (fixe, en dessous dans le DOM) qu'on parcourt au drag, à la
+     molette (convertie en horizontal par JS) ou au trackpad. */
+  .about-screens {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: grab;
+  }
+  .about-screens::-webkit-scrollbar { display: none; }
+  .about-screens.dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+  }
+  .about-screen {
+    position: relative;
+    flex: 0 0 100vw;
+    height: 100%;
+    scroll-snap-align: start;
+    /* Halo clair (pas de bloc/fond visible) : la photo n'offre pas
+       toujours assez de contraste sous le texte (portrait sombre...) ;
+       text-shadow s'hérite à tous les descendants sans casser le rendu
+       "texte à même la photo" voulu. */
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.85), 0 0 10px rgba(255, 255, 255, 0.7);
+  }
   .about-hero-text {
     position: absolute;
-    top: 10vh;
+    top: 12vh;
     left: 6vw;
     max-width: min(44vw, 600px);
     margin-top: 0;
-    padding: 1.75rem 2.25rem;
-    border-radius: 6px;
-    /* Fond clair derrière tout le bloc de texte : la photo n'a pas
-       toujours assez d'espace neutre à cet endroit (polaroids, portrait...)
-       pour garantir la lisibilité du texte sans lui. */
-    background: rgba(243, 242, 248, 0.92);
   }
   /* Le titre n'est plus "full-bleed" ici : il doit rester dans le bloc de
      texte en incrustation plutôt que casser la colonne de .about-hero-text
@@ -805,6 +847,107 @@ body.has-custom-cursor #pickaxe-cursor {
     margin: 0 0 1.2rem;
     padding: 0;
   }
+  /* .about-fit est réduit (transform: scale, via JS) si son contenu
+     dépasse la hauteur de l'écran disponible, pour ne jamais avoir besoin
+     de scroller verticalement sur cet écran non plus. */
+  .about-fit {
+    position: absolute;
+    top: 12vh;
+    left: 6vw;
+    right: 6vw;
+    transform-origin: top left;
+  }
+  .about-info-columns {
+    display: grid;
+    grid-template-columns: 15rem 15rem 1fr;
+    gap: 0 2.5rem;
+  }
+  .about-screen-info .about-section {
+    margin-bottom: 0;
+  }
+  .about-screen-info .about-section-title {
+    font-size: 0.68rem;
+    margin: 0 0 0.85rem;
+    padding-bottom: 0.5rem;
+  }
+  .about-screen-info .exp-item {
+    padding: 0.5rem 0;
+    gap: 0.15rem 1rem;
+  }
+  .about-screen-info .exp-period,
+  .about-screen-info .exp-role {
+    font-size: 0.78rem;
+  }
+  .about-screen-info .exp-period {
+    width: auto;
+  }
+  .about-screen-info .education-list li {
+    padding: 0.4rem 0;
+    font-size: 0.78rem;
+  }
+  .about-screen-info .awards-photo {
+    max-width: 220px;
+    margin-bottom: 1rem;
+  }
+  .about-screen-info .award-groups {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 1.5rem;
+  }
+  /* Placement explicite par colonne (voir group.col dans
+     project.about.awards / project.html) plutôt qu'un auto-flow : la
+     colonne 1 doit rester plus courte que les colonnes 2/3 pour ne pas
+     chevaucher le portrait de la photo de fond, ce qu'un auto-flow ne peut
+     pas produire. Scopé à ce media query pour ne pas affecter la grille
+     mobile (qui utilise .award-groups en flux normal). */
+  .about-screen-info .award-group[data-col="1"] { grid-column: 1; }
+  .about-screen-info .award-group[data-col="2"] { grid-column: 2; }
+  .about-screen-info .award-group[data-col="3"] { grid-column: 3; }
+  .about-screen-info .award-org {
+    font-size: 0.72rem;
+    margin: 0 0 0.4rem;
+  }
+  .about-screen-info .award-list {
+    gap: 0.2rem;
+    margin-bottom: 0.85rem;
+  }
+  .about-screen-info .award-list li {
+    font-size: 0.68rem;
+    line-height: 1.3;
+  }
+  /* Triangles de navigation entre écrans, dans le même style épuré que
+     .carousel-arrow. Fixés à l'écran (pas à la photo) : ils restent au
+     même endroit quel que soit l'écran affiché. */
+  .about-nav-arrow {
+    display: flex;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: transparent;
+    font-size: 0;
+    cursor: pointer;
+    z-index: 25;
+    padding: 0;
+  }
+  .about-nav-arrow::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+  }
+  .about-nav-arrow.prev { left: 24px; }
+  .about-nav-arrow.prev::before { border-right: 14px solid var(--ink); }
+  .about-nav-arrow.next { right: 24px; }
+  .about-nav-arrow.next::before { border-left: 14px solid var(--ink); }
+  .about-nav-arrow:hover::before { opacity: 1; }
 }
 
 .about-section {

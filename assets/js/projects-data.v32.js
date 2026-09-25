@@ -361,8 +361,30 @@ If you need help with incomprehensible Ikea instructions: +33 7 81 49 49 00`,
         "Master Copywriting — Sup de Pub Paris",
         "Bachelor Information & Communication — Clermont University"
       ],
+      // La colonne 1 de .award-groups tombe visuellement sur le portrait N&B
+      // de la photo de fond : elle doit rester très courte. `col` fixe
+      // explicitement la colonne de chaque organisme (grid-column en JS),
+      // car grid-auto-flow:column ne peut pas produire des colonnes de
+      // hauteurs inégales.
       awards: [
-        { org: "D&AD", items: ["Graphite — Creator Content", "Wood — Media / Direct", "Merit — User Participation"] },
+        { org: "Gerety", items: ["Silver — Media"], col: 1 },
+        { org: "LIA", items: ["Young Creative 2023"], col: 1 },
+        { org: "D&AD", items: ["Graphite — Creator Content", "Wood — Media / Direct", "Merit — User Participation"], col: 2 },
+        { org: "Stratégies", items: ["Grand Prix — Media", "Grand Prix — Digital", "9x Gold"], col: 2 },
+        { org: "Effie Awards", items: ["Silver — Film"], col: 2 },
+        { org: "One Show", items: ["Gold — Livestream", "Bronze — Community Activation", "Bronze — Social Channel", "Bronze — Innovation"], col: 2 },
+        { org: "French Art Director Club", items: [
+          "Bronze — Film",
+          "Gold — Social & Creator",
+          "Silver — Social Impact",
+          "Bronze — Digital Experience"
+        ], col: 3 },
+        { org: "Eurobest", items: [
+          "Bronze — Media Not-for-profit",
+          "Bronze — Activation Gaming",
+          "Bronze — Media Entertainment",
+          "Bronze — PR Cause Related"
+        ], col: 3 },
         { org: "Cannes Lions", items: [
           "Silver — Media / Use of Influencers",
           "Bronze — Media / Audience Insight",
@@ -373,8 +395,7 @@ If you need help with incomprehensible Ikea instructions: +33 7 81 49 49 00`,
           "Shortlist — Gaming Entertainment",
           "Shortlist — Brand Experience",
           "Shortlist — Social & Creators"
-        ] },
-        { org: "One Show", items: ["Gold — Livestream", "Bronze — Community Activation", "Bronze — Social Channel", "Bronze — Innovation"] },
+        ], col: 3 },
         { org: "CLIO", items: [
           "Silver — Direct",
           "Bronze — Social Media",
@@ -383,23 +404,7 @@ If you need help with incomprehensible Ikea instructions: +33 7 81 49 49 00`,
           "Bronze — Experience/Activation",
           "Bronze — Entertainment",
           "Bronze — Partnerships & Sponsorships"
-        ] },
-        { org: "Stratégies", items: ["Grand Prix — Media", "Grand Prix — Digital", "9x Gold"] },
-        { org: "LIA", items: ["Young Creative 2023"] },
-        { org: "Eurobest", items: [
-          "Bronze — Media Not-for-profit",
-          "Bronze — Activation Gaming",
-          "Bronze — Media Entertainment",
-          "Bronze — PR Cause Related"
-        ] },
-        { org: "Effie Awards", items: ["Silver — Film"] },
-        { org: "French Art Director Club", items: [
-          "Bronze — Film",
-          "Gold — Social & Creator",
-          "Silver — Social Impact",
-          "Bronze — Digital Experience"
-        ] },
-        { org: "Gerety", items: ["Silver — Media"] }
+        ], col: 3 }
       ]
     }
   }

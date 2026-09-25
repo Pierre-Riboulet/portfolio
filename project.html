@@ -11,12 +11,12 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/favicon-180.png">
-  <link rel="stylesheet" href="assets/css/style.v42.css">
+  <link rel="stylesheet" href="assets/css/style.v44.css">
 </head>
 <body>
   <div id="app"></div>
 
-  <script src="assets/js/projects-data.v31.js"></script>
+  <script src="assets/js/projects-data.v32.js"></script>
   <script src="assets/js/main.v9.js"></script>
   <script>
     (function () {
@@ -71,7 +71,8 @@
         }).join("");
 
         var awardsHtml = a.awards.map(function (group) {
-          return '<div class="award-group">' +
+          var colAttr = group.col ? ' data-col="' + group.col + '"' : "";
+          return '<div class="award-group"' + colAttr + '>' +
             '<h3 class="award-org">' + group.org + '</h3>' +
             '<ul class="award-list">' +
             group.items.map(function (i) { return '<li>' + i + '</li>'; }).join("") +
@@ -84,11 +85,18 @@
 
           '<div class="about-hero">' +
           photoOrPlaceholder(a.heroPhoto, "Photo à venir", "about-hero-photo") +
+          '<div class="about-screens">' +
+
+          '<div class="about-screen about-screen-intro">' +
           '<div class="about-hero-text">' +
           '<h1 class="project-title">' + project.title + '</h1>' +
           '<p class="about-hero-description">' + a.description + '</p>' +
           '</div>' +
           '</div>' +
+
+          '<div class="about-screen about-screen-info">' +
+          '<div class="about-fit">' +
+          '<div class="about-info-columns">' +
 
           '<section class="about-section">' +
           '<h2 class="about-section-title">Expérience</h2>' +
@@ -100,13 +108,23 @@
           '<ul class="education-list">' + educationHtml + '</ul>' +
           '</section>' +
 
-          '<section class="about-section">' +
+          '<section class="about-section about-section-awards">' +
           '<h2 class="about-section-title">Récompenses</h2>' +
           photoOrPlaceholder(a.awardsPhoto, "Photo à venir", "awards-photo") +
           '<div class="award-groups">' + awardsHtml + '</div>' +
           '</section>' +
+
+          '</div>' +
+          '</div>' +
+          '</div>' +
+
+          '</div>' +
+          '<button class="about-nav-arrow prev" aria-label="Écran précédent">&larr;</button>' +
+          '<button class="about-nav-arrow next" aria-label="Écran suivant">&rarr;</button>' +
+          '</div>' +
           '</div>';
         fitTitleToOneLine();
+        setupAboutScreens();
         return;
       }
 
@@ -223,6 +241,96 @@
       fitTitleToOneLine();
       setupPhotoCarousels();
     })();
+
+    // Page About (desktop) : deux "écrans" plein page qu'on parcourt en
+    // scrollant horizontalement plutôt que verticalement (la photo de fond
+    // reste fixe, seuls les textes en incrustation défilent). Sur mobile,
+    // .about-screens redevient un simple flux vertical (voir CSS) et cette
+    // fonction n'a rien à faire d'utile — elle reste sans effet néfaste.
+    function setupAboutScreens() {
+      var track = document.querySelector(".about-screens");
+      if (!track) return;
+      var prevBtn = document.querySelector(".about-nav-arrow.prev");
+      var nextBtn = document.querySelector(".about-nav-arrow.next");
+      var isDown = false, startX = 0, startScroll = 0, moved = false;
+
+      function screenWidth() {
+        return track.clientWidth || window.innerWidth;
+      }
+
+      track.addEventListener("mousedown", function (e) {
+        isDown = true;
+        moved = false;
+        startX = e.pageX;
+        startScroll = track.scrollLeft;
+        track.classList.add("dragging");
+      });
+      window.addEventListener("mousemove", function (e) {
+        if (!isDown) return;
+        e.preventDefault();
+        var dx = e.pageX - startX;
+        if (Math.abs(dx) > 4) moved = true;
+        track.scrollLeft = startScroll - dx;
+      });
+      window.addEventListener("mouseup", function () {
+        isDown = false;
+        track.classList.remove("dragging");
+      });
+      track.addEventListener("click", function (e) {
+        if (moved) { e.preventDefault(); e.stopPropagation(); }
+      }, true);
+
+      // La molette de souris ne scroll que verticalement par défaut : on
+      // convertit ce mouvement vertical en défilement horizontal ici,
+      // en plus du geste horizontal natif déjà supporté (trackpad).
+      track.addEventListener("wheel", function (e) {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          e.preventDefault();
+          track.scrollLeft += e.deltaY;
+        }
+      }, { passive: false });
+
+      if (prevBtn) {
+        prevBtn.addEventListener("click", function () {
+          track.scrollBy({ left: -screenWidth(), behavior: "smooth" });
+        });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener("click", function () {
+          track.scrollBy({ left: screenWidth(), behavior: "smooth" });
+        });
+      }
+
+      function updateArrows() {
+        if (!prevBtn || !nextBtn) return;
+        var atStart = track.scrollLeft < 10;
+        var atEnd = track.scrollLeft > track.scrollWidth - track.clientWidth - 10;
+        prevBtn.style.visibility = atStart ? "hidden" : "visible";
+        nextBtn.style.visibility = atEnd ? "hidden" : "visible";
+      }
+      track.addEventListener("scroll", updateArrows);
+      updateArrows();
+
+      // Le bloc Expérience/Formation/Récompenses (long) doit tenir sur un
+      // seul écran sans scroll : on réduit son échelle visuelle (transform,
+      // pas font-size, pour que ça marche quels que soient les unités CSS
+      // utilisées à l'intérieur) jusqu'à ce qu'il rentre dans la hauteur
+      // disponible de son écran.
+      var fitEl = document.querySelector(".about-fit");
+      var infoScreen = document.querySelector(".about-screen-info");
+      if (fitEl && infoScreen && window.matchMedia("(min-width: 701px)").matches) {
+        var fitContent = fitEl.firstElementChild;
+        function fitToScreen() {
+          fitEl.style.transform = "scale(1)";
+          var available = infoScreen.clientHeight;
+          var needed = fitContent.scrollHeight;
+          var scale = Math.min(1, available / needed);
+          fitEl.style.transform = "scale(" + scale + ")";
+        }
+        fitToScreen();
+        window.addEventListener("resize", fitToScreen);
+      }
+    }
 
     function setupPhotoCarousels() {
       document.querySelectorAll(".photo-carousel").forEach(function (carousel) {
