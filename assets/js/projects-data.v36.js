@@ -341,7 +341,7 @@ One day, while waiting with 30,000 other people in front of a waiting screen, I 
       description: `I'm Pierre Riboulet,  a copywriter based in Paris.
 I grew up in a village in the middle of France. Picture a small village, cut it in half, and you get a place where cows hold an absolute majority.
 
-Today, I create campaigns at Havas Play. When I'm not writing, I build furniture and work with wood and metal. If I have any time left, I grab my camera or get lost in subreddits, pushing my already-too-high screen time even higher.
+Today, I create campaigns at Havas Play. When I'm not writing, I build furniture, work with wood and metal. If I have any time left, I grab my camera or get lost in subreddits, pushing my already-too-high screen time even higher.
 To date, one of my biggest projects is my CD's shelf, where I help put a few D&ADs, Cannes Lions, and <a href="#" class="about-jump-awards">other awards</a>.
 
 If you want to chat: <a href="mailto:PierreRiboulet.ad@gmail.com">PierreRiboulet.ad@gmail.com</a>
