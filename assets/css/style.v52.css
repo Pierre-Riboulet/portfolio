@@ -767,12 +767,18 @@ body.has-custom-cursor #pickaxe-cursor {
 }
 .about-hero-photo {
   display: block;
-  width: 100%;
+  /* Plein écran (comme .project-title, .photo-carousel...) plutôt que
+     contenue dans le padding de .project-page, pour qu'elle prenne plus
+     de place sur mobile (seul écran où cette règle de base s'applique :
+     le media query desktop plus bas redéfinit tout). */
+  width: 100vw;
   height: auto;
-  border-radius: 4px;
+  margin-left: calc(50% - 50vw);
+  border-radius: 0;
 }
 .about-hero-photo.media-placeholder {
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   aspect-ratio: 16 / 9;
 }
 .about-fit-content {
