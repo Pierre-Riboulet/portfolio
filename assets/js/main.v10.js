@@ -77,6 +77,7 @@
   // ne bascule sur le repli que si cette tentative échoue vraiment.
   var crackIndex = 0;
   function playCrackSound(project) {
+    if (!isFinePointer) return;
     var special = project && project.slug === "about";
     var src = special
       ? ABOUT_CRACK_SRC
@@ -169,6 +170,12 @@
      on peut réduire cette fenêtre au minimum : dès le tout premier clic/tap
      n'importe où sur la page (pas forcément sur un symbole), on débloque
      immédiatement le son au lieu d'attendre qu'une navigation le fasse. */
+  // Uniquement utile pour préparer le son des survols desktop (voir le garde-
+  // fou isFinePointer sur playCrackSound) : sur mobile, où le site ne joue
+  // jamais aucun son, jouer puis couper immédiatement ces fichiers audio au
+  // tout premier tap de chaque page (le site n'est pas une SPA, chaque page
+  // recharge ce script) provoquait un bref bruit/clic parasite au tout début
+  // de la navigation sur certains navigateurs mobiles.
   var audioUnlocked = false;
   function unlockAudioOnce() {
     if (audioUnlocked) return;
@@ -184,9 +191,11 @@
       }
     });
   }
-  ["pointerdown", "touchstart", "keydown"].forEach(function (evt) {
-    window.addEventListener(evt, unlockAudioOnce, { once: true, passive: true });
-  });
+  if (isFinePointer) {
+    ["pointerdown", "touchstart", "keydown"].forEach(function (evt) {
+      window.addEventListener(evt, unlockAudioOnce, { once: true, passive: true });
+    });
+  }
 
   /* ----------------------------------------------------------------------
    * L'image remplit tout l'écran en pur CSS (assets/css/style.css : .rock-frame
