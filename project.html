@@ -16,7 +16,7 @@
 <body>
   <div id="app"></div>
 
-  <script src="assets/js/projects-data.v37.js"></script>
+  <script src="assets/js/projects-data.v38.js"></script>
   <script src="assets/js/main.v10.js"></script>
   <script>
     (function () {
@@ -46,6 +46,18 @@
       function photoOrPlaceholder(src, label, className) {
         return '<img class="' + className + '" src="' + src + '" alt="' + label + '" ' +
           'onerror="this.outerHTML=\'<div class=&quot;' + className + ' media-placeholder&quot;>' + label + '</div>\'">';
+      }
+
+      // Variante mobile différente de la photo de fond de la page About :
+      // <picture>/<source> ne relaie pas vers l'<img> en cas d'échec de
+      // chargement (contrairement à onerror), donc pas de repli placeholder
+      // ici — le fichier mobile doit être en ligne.
+      function heroPhotoPicture(src, mobileSrc, label, className) {
+        if (!mobileSrc) return photoOrPlaceholder(src, label, className);
+        return '<picture>' +
+          '<source media="(max-width: 700px)" srcset="' + mobileSrc + '">' +
+          photoOrPlaceholder(src, label, className) +
+          '</picture>';
       }
 
       function escapeAttr(s) {
@@ -91,7 +103,7 @@
           '<a class="back-link" href="index.html">&larr; Back</a>' +
 
           '<div class="about-hero">' +
-          photoOrPlaceholder(a.heroPhoto, "Photo à venir", "about-hero-photo") +
+          heroPhotoPicture(a.heroPhoto, a.heroPhotoMobile, "Photo à venir", "about-hero-photo") +
           '<div class="about-screens">' +
 
           '<div class="about-screen about-screen-intro">' +

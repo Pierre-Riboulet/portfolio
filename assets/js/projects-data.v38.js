@@ -338,6 +338,7 @@ One day, while waiting with 30,000 other people in front of a waiting screen, I 
     // écrans horizontaux (About / Awards / Background).
     about: {
       heroPhoto: "assets/img/about-hero.jpg",
+      heroPhotoMobile: "assets/img/about-hero-mobile.webp",
       description: `I'm Pierre Riboulet,  a copywriter based in Paris.
 I grew up in a village in the middle of France. Picture a small village, cut it in half, and you get a place where cows hold an absolute majority.
 
