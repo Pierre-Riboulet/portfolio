@@ -323,6 +323,9 @@ body.has-custom-cursor #pickaxe-cursor {
   margin: 0 0 0.8rem calc(50% - 50vw);
   padding: 0 6vw;
 }
+.mobile-only-break {
+  display: none;
+}
 
 .project-description {
   font-size: 0.92rem;
@@ -349,6 +352,13 @@ body.has-custom-cursor #pickaxe-cursor {
      différente et ce retour forcé n'a plus lieu d'être. */
   .desktop-only-break {
     display: none;
+  }
+  /* Inverse : un retour forcé uniquement utile sur mobile (ex: Plan
+     International, dont le pageTitle est trop long pour tenir lisiblement
+     sur une seule ligne à cette largeur) — invisible sur desktop où le
+     titre tient très bien sur une ligne. */
+  .mobile-only-break {
+    display: inline;
   }
 }
 
@@ -409,6 +419,14 @@ body.has-custom-cursor #pickaxe-cursor {
   }
   .project-header .project-description {
     max-width: 100%;
+  }
+  /* .project-header a align-items:flex-start (nécessaire en row sur
+     desktop) : empilé en colonne sur mobile, ça fait que .project-credits
+     se réduit à la largeur de son contenu au lieu de profiter de toute la
+     largeur dispo, ce qui fait passer "Creative Director" (et les noms un
+     peu longs) à la ligne pour rien. */
+  .project-header .project-credits {
+    width: 100%;
   }
 }
 

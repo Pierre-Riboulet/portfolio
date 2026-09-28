@@ -11,12 +11,12 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/favicon-180.png">
-  <link rel="stylesheet" href="assets/css/style.v50.css">
+  <link rel="stylesheet" href="assets/css/style.v51.css">
 </head>
 <body>
   <div id="app"></div>
 
-  <script src="assets/js/projects-data.v36.js"></script>
+  <script src="assets/js/projects-data.v37.js"></script>
   <script src="assets/js/main.v9.js"></script>
   <script>
     (function () {
@@ -472,7 +472,10 @@
         // scrollWidth (texte + padding du titre) vs clientWidth (boîte du
         // titre, padding inclus puisque box-sizing:border-box) : les deux
         // incluent le padding de la même façon, pas besoin de le soustraire.
-        var availableWidth = container.clientWidth;
+        // Petite marge de sécurité : l'italique déborde parfois visuellement
+        // de quelques pixels au-delà de scrollWidth (ex: un "s" penché en
+        // fin de titre), ce qui le fait sembler toucher le bord de l'écran.
+        var availableWidth = container.clientWidth - 6;
         var size = parseFloat(getComputedStyle(title).fontSize);
         var minSize = 16;
         while (title.scrollWidth > availableWidth && size > minSize) {

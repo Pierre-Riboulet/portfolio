@@ -304,7 +304,7 @@ One day, while waiting with 30,000 other people in front of a waiting screen, I 
   {
     slug: "plan-international",
     title: "Plan International",
-    pageTitle: "Plan International - What do you do for a living",
+    pageTitle: "Plan International<br class=\"mobile-only-break\"> - What do you do for a living",
     hoverLeft: "Plan International", hoverRight: "What do you do for a living",
     category: "Campagne",
     description: "In our industry, we all like to think we have pretty cool jobs. Well, just wait until a Plan International donor tells you about theirs.",
