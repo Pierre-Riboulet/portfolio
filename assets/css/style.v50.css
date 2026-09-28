@@ -771,8 +771,13 @@ body.has-custom-cursor #pickaxe-cursor {
   font-size: 0.92rem;
   line-height: 1.65;
   color: #333;
-  white-space: pre-line;
   margin: 1rem 0 0;
+}
+.about-hero-description p {
+  margin: 0 0 0.6em;
+}
+.about-hero-description p:last-child {
+  margin-bottom: 0;
 }
 .about-hero-description a,
 .about-hero-description .about-underline {

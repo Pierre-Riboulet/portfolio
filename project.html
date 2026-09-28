@@ -11,7 +11,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/favicon-180.png">
-  <link rel="stylesheet" href="assets/css/style.v49.css">
+  <link rel="stylesheet" href="assets/css/style.v50.css">
 </head>
 <body>
   <div id="app"></div>
@@ -78,6 +78,14 @@
             '</ul></div>';
         }).join("");
 
+        // Un <p> par paragraphe (plutôt qu'un seul bloc en white-space:pre-line)
+        // pour pouvoir donner à l'espacement entre paragraphes une marge plus
+        // fine qu'une ligne vide entière à line-height plein, sans compresser
+        // l'interligne normal à l'intérieur d'un paragraphe.
+        var descriptionHtml = a.description.split(/\n\n+/).map(function (para) {
+          return '<p>' + para.replace(/\n/g, "<br>") + '</p>';
+        }).join("");
+
         app.innerHTML =
           '<div class="project-page about-page">' +
           '<a class="back-link" href="index.html">&larr; Back</a>' +
@@ -90,7 +98,7 @@
           '<div class="about-fit about-fit-intro" data-fit-max-vh="38">' +
           '<div class="about-fit-content">' +
           '<h1 class="about-hero-title">' + displayTitle + '</h1>' +
-          '<p class="about-hero-description">' + a.description + '</p>' +
+          '<div class="about-hero-description">' + descriptionHtml + '</div>' +
           '</div></div>' +
           '</div>' +
 
