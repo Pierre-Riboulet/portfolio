@@ -352,7 +352,7 @@ If you need help with incomprehensible Ikea instructions: <span class="about-und
         phone: "(+33) 7 81 49 49 00"
       },
       experience: [
-        { period: "Août 2022 — Présent", role: "Copywriter", company: "Havas Play Paris" },
+        { period: "Août 2022 — Présent", role: "Creative - Copywriter", company: "Havas Play Paris" },
         { period: "Juin 2020 — Août 2022", role: "Junior Copywriter", company: "Havas Sports & Entertainment" }
       ],
       education: [
