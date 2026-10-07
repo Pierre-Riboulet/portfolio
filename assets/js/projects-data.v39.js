@@ -385,7 +385,7 @@ If you need help with incomprehensible Ikea instructions: <span class="about-und
           "Bronze — Partnerships & Sponsorships"
         ] },
         { org: "Gerety", items: ["Silver — Media"] },
-        { org: "LIA", items: ["Young Creative 2023"] },
+        { org: "LIA", items: ["Young Creative 2023", "Silver — Creativity In Media", "Bronze — Creators & Social Platforms"] },
         { org: "Stratégies", items: ["Grand Prix — Media", "Grand Prix — Digital", "9x Gold"] },
         { org: "Effie Awards", items: ["Silver — Film"] },
         { org: "French Art Director Club", items: [
